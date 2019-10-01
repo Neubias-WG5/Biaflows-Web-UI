@@ -48,6 +48,16 @@
 
             <div class="column filter">
               <div class="filter-label">
+                {{$t('discipline')}}
+              </div>
+              <div class="filter-body">
+                <cytomine-multiselect v-model="selectedDisciplines" :options="disciplines"
+                  label="name" track-by="id" multiple :allPlaceholder="$t('all-disciplines')" />
+              </div>
+            </div>
+
+            <div class="column filter">
+              <div class="filter-label">
                 {{$t('my-role')}}
               </div>
               <div class="filter-body">
@@ -297,8 +307,20 @@ export default {
       });
       return ontologies;
     },
+    disciplines() {
+      let seenIds = [];
+      let disciplines = [];
+      this.projects.forEach(project => {
+        if(!seenIds.includes(project.discipline)) {
+          disciplines.push({id: project.discipline, name: project.disciplineName || this.$t('no-discipline')});
+          seenIds.push(project.discipline);
+        }
+      });
+      return disciplines;
+    },
 
     selectedOntologies: syncMultiselectFilter('listProjects', 'selectedOntologies', 'ontologies'),
+    selectedDisciplines: syncMultiselectFilter('listProjects', 'selectedDisciplines', 'disciplines'),
     selectedRoles: syncMultiselectFilter('listProjects', 'selectedRoles', 'availableRoles'),
     boundsMembers: syncBoundsFilter('listProjects', 'boundsMembers', 'maxNbMembers'),
     boundsImages: syncBoundsFilter('listProjects', 'boundsImages', 'maxNbImages'),
@@ -312,6 +334,9 @@ export default {
 
     selectedOntologiesIds() {
       return this.selectedOntologies.map(ontology => ontology.id);
+    },
+    selectedDisciplinesIds() {
+      return this.selectedDisciplines.map(discipline => discipline.id);
     },
     regexp() {
       return getWildcardRegexp(this.searchString);
@@ -330,6 +355,7 @@ export default {
         let managedProject = project.currentUserRoles.admin;
         let roleIncluded = (includeContributor && !managedProject) || (includeManager && managedProject);
         return this.selectedOntologiesIds.includes(project.ontology) &&
+          this.selectedDisciplinesIds.includes(project.discipline) &&
           roleIncluded &&
           isBetweenBounds(project.numberOfImages, this.boundsImages) &&
           isBetweenBounds(project.membersCount, this.boundsMembers) &&

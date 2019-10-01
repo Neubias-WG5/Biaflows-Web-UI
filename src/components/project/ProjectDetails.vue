@@ -75,6 +75,15 @@
         <em v-else>{{$t('no-ontology')}}</em>
       </td>
     </tr>
+    <tr v-if="isPropDisplayed('discipline')">
+      <td class="prop-label">{{$t('discipline')}}</td>
+      <td class="prop-content">
+        <span v-if="project.ontology">
+          {{project.disciplineName}}
+        </span>
+        <em v-else>{{$t('no-discipline')}}</em>
+      </td>
+    </tr>
     <tr v-if="isPropDisplayed('created')">
       <td class="prop-label">{{$t('created-on')}}</td>
       <td class="prop-content">

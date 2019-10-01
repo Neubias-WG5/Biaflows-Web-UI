@@ -55,12 +55,58 @@
     </cytomine-modal>
   </form>
 
+  <form @submit.prevent="saveDiscipline()">
+    <cytomine-modal :active="isDisciplineModalActive" :title="$t('change-discipline')" @close="isDisciplineModalActive = false">
+      <b-message v-if="errorDisciplines" type="is-danger" has-icon icon-size="is-small">
+        <h2> {{ $t('error') }} </h2>
+        <p> {{ $t('unexpected-error-info-message') }} </p>
+      </b-message>
+      <template v-else>
+        <b-field :label="$t('discipline')">
+          <b-select
+            v-model="selectedDiscipline"
+            :placeholder="$t('no-discipline')"
+            :disabled="loadingDisciplines"
+            :loading="loadingDisciplines"
+          >
+            <option :value="null">
+              {{$t('no-discipline')}}
+            </option>
+            <option v-for="discipline in disciplines" :value="discipline.id" :key="discipline.id">
+              {{discipline.name}}
+            </option>
+          </b-select>
+        </b-field>
+      </template>
+
+      <template #footer>
+        <button
+          class="button"
+          type="button"
+          @click="isDisciplineModalActive = false"
+        >
+          {{$t('button-cancel')}}
+        </button>
+        <button
+          v-if="!errorDisciplines"
+          class="button is-link"
+          :disabled="loadingDisciplines"
+        >
+          {{$t('button-save')}}
+        </button>
+      </template>
+    </cytomine-modal>
+  </form>
+
   <div class="buttons">
     <button class="button" :class="size" @click="isRenameModalActive = true">
       {{$t('button-rename')}}
     </button>
     <button class="button" :class="size" @click="isOntologyModalActive = true" :disabled="cannotDeleteOntology">
       {{$t('button-change-ontology')}}
+    </button>
+    <button class="button" :class="size" @click="isDisciplineModalActive = true">
+      {{$t('button-change-discipline')}}
     </button>
     <button class="button is-danger" :class="size" @click="deleteProject()">
       {{$t('button-delete')}}
@@ -70,7 +116,7 @@
 </template>
 
 <script>
-import {OntologyCollection} from 'cytomine-client';
+import {OntologyCollection, DisciplineCollection} from 'cytomine-client';
 import CytomineModal from '@/components/utils/CytomineModal';
 import RenameModal from '@/components/utils/RenameModal';
 
@@ -88,12 +134,20 @@ export default {
     return {
       isRenameModalActive: false,
       isOntologyModalActive: false,
+      isDisciplineModalActive: false,
+
       loadingOntologies: true,
       errorOntologies: false,
       ontologies: null,
       selectedOntology: null,
       cannotDeleteOntology: false,
-      savingOntology: false
+      savingOntology: false,
+
+      loadingDisciplines: true,
+      errorDisciplines: false,
+      Disciplines: null,
+      selectedDiscipline: null,
+      cannotDeleteDiscipline: false,
     };
   },
   watch: {
@@ -115,7 +169,26 @@ export default {
         this.selectedOntology = this.project.ontology;
         this.savingOntology = false;
       }
-    }
+    },
+
+    async isDisciplineModalActive(val) {
+      if(val) {
+        if(this.loadingDisciplines) {
+          try {
+            this.disciplines = (await DisciplineCollection.fetchAll()).array;
+            this.disciplines.sort((a, b) => a.name.localeCompare(b.name));
+            this.loadingDisciplines = false;
+          }
+          catch(error) {
+            console.log(error);
+            this.errorDisciplines = true;
+          }
+        }
+
+        // preselect the discipline of the project
+        this.selectedDiscipline = this.project.discipline;
+      }
+    },
   },
   methods: {
     async rename(newName) {
@@ -186,6 +259,27 @@ export default {
       }
       this.savingOntology = false;
       this.isOntologyModalActive = false;
+    },
+
+    async saveDiscipline() {
+      let updatedProject = this.project.clone();
+      try {
+        updatedProject.discipline = this.selectedDiscipline;
+        await updatedProject.save();
+        this.$emit('update', updatedProject);
+        this.$notify({
+          type: 'success',
+          text: this.$t('notif-success-project-discipline-change', {projectName: this.project.name})
+        });
+      }
+      catch(error) {
+        console.log(error);
+        this.$notify({
+          type: 'error',
+          text: this.$t('notif-error-project-discipline-change', {projectName: this.project.name})
+        });
+      }
+      this.isDisciplineModalActive = false;
     },
 
     deleteProject() {

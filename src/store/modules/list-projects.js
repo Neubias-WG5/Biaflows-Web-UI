@@ -5,6 +5,7 @@ function getDefaultState() {
     filtersOpened: false,
     filters: {
       selectedOntologies: null,
+      selectedDisciplines: null,
       selectedRoles: null,
       boundsMembers: null,
       boundsImages: null,
