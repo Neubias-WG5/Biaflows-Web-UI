@@ -80,11 +80,16 @@ export default {
           change: newDesc => this.description = newDesc
         }
       });
+    },
+    formatDescription(description) {
+      description.data = description.data.replace(new RegExp('/api/attachedfile/', 'g'), `${constants.CYTOMINE_CORE_HOST}/api/attachedfile/`);
+      return description;
     }
+
   },
   async created() {
     try {
-      this.description = await Description.fetch(this.object);
+      this.description = this.formatDescription(await Description.fetch(this.object));
     }
     catch(err) {
       // the error may make sense if the object has no description
