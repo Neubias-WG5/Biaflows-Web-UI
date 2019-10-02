@@ -4,7 +4,7 @@ projects,Datasets,Projets
 storage,Storage,Stockage
 help,Help,Aide
 shortcuts,Shortcuts,Raccourcis
-about-cytomine,About Cytomine,À propos de Cytomine
+about-cytomine,About BIAFLOWS,À propos de Cytomine
 account,Account,Compte
 logout,Logout,Se déconnecter
 dashboard,Dashboard,Tableau de bord
@@ -44,7 +44,7 @@ notif-success-keys-regenerated,API keys correctly updated,Clés API mises à jou
 notif-error-keys-not-regenerated,Error during the regeneration of API keys,Une erreur a empêché de regénérer les clés API
 login,Log in,Authentification
 remember-me,Remember me,Se rappeler de moi
-notif-success-login,Welcome on Cytomine,Bienvenue sur Cytomine
+notif-success-login,Welcome on BIAFLOWS,Bienvenue sur Cytomine
 notif-unexpected-error,Unexpected error,Une erreur inattendue s'est produite
 annotation-layers,Annotation layers,Calques d'annotations
 select-layer,Select a layer,Sélectionner un calque
@@ -249,7 +249,7 @@ viewer-view,View {number},Image {number}
 link-group,Group {number},Groupe {number}
 button-unlink,Unlink,Séparer
 terms-new-annotation,Term(s) to associate to new annotations,Terme(s) à associer aux nouvelles annotations
-core-cannot-be-reached,Error of communication with Cytomine core,Erreur de communication avec le backend de Cytomine
+core-cannot-be-reached,Error of communication with BIAFLOWS core,Erreur de communication avec le backend de Cytomine
 communication-error,Communication error,Erreur de communication
 follow-user,Follow a user,Suivi d'utilisateur
 online-managers,Online managers,Responsables en ligne
@@ -475,19 +475,19 @@ shortcut-viewer-tool-review-accept,Accept selected annotation in review mode,Val
 shortcut-viewer-tool-review-reject,Reject selected annotation in review mode,Rejeter l'annotation sélectionnée en mode validation
 shortcut-viewer-tool-review-toggle,Toggle review layer in review mode,Afficher/masquer le calque de validation en mode validation
 version,Version,Version
-sponsors,Sponsors,Sponsors
+sponsors,Thanks to,Merci à
 website,Website,Site web
 source-code,Source code,Code source
 documentation,Documentation,Documentation
 contact,Contact,Contact
-cytomine-sponsors-info,"Cytomine is developed by the {cytomineCompanyLink} in collaboration with the University of Liège and was previously funded by research grants of the Wallonia.","Cytomine est développé par la {cytomineCompanyLink} en collaboration avec l'Université de Liège et a été subventionné par des conventions de recherche de la Région Wallone."
-cytomine-company,Cytomine company,société Cytomine
-cytomine-website-info,"You can find more information on the website of the Cytomine project located at {websiteLink}.",Vous trouverez davantage d'information sur le site web du projet Cytomine : {websiteLink}.
-source-code-info,"Cytomine is an open-source software. The licenses are Apache2 and LGPL 2.1. The source code is available on our {githubLink}.",Cytomine est un logiciel open-source. Il est distribué sous les licences Apache2 et LGPL 2.1. Le code source est disponible sur notre {githubLink}.
+cytomine-sponsors-info,"BIAFLOWS is a collaborative framework to benchmark and deploy bioimage analysis workflows.","BIAFLOWS est développé par la {cytomineCompanyLink} en collaboration avec l'Université de Liège et a été subventionné par des conventions de recherche de la Région Wallone."
+cytomine-company,BIAFLOWS company,société BIAFLOWS
+cytomine-website-info,"You can find more information on the website of the BIAFLOWS project located at {websiteLink}.",Vous trouverez davantage d'information sur le site web du projet BIAFLOWS : {websiteLink}.
+source-code-info,"BIAFLOWS is an open-source software. The licenses are Apache2 and LGPL 2.1. The source code is available on our {githubLink}. It is built on top of Cytomine whose code source is available {githubLink1} and {githubLink2}.",BIAFLOWS est un logiciel open-source. Il est distribué sous les licences Apache2 et LGPL 2.1. Le code source est disponible sur notre {githubLink}.
 github-repository,GitHub repository,répertoire GitHub
-documentation-info,"A complete documentation is available {docLink}. More detailed documentation regarding the API of Cytomine is also available {apiDocLink}.","Une documentation complète est disponible {docLink}. Des informations plus détaillées sur l'API de Cytomine sont aussi disponibles {apiDocLink}."
+documentation-info,"A complete documentation is available {docLink}. More detailed documentation regarding the API of BIAFLOWS is also available {apiDocLink}.","Une documentation complète est disponible {docLink}. Des informations plus détaillées sur l'API de BIAFLOWS sont aussi disponibles {apiDocLink}."
 here,here,ici
-contact-info,You can contact the Cytomine Team at {contactMail},Vous pouvez contacter l'équipe de Cytomine à l'adresse {contactMail}.
+contact-info,You can contact the BIAFLOWS Team at {contactMail},Vous pouvez contacter l'équipe de Cytomine à l'adresse {contactMail}.
 button-previous-image,Previous image,Image précédente
 button-next-image,Next image,Image suivante
 notif-error-first-image,This is the first image of the dataset,Il s'agit de la première image du projet
@@ -638,8 +638,8 @@ button-manage-members,Manage members,Gestion des membres
 barchart-hover-mouse-for-details,Hover the mouse over a bar to display details related to this bar,Passez la souris sur une barre pour afficher les détails relatifs à cette barre
 barchart-click-label-to-toggle-visibility,Click on a label at the top of the chart to toggle the visibility of this data in the chart,Cliquez sur un label au-dessus du graphique pour afficher/masquer les données associées à ce label dans le graphique
 activity-chart-info-message,This chart presents the activity performed in the selected period,Ce graphique présente un résumé de l'activité ayant eu lieu durant la période sélectionnée
-project-connections-info-message,A dataset connection is recorded each time a user opens a dataset in Cytomine,Une connexion au projet est enregistrée à chaque ouverture de projet dans Cytomine
-image-consultations-info-message,An image consultation is recorded each time a user opens an image in Cytomine,Une consultation d'image est enregistrée à chaque ouverture d'image dans Cytomine
+project-connections-info-message,A dataset connection is recorded each time a user opens a dataset in BIAFLOWS,Une connexion au projet est enregistrée à chaque ouverture de projet dans Cytomine
+image-consultations-info-message,An image consultation is recorded each time a user opens an image in BIAFLOWS,Une consultation d'image est enregistrée à chaque ouverture d'image dans Cytomine
 annotation-selections-info-message,"An annotation selection is recorded each time a user selects an annotation","À chaque fois qu'un utilisateur clique sur une annotation dans une image, une sélection d'annotation est enregistrée"
 manual-annotations-info-message,"Annotations created by a user",Annotations créées par un utilisateur
 analysis-annotations-info-message,"Annotations created by an automatic analysis (run of a workflow)",Annotations créées par une analyse automatique (exécution d'un algorithme)
@@ -750,7 +750,7 @@ connect-as-user,Connect as {username},Se connecter en tant que {username}
 notif-error-failed-to-connect-as-user,Failed to connect as the selected user,Une erreur a empêché la connexion
 switch-back-to-user,Switch back to {username},Retour à {username}
 notif-error-failed-to-switch-back-as-real-user,Failed to switch back to real account,Une erreur a empêché de vous reconnecter sous votre vrai compte
-notif-error-invalid-key-prefix,The property key cannot start by {prefix}: this prefix is reserved for internal use,La clé ne peut commencer par {prefix} : ce préfixe est réservé par Cytomine pour une utilisation interne.
+notif-error-invalid-key-prefix,The property key cannot start by {prefix}: this prefix is reserved for internal use,La clé ne peut commencer par {prefix} : ce préfixe est réservé par BIAFLOWS pour une utilisation interne.
 button-copy,Copy,Copier
 notif-success-key-copied,Key copied to clipboard,Clé copiée dans le presse-papier
 confirm-close-project,Close dataset,Fermer le projet
@@ -901,8 +901,8 @@ number-success,Successful executions,Exécutions réussies
 software-parameters,Workflow parameters,Paramètres de l'algorithme
 default-value,Default value,Valeur par défaut
 mandatory,Mandatory,Obligatoire
-domain,Cytomine domain,Domaine Cytomine
-listdomain,List of Cytomine domains,Liste de domaines Cytomine
+domain,BIAFLOWS domain,Domaine BIAFLOWS
+listdomain,List of BIAFLOWS domains,Liste de domaines BIAFLOWS
 list,List,Liste
 number,Number,Nombre
 string,String,Chaîne de caractères

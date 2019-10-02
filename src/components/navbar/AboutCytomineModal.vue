@@ -7,14 +7,17 @@
 
       <dt>{{$t('sponsors')}}</dt>
       <dd>
-        <a href="https://cytomine.coop" target="_blank">
-          <img src="@/assets/sponsors/logo-cytomine-coop.png" class="sponsor">
+        <a href="http://neubias.org/" target="_blank">
+          <img src="@/assets/sponsors/logo-neubias.png" class="sponsor">
         </a>
-        <a href="https://www.uliege.be" target="_blank">
-          <img src="@/assets/sponsors/logo-uliege.png" class="sponsor">
+        <a href="https://cost.eu/COST_Actions/ca/CA15124" target="_blank">
+          <img src="@/assets/sponsors/logo-cost.png" class="sponsor">
         </a>
-        <a href="https://www.wallonie.be/" target="_blank">
-          <img src="@/assets/sponsors/logo-wallonie.png" class="sponsor">
+        <a href="https://cytomine.org" target="_blank">
+          <img src="@/assets/sponsors/logo-cytomine-org.png" class="sponsor">
+        </a>
+        <a href="http://europe.wallonie.be/" target="_blank">
+          <img src="@/assets/sponsors/logo-feder.jpg" class="sponsor">
         </a>
       </dd>
 
@@ -26,18 +29,22 @@
         </i18n>
       </dd>
 
-      <dt>{{$t('website')}}</dt>
-      <dd>
-        <i18n path="cytomine-website-info">
-          <a place="websiteLink" href="https://cytomine.coop" target="_blank">cytomine.org</a>
-        </i18n>
-      </dd>
+<!--      <dt>{{$t('website')}}</dt>-->
+<!--      <dd>-->
+<!--        <i18n path="cytomine-website-info">-->
+<!--          <a place="websiteLink" href="https://cytomine.coop" target="_blank">cytomine.org</a>-->
+<!--        </i18n>-->
+<!--      </dd>-->
 
       <dt>{{$t('source-code')}}</dt>
       <dd>
         <i18n path="source-code-info">
-          <a place="githubLink" href="http://github.com/cytomine/" target="_blank">
+          <a place="githubLink" href="https://github.com/neubias-wg5/" target="_blank">
             {{$t('github-repository')}}</a>
+          <a place="githubLink1" href="http://github.com/cytomine-uliege/" target="_blank">
+            {{$t('here')}}</a>
+          <a place="githubLink2" href="http://github.com/cytomine/" target="_blank">
+            {{$t('here')}}</a>
         </i18n>
       </dd>
 
@@ -52,7 +59,7 @@
       <dt>{{$t('contact')}}</dt>
       <dd>
         <i18n path="contact-info">
-          <a place="contactMail" href="mailto:info@cytomine.org">info@cytomine.org</a>
+          <a place="contactMail" href="mailto:biaflows@neubias.org">biaflows@neubias.org</a>
         </i18n>
       </dd>
     </dl>
