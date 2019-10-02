@@ -49,6 +49,7 @@
             <option selected></option>
             <option value="center"></option>
             <option value="right"></option>
+            <option value="justify"></option>
           </select>
         </span>
 
