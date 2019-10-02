@@ -49,14 +49,14 @@
               </div>
             </div>
 
-            <div class="column filter is-one-quarter">
-              <div class="filter-label">
-                {{$t('vendor')}}
-              </div>
-              <div class="filter-body">
-                <cytomine-multiselect v-model="selectedVendors" :options="availableVendors" multiple />
-              </div>
-            </div>
+<!--            <div class="column filter is-one-quarter">-->
+<!--              <div class="filter-label">-->
+<!--                {{$t('vendor')}}-->
+<!--              </div>-->
+<!--              <div class="filter-body">-->
+<!--                <cytomine-multiselect v-model="selectedVendors" :options="availableVendors" multiple />-->
+<!--              </div>-->
+<!--            </div>-->
 
             <div class="column filter is-one-quarter">
               <div class="filter-label">
@@ -64,6 +64,15 @@
               </div>
               <div class="filter-body">
                 <cytomine-multiselect v-model="selectedTypes" :options="availableTypes" multiple />
+              </div>
+            </div>
+
+            <div class="column filter is-one-quarter">
+              <div class="filter-label">
+                {{$t('analysis-annotations')}}
+              </div>
+              <div class="filter-body">
+                <cytomine-slider v-model="boundsJobAnnotations" :max="maxNbJobAnnotations" />
               </div>
             </div>
           </div>
@@ -108,36 +117,27 @@
             </div>
           </div>
 
-          <div class="columns">
-            <div class="column filter">
-              <div class="filter-label">
-                {{$t('user-annotations')}}
-              </div>
-              <div class="filter-body">
-                <cytomine-slider v-model="boundsUserAnnotations" :max="maxNbUserAnnotations" />
-              </div>
-            </div>
+<!--          <div class="columns">-->
+<!--            <div class="column filter">-->
+<!--              <div class="filter-label">-->
+<!--                {{$t('user-annotations')}}-->
+<!--              </div>-->
+<!--              <div class="filter-body">-->
+<!--                <cytomine-slider v-model="boundsUserAnnotations" :max="maxNbUserAnnotations" />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            -->
+<!--            <div class="column filter">-->
+<!--              <div class="filter-label">-->
+<!--                {{$t('reviewed-annotations')}}-->
+<!--              </div>-->
+<!--              <div class="filter-body">-->
+<!--                <cytomine-slider v-model="boundsReviewedAnnotations" :max="maxNbReviewedAnnotations" />-->
+<!--              </div>-->
+<!--            </div>-->
 
-            <div class="column filter">
-              <div class="filter-label">
-                {{$t('analysis-annotations')}}
-              </div>
-              <div class="filter-body">
-                <cytomine-slider v-model="boundsJobAnnotations" :max="maxNbJobAnnotations" />
-              </div>
-            </div>
-
-            <div class="column filter">
-              <div class="filter-label">
-                {{$t('reviewed-annotations')}}
-              </div>
-              <div class="filter-body">
-                <cytomine-slider v-model="boundsReviewedAnnotations" :max="maxNbReviewedAnnotations" />
-              </div>
-            </div>
-
-            <div class="column filter"></div>
-          </div>
+<!--            <div class="column filter"></div>-->
+<!--          </div>-->
         </div>
       </b-collapse>
 
@@ -174,15 +174,15 @@
             </router-link>
           </b-table-column>
 
-          <b-table-column field="magnification" :label="$t('magnification')" centered sortable width="100">
-            {{ image.magnification || $t('unknown') }}
-          </b-table-column>
+<!--          <b-table-column field="magnification" :label="$t('magnification')" centered sortable width="100">-->
+<!--            {{ image.magnification || $t('unknown') }}-->
+<!--          </b-table-column>-->
 
-          <b-table-column field="numberOfAnnotations" :label="$t('user-annotations')" centered sortable width="100">
-            <router-link :to="`/project/${image.project}/annotations?image=${image.id}&type=user`">
-              {{ image.numberOfAnnotations }}
-            </router-link>
-          </b-table-column>
+<!--          <b-table-column field="numberOfAnnotations" :label="$t('user-annotations')" centered sortable width="100">-->
+<!--            <router-link :to="`/project/${image.project}/annotations?image=${image.id}&type=user`">-->
+<!--              {{ image.numberOfAnnotations }}-->
+<!--            </router-link>-->
+<!--          </b-table-column>-->
 
           <b-table-column field="numberOfJobAnnotations" :label="$t('analysis-annotations')" centered sortable width="100">
             <router-link :to="`/project/${image.project}/annotations?image=${image.id}&type=algo`">
@@ -190,11 +190,11 @@
             </router-link>
           </b-table-column>
 
-          <b-table-column field="numberOfReviewedAnnotations" :label="$t('reviewed-annotations')" centered sortable width="100">
-            <router-link :to="`/project/${image.project}/annotations?image=${image.id}&type=reviewed`">
-              {{ image.numberOfReviewedAnnotations }}
-            </router-link>
-          </b-table-column>
+<!--          <b-table-column field="numberOfReviewedAnnotations" :label="$t('reviewed-annotations')" centered sortable width="100">-->
+<!--            <router-link :to="`/project/${image.project}/annotations?image=${image.id}&type=reviewed`">-->
+<!--              {{ image.numberOfReviewedAnnotations }}-->
+<!--            </router-link>-->
+<!--          </b-table-column>-->
 
           <b-table-column label=" " centered width="150">
             <router-link :to="`/project/${image.project}/image/${image.id}`" class="button is-small is-link">
@@ -273,7 +273,7 @@ export default {
       excludedProperties: [
         'overview',
         'instanceFilename',
-        'magnification',
+        // 'magnification',
         'numberOfAnnotations',
         'numberOfJobAnnotations',
         'numberOfReviewedAnnotations',
