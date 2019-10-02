@@ -145,7 +145,7 @@ export default {
 
       loadingDisciplines: true,
       errorDisciplines: false,
-      Disciplines: null,
+      disciplines: null,
       selectedDiscipline: null,
       cannotDeleteDiscipline: false,
     };
