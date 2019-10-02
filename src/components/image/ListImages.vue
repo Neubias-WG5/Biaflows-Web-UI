@@ -57,6 +57,15 @@
                 <cytomine-multiselect v-model="selectedVendors" :options="availableVendors" multiple />
               </div>
             </div>
+
+            <div class="column filter is-one-quarter">
+              <div class="filter-label">
+                {{$t('type')}}
+              </div>
+              <div class="filter-body">
+                <cytomine-multiselect v-model="selectedTypes" :options="availableTypes" multiple />
+              </div>
+            </div>
           </div>
 
           <div class="columns">
@@ -238,6 +247,7 @@ import AddImageModal from './AddImageModal';
 import vendorFromMime from '@/utils/vendor';
 
 import {ImageInstanceCollection} from 'cytomine-client';
+import {getWildcardRegexp} from '@/utils/string-utils';
 
 // store options to use with store helpers to target projects/currentProject/listImages module
 const storeOptions = {rootModuleProp: 'storeModule'};
@@ -314,6 +324,9 @@ export default {
       });
       return vendors;
     },
+    availableTypes() {
+      return [this.$t('data'),this.$t('groundtruth')];
+    },
     availableMagnifications() {
       let magnifications = [];
       this.images.forEach(image => {
@@ -352,6 +365,7 @@ export default {
 
     selectedFormats: localSyncMultiselectFilter('formats', 'availableFormats'),
     selectedVendors: localSyncMultiselectFilter('vendors', 'availableVendors'),
+    selectedTypes: localSyncMultiselectFilter('types', 'availableTypes'),
     selectedMagnifications: localSyncMultiselectFilter('magnifications', 'availableMagnifications'),
     selectedResolutions: localSyncMultiselectFilter('resolutions', 'availableResolutions'),
     boundsWidth: localSyncBoundsFilter('boundsWidth', 'maxWidth'),
@@ -416,6 +430,7 @@ export default {
       this.$set(image, 'vendor', vendorFromMime(image.contentType));
       this.$set(image, 'vendorFormatted', this.formatVendor(image.vendor));
       this.$set(image, 'magnificationFormatted', this.formatMagnification(image.magnification));
+      this.$set(image, 'typeFormatted', this.formatType(image));
       return image;
     },
 
@@ -429,6 +444,13 @@ export default {
 
     formatMagnification(magnification) {
       return magnification || this.$t('unknown');
+    },
+
+    formatType(image) {
+      let regexp = getWildcardRegexp('lbl');
+      let isGroundtruth = ((image.instanceFilename && regexp.test(image.instanceFilename)) ||
+        (image.blindedName && regexp.test(image.blindedName)));
+      return (isGroundtruth) ? this.$t('groundtruth') : this.$t('data');
     }
   },
   async created() {

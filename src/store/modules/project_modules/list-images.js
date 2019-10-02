@@ -1,5 +1,6 @@
 import {isBetweenBounds} from '@/utils/bounds';
 import {getWildcardRegexp} from '@/utils/string-utils';
+import i18n from '@/lang';
 
 export default {
   namespaced: true,
@@ -12,6 +13,7 @@ export default {
       filters: {
         formats: null,
         vendors: null,
+        types: [i18n.t('data')],
         magnifications: null,
         resolutions: null,
         boundsWidth: null,
@@ -68,6 +70,7 @@ export default {
       return images.filter(image => {
         return (!str || (image.instanceFilename && regexp.test(image.instanceFilename)) ||
           (image.blindedName && regexp.test(image.blindedName))) &&
+          getters.checkMultiselectFilter('types', image.typeFormatted) &&
           getters.checkMultiselectFilter('formats', image.contentType) &&
           getters.checkMultiselectFilter('vendors', image.vendorFormatted) &&
           getters.checkMultiselectFilter('magnifications', image.magnificationFormatted) &&
