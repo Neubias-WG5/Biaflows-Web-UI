@@ -63,52 +63,21 @@
       <h2> {{ $t('filters') }} </h2>
       <div class="filters">
         <div class="columns">
-          <div class="column filter is-third">
-            <div class="filter-label">
-              {{$t('annotation-type')}}
-            </div>
-            <div class="filter-body">
-              <cytomine-multiselect
-                v-model="selectedAnnotationType"
-                :options="annotationTypes"
-                :allow-empty="false"
-                :searchable="false"
-              />
-            </div>
-          </div>
+<!--          <div class="column filter is-third">-->
+<!--            <div class="filter-label">-->
+<!--              {{$t('annotation-type')}}-->
+<!--            </div>-->
+<!--            <div class="filter-body">-->
+<!--              <cytomine-multiselect-->
+<!--                v-model="selectedAnnotationType"-->
+<!--                :options="annotationTypes"-->
+<!--                :allow-empty="false"-->
+<!--                :searchable="false"-->
+<!--              />-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="column filter is-third">
-            <div class="filter-label">
-              {{$t('images')}}
-            </div>
-            <div class="filter-body">
-              <cytomine-multiselect
-                v-model="selectedImages"
-                :options="images"
-                :label="blindMode ? 'blindedName' : 'instanceFilename'"
-                track-by="id"
-                multiple
-                :allPlaceholder="$t('all-images')"
-              />
-            </div>
-          </div>
-
-          <div v-if="ontology" class="column filter">
-              <div class="filter-label">
-                {{$t('terms')}}
-              </div>
-              <div class="filter-body">
-                <ontology-tree-multiselect
-                  :ontology="ontology"
-                  :additionalNodes="additionalNodes"
-                  v-model="selectedTermsIds"
-                />
-              </div>
-          </div>
-        </div>
-
-        <div class="columns">
-           <div v-if="selectedAnnotationType === jobAnnotationOption" class="column filter">
+          <div v-if="selectedAnnotationType === jobAnnotationOption" class="column filter">
             <div class="filter-label">
               {{$t('analyses')}}
             </div>
@@ -154,25 +123,56 @@
             </div>
           </div>
 
-          <div class="column filter">
+          <div class="column filter is-third">
             <div class="filter-label">
-              {{$t('from')}}
+              {{$t('images')}}
             </div>
             <div class="filter-body">
-              <cytomine-datepicker v-model="fromDate" :styles="['multiselect']" :maxDate="toDate || new Date()" />
+              <cytomine-multiselect
+                v-model="selectedImages"
+                :options="images"
+                :label="blindMode ? 'blindedName' : 'instanceFilename'"
+                track-by="id"
+                multiple
+                :allPlaceholder="$t('all-images')"
+              />
             </div>
           </div>
 
-          <div class="column filter">
-            <div class="filter-label">
-              {{$t('to')}}
-            </div>
-            <div class="filter-body">
-              <cytomine-datepicker v-model="toDate" :styles="['multiselect']" :minDate="fromDate" />
-            </div>
+          <div v-if="ontology" class="column filter">
+              <div class="filter-label">
+                {{$t('terms')}}
+              </div>
+              <div class="filter-body">
+                <ontology-tree-multiselect
+                  :ontology="ontology"
+                  :additionalNodes="additionalNodes"
+                  v-model="selectedTermsIds"
+                />
+              </div>
           </div>
-
         </div>
+
+<!--        <div class="columns">-->
+<!--          <div class="column filter">-->
+<!--            <div class="filter-label">-->
+<!--              {{$t('from')}}-->
+<!--            </div>-->
+<!--            <div class="filter-body">-->
+<!--              <cytomine-datepicker v-model="fromDate" :styles="['multiselect']" :maxDate="toDate || new Date()" />-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="column filter">-->
+<!--            <div class="filter-label">-->
+<!--              {{$t('to')}}-->
+<!--            </div>-->
+<!--            <div class="filter-body">-->
+<!--              <cytomine-datepicker v-model="toDate" :styles="['multiselect']" :minDate="fromDate" />-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--        </div>-->
       </div>
     </div>
 
@@ -446,7 +446,7 @@ export default {
       this.selectedColor = this.colors[0];
     }
     if(!this.selectedAnnotationType) {
-      this.selectedAnnotationType = this.userAnnotationOption;
+      this.selectedAnnotationType = this.jobAnnotationOption;
     }
     // ---
 
