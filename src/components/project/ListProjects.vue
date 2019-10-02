@@ -36,15 +36,15 @@
       <b-collapse :open="filtersOpened">
         <div class="filters">
           <div class="columns">
-            <div class="column filter">
-              <div class="filter-label">
-                {{$t('ontology')}}
-              </div>
-              <div class="filter-body">
-                <cytomine-multiselect v-model="selectedOntologies" :options="ontologies"
-                  label="name" track-by="id" multiple :allPlaceholder="$t('all-ontologies')" />
-              </div>
-            </div>
+<!--            <div class="column filter">-->
+<!--              <div class="filter-label">-->
+<!--                {{$t('ontology')}}-->
+<!--              </div>-->
+<!--              <div class="filter-body">-->
+<!--                <cytomine-multiselect v-model="selectedOntologies" :options="ontologies"-->
+<!--                  label="name" track-by="id" multiple :allPlaceholder="$t('all-ontologies')" />-->
+<!--              </div>-->
+<!--            </div>-->
 
             <div class="column filter">
               <div class="filter-label">
@@ -71,15 +71,6 @@
           <div class="columns">
               <div class="column filter">
                 <div class="filter-label">
-                  {{$t('members')}}
-                </div>
-                <div class="filter-body">
-                  <cytomine-slider v-model="boundsMembers" :max="maxNbMembers" />
-                </div>
-              </div>
-
-              <div class="column filter">
-                <div class="filter-label">
                   {{$t('images')}}
                 </div>
                 <div class="filter-body">
@@ -87,18 +78,18 @@
                 </div>
               </div>
 
-              <div class="column"></div>
-          </div>
-
-          <div class="columns">
-            <div class="column filter">
-              <div class="filter-label">
-                {{$t('user-annotations')}}
-              </div>
-              <div class="filter-body">
-                <cytomine-slider v-model="boundsUserAnnotations" :max="maxNbUserAnnotations" />
-              </div>
-            </div>
+<!--              <div class="column"></div>-->
+<!--          </div>-->
+<!---->
+<!--          <div class="columns">-->
+<!--            <div class="column filter">-->
+<!--              <div class="filter-label">-->
+<!--                {{$t('user-annotations')}}-->
+<!--              </div>-->
+<!--              <div class="filter-body">-->
+<!--                <cytomine-slider v-model="boundsUserAnnotations" :max="maxNbUserAnnotations" />-->
+<!--              </div>-->
+<!--            </div>-->
 
             <div class="column filter">
               <div class="filter-label">
@@ -109,12 +100,21 @@
               </div>
             </div>
 
+<!--            <div class="column filter">-->
+<!--              <div class="filter-label">-->
+<!--                {{$t('reviewed-annotations')}}-->
+<!--              </div>-->
+<!--              <div class="filter-body">-->
+<!--                <cytomine-slider v-model="boundsReviewedAnnotations" :max="maxNbReviewedAnnotations" />-->
+<!--              </div>-->
+<!--            </div>-->
+
             <div class="column filter">
               <div class="filter-label">
-                {{$t('reviewed-annotations')}}
+                {{$t('members')}}
               </div>
               <div class="filter-body">
-                <cytomine-slider v-model="boundsReviewedAnnotations" :max="maxNbReviewedAnnotations" />
+                <cytomine-slider v-model="boundsMembers" :max="maxNbMembers" />
               </div>
             </div>
           </div>
@@ -147,43 +147,47 @@
             </i>
           </b-table-column>
 
-          <b-table-column field="name" :label="$t('name')" sortable width="250">
+          <b-table-column field="name" :label="$t('name')" sortable width="300">
             <router-link :to="`/project/${project.id}`">
               {{ project.name }}
             </router-link>
           </b-table-column>
 
-          <b-table-column field="membersCount" :label="$t('members')" centered sortable width="150">
+          <b-table-column :label="$t('description')" width="600">
+            <cytomine-description :object="project" :canEdit="canEditProject(project)" />
+          </b-table-column>
+
+          <b-table-column field="membersCount" :label="$t('members')" centered sortable width="100">
             {{ project.membersCount }}
           </b-table-column>
 
-          <b-table-column field="numberOfImages" :label="$t('images')" centered sortable width="150">
+          <b-table-column field="numberOfImages" :label="$t('images')" centered sortable width="100">
             <router-link :to="`/project/${project.id}/images`">{{ project.numberOfImages }}</router-link>
           </b-table-column>
 
-          <b-table-column field="numberOfAnnotations" :label="$t('user-annotations')" centered sortable width="150">
-            <router-link :to="`/project/${project.id}/annotations?type=user`">
-              {{ project.numberOfAnnotations }}
-            </router-link>
-          </b-table-column>
+<!--          <b-table-column field="numberOfAnnotations" :label="$t('user-annotations')" centered sortable width="150">-->
+<!--            <router-link :to="`/project/${project.id}/annotations?type=user`">-->
+<!--              {{ project.numberOfAnnotations }}-->
+<!--            </router-link>-->
+<!--          </b-table-column>-->
 
-          <b-table-column field="numberOfJobAnnotations" :label="$t('analysis-annotations')" centered sortable width="150">
+          <b-table-column field="numberOfJobAnnotations" :label="$t('analysis-annotations')" centered sortable width="100">
             <router-link :to="`/project/${project.id}/annotations?type=algo`">
               {{ project.numberOfJobAnnotations }}
             </router-link>
           </b-table-column>
 
-          <b-table-column field="numberOfReviewedAnnotations" :label="$t('reviewed-annotations')" centered sortable width="150">
-            <router-link :to="`/project/${project.id}/annotations?type=reviewed`">
-              {{ project.numberOfReviewedAnnotations }}
-            </router-link>
-          </b-table-column>
+<!--          <b-table-column field="numberOfReviewedAnnotations" :label="$t('reviewed-annotations')" centered sortable width="150">-->
+<!--            <router-link :to="`/project/${project.id}/annotations?type=reviewed`">-->
+<!--              {{ project.numberOfReviewedAnnotations }}-->
+<!--            </router-link>-->
+<!--          </b-table-column>-->
 
           <b-table-column field="lastActivity" :label="$t('last-activity')" centered sortable width="180">
             {{ Number(project.lastActivity) | moment('ll') }}
           </b-table-column>
 
-          <b-table-column label=" " centered width="150">
+          <b-table-column label=" " centered width="100">
             <router-link :to="`/project/${project.id}`" class="button is-small is-link">
               {{$t('button-open')}}
             </router-link>
@@ -240,10 +244,12 @@ import {get, sync, syncBoundsFilter, syncMultiselectFilter} from '@/utils/store-
 import {getWildcardRegexp} from '@/utils/string-utils';
 
 import {ProjectCollection} from 'cytomine-client';
+import CytomineDescription from '@/components/description/CytomineDescription';
 
 export default {
   name: 'list-projects',
   components: {
+    CytomineDescription,
     ProjectDetails,
     AddProjectModal,
     CytomineMultiselect,
@@ -268,7 +274,9 @@ export default {
         'numberOfAnnotations',
         'numberOfJobAnnotations',
         'numberOfReviewedAnnotations',
-        'lastActivity'
+        'lastActivity',
+        'description',
+        'ontology'
       ]
     };
   },
@@ -396,6 +404,9 @@ export default {
         project.populate({...updatedProject});
       }
     },
+    canEditProject(project) {
+      return (project.currentUserRoles.admin || this.currentUser.adminByNow);
+    },
     async deleteProject(projectToDelete) {
       try {
         await projectToDelete.delete();
@@ -480,6 +491,15 @@ export default {
   position: absolute;
   top: -4px;
   right: 0;
+}
+
+>>> .ql-snow img {
+  max-width: 64px;
+  max-height: 64px;
+  float: right;
+  margin-left: 2px;
+  margin-bottom: 2px;
+  margin-top: 2px;
 }
 </style>
 
