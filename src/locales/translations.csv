@@ -947,3 +947,4 @@ notif-error-project-discipline-change,Failed to change the category of dataset {
 discipline,Category,Discipline
 all-disciplines,All,Toutes
 groundtruth,Groundtruth,
+button-add-all-favorite,Add all favorites,Ajouter tous les favoris

@@ -5,14 +5,19 @@
     <p> {{ $t('unexpected-error-info-message') }} </p>
   </b-message>
   <template v-else>
-    <b-field>
-      <b-select :placeholder="$t('select-layer')" size="is-small" v-model="selectedLayer">
+    <b-field class="layer-field">
+      <b-select :placeholder="$t('select-layer')" size="is-small" v-model="selectedLayer" expanded>
         <option v-for="layer in unselectedLayers" :value="layer" :key="layer.id">
           {{ layerName(layer) }}
         </option>
       </b-select>
       <button class="button is-small" @click="addLayer()" :disabled="!selectedLayer">{{ $t('button-add') }}</button>
     </b-field>
+    <button class="button is-small is-fullwidth layer-field" @click="addAllFavoriteLayers()"
+            :disabled="!hasSelectableFavoriteLayers">
+      {{ $t('button-add-all-favorite') }}
+    </button>
+
     <table class="table">
       <thead>
         <tr>
@@ -32,7 +37,7 @@
           </td>
 
           <td class="name-column">
-            {{ layerName(layer) }}
+            <i class="fas fa-star fa-fw fa-xs" v-if="layer.favorite"></i> {{ layerName(layer) }}
           </td>
           <td class="checkbox-column">
             <button v-if="!reviewMode || !layer.isReview" class="button is-small" @click="removeLayer(idx)">
@@ -130,6 +135,9 @@ export default {
     },
     isActiveImage() {
       return this.viewerWrapper.activeImage === this.index;
+    },
+    hasSelectableFavoriteLayers() {
+      return this.unselectedLayers.find(layer => layer.favorite);
     }
   },
   watch: {
@@ -180,6 +188,12 @@ export default {
 
     canDraw(layer) {
       return !layer.isReview && this.$store.getters['currentProject/canEditLayer'](layer.id);
+    },
+
+    addAllFavoriteLayers(id, visible = true) {
+      this.layers.filter(layer => layer.favorite).forEach(layer =>
+        this.addLayer(layer, visible)
+      );
     },
 
     addLayerById(id, visible) {
@@ -360,5 +374,9 @@ td .button {
   text-transform: uppercase;
   font-size: 0.8em;
   width: 15em;
+}
+
+.layer-field {
+  margin-bottom: 0.25em !important;
 }
 </style>
