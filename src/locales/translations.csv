@@ -939,11 +939,11 @@ notif-error-source-refresh,Error during the refresh of the trusted source,Erreur
 version,Version,Version
 fav,Fav.,Fav.
 favorite,Favorite,Favori
-no-discipline,No discipline,Pas de discipline
-button-change-discipline,Change discipline,Changer la discipline
-change-discipline,Change discipline,Changer la discipline
-notif-success-project-discipline-change,Discipline of dataset {projectName} was successfully updated,La discipline du projet {projectName} a bien été modifiée
-notif-error-project-discipline-change,Failed to change the discipline of dataset {projectName},Une erreur a empêché de modifier la discipline du projet {projectName}
-discipline,Discipline,Discipline
+no-discipline,No category,Pas de discipline
+button-change-discipline,Change category,Changer la discipline
+change-discipline,Change category,Changer la discipline
+notif-success-project-discipline-change,Category of dataset {projectName} was successfully updated,La discipline du projet {projectName} a bien été modifiée
+notif-error-project-discipline-change,Failed to change the category of dataset {projectName},Une erreur a empêché de modifier la discipline du projet {projectName}
+discipline,Category,Discipline
 all-disciplines,All,Toutes
 groundtruth,Groundtruth,
