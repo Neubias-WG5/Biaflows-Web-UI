@@ -281,7 +281,7 @@ notif-success-image-calibration,Image {imageName} was correctly calibrated,La r�
 notif-error-image-calibration,Failed to calibrate image {imageName},Une erreur a empêché de calibrer l'image {imageName}
 general,General,Général
 custom-ui,Custom UI,Personnalisation de l'interface
-algorithms,Algorithms,Algorithmes
+algorithms,Workflows,Algorithmes
 image-filters,Image filters,Filtres d'images
 project-side-bar,Dataset side bar,Barre latérale du projet
 viewer-panels,Viewer panels,Visualisateur d'images
@@ -350,8 +350,8 @@ offline,Offline users,Utilisateurs hors ligne
 notif-error-change-role,Failed to change the role of {username},Une erreur a empêché de changer le rôle de l'utilisateur {username}
 enabled,Enabled,Activé
 disabled,Disabled,Désactivé
-no-algorithm,No algorithm to display,Aucun algorithme à afficher
-notif-error-change-status-algorithm-project,Failed to change the status of algorithm {softwareName},Une erreur a empêché de changer le statut de l'algorithme {softwareName}
+no-algorithm,No workflow to display,Aucun algorithme à afficher
+notif-error-change-status-algorithm-project,Failed to change the status of workflow {softwareName},Une erreur a empêché de changer le statut de l'algorithme {softwareName}
 no-image-filter,No image filter to display,Aucun filtre à afficher
 notif-error-change-status-image-filter-project,Failed to change the status of filter {filterName},Une erreur a empêché de changer le statut du filtre {filterName}
 rename-project,Rename the dataset,Renommer le projet
@@ -540,7 +540,7 @@ outline-color,Outline color,Couleur du contour
 no-outline,No outline,Pas de contour
 button-launch-new-analysis,Launch new analysis,Lancer une nouvelle analyse
 launch-new-analysis,Launch new analysis,Lancement d'une nouvelle analyse
-algorithm,Algorithm,Algorithme
+algorithm,Workflow,Algorithme
 run-number,Run number,#
 execution-date,Execution date,Date d'exécution
 launched-by,Launched by,Lancé par
@@ -642,7 +642,7 @@ project-connections-info-message,A dataset connection is recorded each time a us
 image-consultations-info-message,An image consultation is recorded each time a user opens an image in Cytomine,Une consultation d'image est enregistrée à chaque ouverture d'image dans Cytomine
 annotation-selections-info-message,"An annotation selection is recorded each time a user selects an annotation","À chaque fois qu'un utilisateur clique sur une annotation dans une image, une sélection d'annotation est enregistrée"
 manual-annotations-info-message,"Annotations created by a user",Annotations créées par un utilisateur
-analysis-annotations-info-message,"Annotations created by an automatic analysis (run of an algorithm)",Annotations créées par une analyse automatique (exécution d'un algorithme)
+analysis-annotations-info-message,"Annotations created by an automatic analysis (run of a workflow)",Annotations créées par une analyse automatique (exécution d'un algorithme)
 reviewed-annotations-info-message,"Annotations validated during the review process",Annotations validées durant le processus de validaion
 number-annotations-chart-info-message,This chart presents the number of annotation creations during the selected period,Ce graphique présente le nombre d'annotations créées durant la période sélectionnée
 annotations-vs-terms-chart-info-message,"This chart presents the number of manual annotation associated to each term. Only annotations created during the selected period are taken into account.",Ce graphique présente le nombre d'annotations manuelles associées à chaque terme. Seules les annotations créées durant la période sélectionnée sont prises en compte.
@@ -879,26 +879,26 @@ shortcut-viewer-tool,Viewer: Tools, Visualisateur : Outils
 shortcut-viewer-nav,Viewer: Navigation,Visualisateur : Naviguation
 shortcut-general,General,Général
 shortcut,Keyboard shortcut,Raccourci clavier
-new-algorithm,New algorithm,Nouvel algorithme
-nb-jobs,Number of jobs,Nombre d'exécutions
-nb-success-jobs,Number of successful jobs,Nombre d'exécutions réussies
+new-algorithm,New workflow,Nouvel algorithme
+nb-jobs,Number of executions,Nombre d'exécutions
+nb-success-jobs,Number of successful executions,Nombre d'exécutions réussies
 only-last-release,Only last releases,Seulement les dernières versions
-only-UI-runnable,Only runnable algorithms,Seulement les algorithmes exécutables
+only-UI-runnable,Only runnable workflows,Seulement les algorithmes exécutables
 yes,Yes,Oui
 no,No,Non
 creation-date,Creation date,Date de création
-no-software,No algorithm,Pas d'algorithme
-notif-success-algorithm-deletion,Algorithm correctly deleted,L'algorithme a été supprimé
-notif-error-algortihm-deletion,Error during algorithm deletion,Erreur durant la suppression de l'algoritme
+no-software,No workflow,Pas d'algorithme
+notif-success-algorithm-deletion,Workflow correctly deleted,L'algorithme a été supprimé
+notif-error-algortihm-deletion,Error during workflow deletion,Erreur durant la suppression de l'algoritme
 github,Github,Github
 dockerhub,DockerHub,DockerHub
 no-info,No information,Pas d'information
 deprecated,Deprecated,Déprécié
 last-release,Last release,Dernière version
 ui-runnable,Runnable,Exécutable
-number-jobs,Jobs,Exécutions
-number-success,Successful jobs,Exécutions réussies
-software-parameters,Algorithm parameters,Paramètres de l'algorithme
+number-jobs,Executions,Exécutions
+number-success,Successful executions,Exécutions réussies
+software-parameters,Workflow parameters,Paramètres de l'algorithme
 default-value,Default value,Valeur par défaut
 mandatory,Mandatory,Obligatoire
 domain,Cytomine domain,Domaine Cytomine
