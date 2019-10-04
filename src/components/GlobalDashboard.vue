@@ -3,113 +3,310 @@
   <b-loading :is-full-page="false" :active.sync="loading" />
 
   <template v-if="!loading">
-    <div v-if="welcomeMessage" class="box" v-html="welcomeMessage"></div>
+    <div class="box">
+      <h1 class="title biaflows">
+        <span>BIA</span>FLOWS
+      </h1>
+      <h3 class="subtitle biaflows">
+        A <span>B</span>io <span>I</span>mage <span>A</span>nalysis work<span>flows</span> benchmarking platform.
+      </h3>
+      <h3 class="subtitle biaflows">
+        <span>BIA</span>FLOWS helps comparing bio image analysis workflows by benchmarking them on annotated datasets and simplify their reproducible deployment.
+      </h3>
+    </div>
 
-    <div class="columns">
-      <div class="column is-two-thirds">
-        <div class="box">
-          <h2> {{ $t('recently-opened') }} </h2>
-          <b-message v-if="!recentProjects" type="is-danger" has-icon icon-size="is-small">
-            {{$t('failed-fetch-recent-projects')}}
-          </b-message>
-          <b-table v-else :data="recentProjects">
-
-            <template #default="{row: project}">
-              <b-table-column :label="$t('project')" width="100" centered>
-                <router-link class="project-name" :to="`/project/${project.id}`">
-                  {{ project.name }}
-                </router-link>
-              </b-table-column>
-
-              <b-table-column :label="$t('images')" width="400">
-                <list-images-preview :project="project" />
-              </b-table-column>
-            </template>
-
-            <template #empty>
-              <div class="content has-text-grey has-text-centered">
-                <p>{{$t('no-recent-project')}}</p>
+    <div class="box">
+      <h2 class="biaflows">How to use <span>BIA</span>FLOWS</h2>
+      <div class="columns">
+        <div class="column">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9 has-background-grey-light">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <div class="title is-48x48">
+                    1.
+                  </div>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">Explore microscopy datasets</p>
+                </div>
               </div>
-            </template>
-          </b-table>
 
-          <p class="has-text-centered all-projects">
-            <router-link class="button is-link" to="/projects">{{$t('view-all-projects')}}</router-link>
-          </p>
-        </div>
-      </div>
-
-      <div class="column right-column">
-        <div class="box stats">
-          <h2> {{ $t('statistics') }} </h2>
-          <table class="table is-fullwidth">
-            <tbody>
-              <tr>
-                <td>{{projects ? projects.length : "?"}}</td>
-                <td>{{$t('projects')}}</td>
-                <td>
-                  <v-popover>
-                    <i class="fas fa-info-circle"></i>
-                    <template #popover>
-                      <p>{{$t('number-projects-info-message')}}</p>
-                    </template>
-                  </v-popover>
-                </td>
-              </tr>
-              <tr>
-                <td>{{nbImages != null ? nbImages : "?"}}</td>
-                <td>{{$t('images')}}</td>
-                <td>
-                  <v-popover>
-                    <i class="fas fa-info-circle"></i>
-                    <template #popover>
-                      <p>{{$t('number-images-info-message')}}</p>
-                    </template>
-                  </v-popover>
-                </td>
-              </tr>
-              <tr>
-                <td>{{nbUserAnnots != null ? nbUserAnnots : "?"}}</td>
-                <td>{{$t('user-annotations')}}</td>
-                <td>
-                  <v-popover>
-                    <i class="fas fa-info-circle"></i>
-                    <template #popover>
-                      <p>{{$t('number-annotations-info-message')}}</p>
-                    </template>
-                  </v-popover>
-                </td>
-              </tr>
-              <tr>
-                <td>{{nbReviewed != null ? nbReviewed : "?"}}</td>
-                <td>{{$t('reviewed-annotations')}}</td>
-                <td>
-                  <v-popover>
-                    <i class="fas fa-info-circle"></i>
-                    <template #popover>
-                      <p>{{$t('number-reviewed-annotations-info-message')}}</p>
-                    </template>
-                  </v-popover>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+              <div class="content">
+                They can be filtered by BIA problems. Go to Datasets.
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="box">
-          <h2> {{ $t('last-opened-image') }} </h2>
-          <image-preview
-            v-if="lastOpenedImage"
-            :image="lastOpenedImage"
-            :fullHeightCard="false"
-            :showProject="true"
-            :blindMode="lastOpenedImage.blindMode"
-          />
-          <div class="has-text-grey has-text-centered" v-else>
-            {{$t('no-recent-image')}}
+        <div class="column">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9 has-background-grey-light">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <div class="title is-48x48">
+                    2.
+                  </div>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">Explore images held in this project</p>
+                </div>
+              </div>
+
+              <div class="content">
+                (Dataset &gt; Images)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9 has-background-grey-light">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <div class="title is-48x48">
+                    3.
+                  </div>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">Select workflow to run on all dataset</p>
+                </div>
+              </div>
+
+              <div class="content">
+                 Dataset &gt; Jobs
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="columns">
+        <div class="column">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9 has-background-grey-light">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <div class="title is-48x48">
+                    4.
+                  </div>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">Set workflow functional parameters</p>
+                </div>
+              </div>
+
+              <div class="content">
+                <span class="has-text-grey" v-if="currentUser.guestByNow">
+                  <i class="fas fa-lock fa-fw"></i> This feature is however locked for a guest account.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9 has-background-grey-light">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <div class="title is-48x48">
+                    5.
+                  </div>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">Visually check results from past workflow runs</p>
+                </div>
+              </div>
+
+              <div class="content">
+                 Dataset &gt; Images and Dataset &gt; Annotations
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-16by9 has-background-grey-light">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <div class="title is-48x48">
+                    6.
+                  </div>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">Explore benchmarking metrics results</p>
+                </div>
+              </div>
+
+              <div class="content">
+                Go to Dataset &gt; Analysis
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--    <div v-if="welcomeMessage" class="box" v-html="welcomeMessage"></div>-->
+
+<!--    <div class="columns">-->
+<!--      <div class="column is-two-thirds">-->
+<!--        <div class="box">-->
+<!--          <h2> {{ $t('recently-opened') }} </h2>-->
+<!--          <b-message v-if="!recentProjects" type="is-danger" has-icon icon-size="is-small">-->
+<!--            {{$t('failed-fetch-recent-projects')}}-->
+<!--          </b-message>-->
+<!--          <b-table v-else :data="recentProjects">-->
+
+<!--            <template #default="{row: project}">-->
+<!--              <b-table-column :label="$t('project')" width="100" centered>-->
+<!--                <router-link class="project-name" :to="`/project/${project.id}`">-->
+<!--                  {{ project.name }}-->
+<!--                </router-link>-->
+<!--              </b-table-column>-->
+
+<!--              <b-table-column :label="$t('images')" width="400">-->
+<!--                <list-images-preview :project="project" />-->
+<!--              </b-table-column>-->
+<!--            </template>-->
+
+<!--            <template #empty>-->
+<!--              <div class="content has-text-grey has-text-centered">-->
+<!--                <p>{{$t('no-recent-project')}}</p>-->
+<!--              </div>-->
+<!--            </template>-->
+<!--          </b-table>-->
+
+<!--          <p class="has-text-centered all-projects">-->
+<!--            <router-link class="button is-link" to="/projects">{{$t('view-all-projects')}}</router-link>-->
+<!--          </p>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="column right-column">-->
+        <div class="box stats">
+          <h2> {{ $t('statistics') }} </h2>
+          <div class="level">
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">{{$t('projects')}}</p>
+                <p class="title">{{projects ? projects.length : "?"}}</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">{{$t('images')}}</p>
+                <p class="title">{{nbImages != null ? nbImages : "?"}}</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">{{$t('algorithms')}}</p>
+                <p class="title">{{nbAlgorithms != null ? nbAlgorithms : "?"}}</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">{{$t('analyses')}}</p>
+                <p class="title">{{nbJobs != null ? nbJobs : "?"}}</p>
+              </div>
+            </div>
+          </div>
+<!--          <table class="table is-fullwidth">-->
+<!--            <tbody>-->
+<!--              <tr>-->
+<!--                <td>{{projects ? projects.length : "?"}}</td>-->
+<!--                <td>{{$t('projects')}}</td>-->
+<!--                <td>-->
+<!--                  <v-popover>-->
+<!--                    <i class="fas fa-info-circle"></i>-->
+<!--                    <template #popover>-->
+<!--                      <p>{{$t('number-projects-info-message')}}</p>-->
+<!--                    </template>-->
+<!--                  </v-popover>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td>{{nbImages != null ? nbImages : "?"}}</td>-->
+<!--                <td>{{$t('images')}}</td>-->
+<!--                <td>-->
+<!--                  <v-popover>-->
+<!--                    <i class="fas fa-info-circle"></i>-->
+<!--                    <template #popover>-->
+<!--                      <p>{{$t('number-images-info-message')}}</p>-->
+<!--                    </template>-->
+<!--                  </v-popover>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td>{{nbUserAnnots != null ? nbUserAnnots : "?"}}</td>-->
+<!--                <td>{{$t('user-annotations')}}</td>-->
+<!--                <td>-->
+<!--                  <v-popover>-->
+<!--                    <i class="fas fa-info-circle"></i>-->
+<!--                    <template #popover>-->
+<!--                      <p>{{$t('number-annotations-info-message')}}</p>-->
+<!--                    </template>-->
+<!--                  </v-popover>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td>{{nbReviewed != null ? nbReviewed : "?"}}</td>-->
+<!--                <td>{{$t('reviewed-annotations')}}</td>-->
+<!--                <td>-->
+<!--                  <v-popover>-->
+<!--                    <i class="fas fa-info-circle"></i>-->
+<!--                    <template #popover>-->
+<!--                      <p>{{$t('number-reviewed-annotations-info-message')}}</p>-->
+<!--                    </template>-->
+<!--                  </v-popover>-->
+<!--                </td>-->
+<!--              </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </div>-->
+
+<!--        <div class="box">-->
+<!--          <h2> {{ $t('last-opened-image') }} </h2>-->
+<!--          <image-preview-->
+<!--            v-if="lastOpenedImage"-->
+<!--            :image="lastOpenedImage"-->
+<!--            :fullHeightCard="false"-->
+<!--            :showProject="true"-->
+<!--            :blindMode="lastOpenedImage.blindMode"-->
+<!--          />-->
+<!--          <div class="has-text-grey has-text-centered" v-else>-->
+<!--            {{$t('no-recent-image')}}-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </template>
 </div>
@@ -144,6 +341,8 @@ export default {
       recentImages: [],
       nbUserAnnots: null,
       nbReviewed: null,
+      nbAlgorithms: null,
+      nbJobs: null,
       welcomeMessage: null,
       loading: true
     };
@@ -257,5 +456,24 @@ td:first-child {
 
 .fas.fa-info-circle {
   cursor: pointer;
+}
+
+.how-to-list {
+  list-style-type: decimal;
+  margin-left: 2rem;
+}
+
+h1 {
+  text-align: left;
+}
+
+.subtitle:first-child {
+  margin-bottom: 0.5rem !important;
+}
+</style>
+
+<style>
+.biaflows span {
+  color: #fe7f7f;
 }
 </style>

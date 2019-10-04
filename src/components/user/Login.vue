@@ -68,10 +68,10 @@
         </div>
       </form>
     </div>
-    <i18n path="forgot-credentials" tag="p" class="is-size-7 has-text-centered forgot-credentials">
-      <a place="username" @click="forgotUsername = true">{{ $t('username') }}</a>
-      <a place="password" @click="forgotPassword = true">{{ $t('password') }}</a>
-    </i18n>
+<!--    <i18n path="forgot-credentials" tag="p" class="is-size-7 has-text-centered forgot-credentials">-->
+<!--      <a place="username" @click="forgotUsername = true">{{ $t('username') }}</a>-->
+<!--      <a place="password" @click="forgotPassword = true">{{ $t('password') }}</a>-->
+<!--    </i18n>-->
     <i18n v-if="allowedRegistration" path="no-account-yet" tag="p" class="is-size-7 has-text-centered">
       <a place="registerLink" @click="registering = true">{{$t('register')}}</a>
     </i18n>
@@ -91,8 +91,8 @@ export default {
   mixins: [changeLanguageMixin],
   data() {
     return {
-      username: '',
-      password: '',
+      username: 'guest',
+      password: 'guest',
       email: '',
       rememberMe: true,
 
@@ -156,7 +156,7 @@ export default {
   width: 100%;
   max-width: 40em;
   margin: auto;
-  margin-top: 3em;
+  margin-top: 4em;
 }
 
 .columns, .buttons {

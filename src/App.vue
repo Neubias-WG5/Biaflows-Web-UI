@@ -20,7 +20,40 @@
       {{$t('core-cannot-be-reached')}}
     </div>
 
-    <login v-else-if="!currentUser" />
+    <template v-else-if="!currentUser">
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column is-two-thirds">
+            <h1 class="title biaflows">
+              <span>BIA</span>FLOWS
+            </h1>
+            <h3 class="subtitle biaflows">
+              A <span>B</span>io <span>I</span>mage <span>A</span>nalysis work<span>flows</span> benchmarking platform.
+            </h3>
+          </div>
+          <div class="column">
+            <login />
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="content has-text-centered">
+          <a href="http://neubias.org/" target="_blank">
+            <img src="@/assets/sponsors/logo-neubias.png" class="sponsor">
+          </a>
+          <a href="https://cost.eu/COST_Actions/ca/CA15124" target="_blank">
+            <img src="@/assets/sponsors/logo-cost.png" class="sponsor">
+          </a>
+          <a href="https://cytomine.org" target="_blank">
+            <img src="@/assets/sponsors/logo-cytomine-org.png" class="sponsor">
+          </a>
+          <a href="http://europe.wallonie.be/" target="_blank">
+            <img src="@/assets/sponsors/logo-feder.jpg" class="sponsor">
+          </a>
+        </div>
+      </footer>
+    </template>
+
 
     <template v-else>
       <cytomine-navbar />
@@ -239,5 +272,26 @@ strong, .label {
   img[src$=".svg"] {
     width: 100%;
   }
+}
+</style>
+
+<style scoped>
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+h1 {
+  text-align: left;
+}
+
+footer .sponsor {
+  max-height: 3rem;
+  margin-right: 0.5rem;
+}
+
+.footer {
+  padding: 3rem 1.5rem;
 }
 </style>
