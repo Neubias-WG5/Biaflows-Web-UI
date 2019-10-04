@@ -21,7 +21,7 @@
           :type="{'is-danger': errors.has('profile.lastname')}"
           :message="errors.first('profile.lastname')"
         >
-          <b-input v-model="updatedUser.lastname" name="lastname" v-validate="'required'" />
+          <b-input v-model="updatedUser.lastname" name="lastname" v-validate="'required'" :disabled="currentUser.guestByNow" />
         </b-field>
 
         <b-field
@@ -30,7 +30,7 @@
           :type="{'is-danger': errors.has('profile.firstname')}"
           :message="errors.first('profile.firstname')"
         >
-          <b-input v-model="updatedUser.firstname" name="firstname" v-validate="'required'" />
+          <b-input v-model="updatedUser.firstname" name="firstname" v-validate="'required'" :disabled="currentUser.guestByNow" />
         </b-field>
 
         <b-field
@@ -39,18 +39,18 @@
           :type="{'is-danger': errors.has('profile.email')}"
           :message="errors.first('profile.email')"
         >
-          <b-input v-model="updatedUser.email" name="email" v-validate="'required|email'" />
+          <b-input v-model="updatedUser.email" name="email" v-validate="'required|email'" :disabled="currentUser.guestByNow" />
         </b-field>
 
         <b-field :label="$t('language')" horizontal>
-          <b-select v-model="updatedUser.language">
+          <b-select v-model="updatedUser.language" :disabled="currentUser.guestByNow">
             <option v-for="{value, name} in languages" :key="value" :value="value">
               {{name}}
             </option>
           </b-select>
         </b-field>
 
-        <b-field grouped position="is-right">
+        <b-field grouped position="is-right" v-if="!currentUser.guestByNow">
           <div class="control">
             <button class="button is-link" :disabled="errors.any('profile')"> {{$t('button-save')}}</button>
           </div>
@@ -59,7 +59,7 @@
     </div>
   </div>
 
-  <div class="panel">
+  <div class="panel" v-if="!currentUser.guestByNow">
     <p class="panel-heading">
       <i class="fas fa-briefcase" aria-hidden="true"></i>
       {{ $t('password') }}
