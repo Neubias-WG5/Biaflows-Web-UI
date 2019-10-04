@@ -13,8 +13,8 @@ function getDefaultState() {
     currentPage: 1,
     perPage: 10,
     sort: {
-      field: 'name',
-      order: 'asc'
+      field: 'created',
+      order: 'desc'
     },
     openedDetails: []
   };
