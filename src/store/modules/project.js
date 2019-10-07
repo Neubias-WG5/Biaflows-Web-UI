@@ -1,6 +1,7 @@
 import listImages from './project_modules/list-images.js';
 import listAnnotations from './project_modules/list-annotations.js';
 import listJobs from './project_modules/list-jobs.js';
+import benchmark from './project_modules/benchmark.js';
 
 export default {
   namespaced: true,
@@ -25,6 +26,7 @@ export default {
     },
     listImages,
     listAnnotations,
-    listJobs
+    listJobs,
+    benchmark
   }
 };

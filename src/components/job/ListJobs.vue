@@ -86,6 +86,10 @@
         :default-sort="sort.field"
         :default-sort-direction="sort.order"
         @sort="updateSort"
+        :checked-rows.sync="benchmarkedJobs"
+        :is-row-checkable="(job) => job.status === jobStatusEnum.SUCCESS"
+        :custom-is-checked="(a, b) => { return a.id === b.id }"
+        checkable
       >
 
         <template #default="{row: job}">
@@ -143,6 +147,8 @@
     </div>
   </div>
 
+  <cytomine-benchmark :jobs="benchmarkedJobs" />
+
   <add-job-modal :active.sync="launchModal" @add="addJob" />
 </div>
 </template>
@@ -150,7 +156,7 @@
 <script>
 import {get, sync, syncMultiselectFilter} from '@/utils/store-helpers';
 
-import {JobCollection} from 'cytomine-client';
+import {JobCollection, JobStatus as JobStatusEnum} from 'cytomine-client';
 import JobStatus from './JobStatus';
 import JobDetails from './JobDetails';
 import AddJobModal from './AddJobModal';
@@ -158,6 +164,7 @@ import CytomineMultiselect from '@/components/form/CytomineMultiselect';
 import CytomineDatepicker from '@/components/form/CytomineDatepicker';
 import jobStatusMapping from '@/utils/job-utils';
 import moment from 'moment';
+import CytomineBenchmark from '@/components/job/benchmark/CytomineBenchmark';
 
 // store options to use with store helpers to target projects/currentProject/listJobs module
 const storeOptions = {rootModuleProp: 'storeModule'};
@@ -167,6 +174,7 @@ const localSyncMultiselectFilter = (filterName, options) => syncMultiselectFilte
 export default {
   name: 'list-jobs',
   components: {
+    CytomineBenchmark,
     JobStatus,
     JobDetails,
     AddJobModal,
@@ -236,6 +244,7 @@ export default {
     currentPage: sync('currentPage', storeOptions),
     perPage: sync('perPage', storeOptions),
     sort: sync('sort', storeOptions),
+    initialized: sync('initialized', storeOptions),
     openedDetailsStore: get('openedDetails', storeOptions),
     openedDetails: { // HACK cannot use sync because buefy modifies the property => vuex warning because modif outside store
       get() {
@@ -244,6 +253,18 @@ export default {
       set(value) {
         this.$store.commit(this.storeModule + '/setOpenedDetails', value);
       }
+    },
+    benchmarkedJobsStore: get('benchmarkedJobs', storeOptions),
+    benchmarkedJobs: {
+      get() {
+        return this.benchmarkedJobsStore.slice();
+      },
+      set(value) {
+        this.$store.commit(this.storeModule + '/setBenchmarkedJobs', value);
+      }
+    },
+    jobStatusEnum() {
+      return JobStatusEnum;
     }
   },
   methods: {
@@ -295,6 +316,13 @@ export default {
   },
   async created() {
     await this.refreshJobs();
+
+    console.log(this.initialized);
+    if (!this.initialized) {
+      this.benchmarkedJobs = this.jobs.filter(job => job.favorite);
+      this.initialized = true;
+    }
+
     this.loading = false;
   }
 };

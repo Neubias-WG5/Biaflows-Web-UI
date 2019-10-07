@@ -74,6 +74,9 @@ import App from './App.vue';
 Vue.config.productionTip = false;
 Vue.prototype.$eventBus = new Vue();
 
+import {round} from './utils/number-utils.js';
+Vue.filter('round', round);
+
 new Vue({
   render: h => h(App),
   router,

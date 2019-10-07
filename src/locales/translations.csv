@@ -948,3 +948,20 @@ discipline,Problem class,Discipline
 all-disciplines,All,Toutes
 groundtruth,Groundtruth,
 button-add-all-favorite,Add all favorites,Ajouter tous les favoris
+minimum,Minimum,Minimum
+maximum,Maximum,Maximum
+average,Average,Moyenne
+standard-deviation,Standard deviation,Ecart type
+median,Median,Médiane
+minimum-abbr,MIN,min
+maximum-abbr,MAX,max
+average-abbr,AVG,moy
+stddev-abbr,SD,sd
+median-abbr,MED,med
+benchmark,Benchmarking,Benchmarking
+aggregated-results,Aggregated results,Résultats aggrégés
+detailed-results-per-image,Detailed results per image,Résultats détaillés par image
+metrics,Metrics,Métriques
+aggregate-functions,Aggregate functions,Fonctions d'aggrégation
+on,on,le
+all-metrics,All,Toutes

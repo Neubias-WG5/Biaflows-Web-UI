@@ -4,12 +4,14 @@ export default {
   state() {
     return {
       filters: {
-        softwares: null,
-        launchers: null,
-        statuses: null,
-        favorites: null,
+        images: null,
+        metrics: null,
+        jobParameters: null,
+        aggregates: null
       },
-      executionDate: null,
+
+      currentTab: 0,
+      openedImageDetails: [],
 
       currentPage: 1,
       perPage: 10,
@@ -17,20 +19,12 @@ export default {
         field: 'created',
         order: 'desc'
       },
-      openedDetails: [],
-      benchmarkedJobs: [],
-
-      initialized: false,
     };
   },
 
   mutations: {
     setFilter(state, {filterName, propValue}) {
       state.filters[filterName] = propValue;
-    },
-
-    setExecutionDate(state, date) {
-      state.executionDate = date;
     },
 
     setCurrentPage(state, page) {
@@ -45,16 +39,12 @@ export default {
       state.sort = sort;
     },
 
-    setOpenedDetails(state, value) {
-      state.openedDetails = value;
+    setCurrentTab(state, tab) {
+      state.currentTab = tab;
     },
 
-    setBenchmarkedJobs(state, value) {
-      state.benchmarkedJobs = value;
+    setOpenedImageDetails(state, value) {
+      state.openedImageDetails = value;
     },
-
-    setInitialized(state, value) {
-      state.initialized = value;
-    }
   }
 };
