@@ -141,7 +141,7 @@ export default {
       if(val) {
         this.selectedSoftware = null;
         this.showOptional = false;
-        this.showPrefilled = false;
+        this.showPrefilled = true;
       }
     },
     async selectedSoftware() {
