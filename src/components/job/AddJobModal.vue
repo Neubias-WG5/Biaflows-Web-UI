@@ -6,7 +6,7 @@
         <strong>{{$t('algorithm')}}</strong>
       </div>
       <div class="column">
-        <cytomine-multiselect v-model="selectedSoftware" :options="softwares" track-by="id" label="name" />
+        <cytomine-multiselect v-model="selectedSoftware" :options="softwares" track-by="id" label="fullName" />
       </div>
     </div>
     <template v-if="selectedSoftware">
@@ -26,6 +26,23 @@
             v-model="param.value"
           />
 
+<!--          <tr class="row-separator" v-if="prefilledParams.length > 0">-->
+<!--            <td colspan="3">-->
+<!--              {{$t('prefilled-parameters')}}-->
+<!--              <button class="button is-small" type="button" @click="showPrefilled = !showPrefilled">-->
+<!--                {{$t(showPrefilled ? 'button-hide' : 'button-show')}}-->
+<!--              </button>-->
+<!--            </td>-->
+<!--          </tr>-->
+          <template v-if="showPrefilled">
+            <job-parameter-row
+              v-for="param in prefilledParams"
+              :param="param"
+              :key="param.id"
+              v-model="param.value"
+            />
+          </template>
+
           <tr class="row-separator" v-if="optionalParams.length > 0">
             <td colspan="3">
               {{$t('optional-parameters')}}
@@ -37,23 +54,6 @@
           <template v-if="showOptional">
             <job-parameter-row
               v-for="param in optionalParams"
-              :param="param"
-              :key="param.id"
-              v-model="param.value"
-            />
-          </template>
-
-          <tr class="row-separator" v-if="prefilledParams.length > 0">
-            <td colspan="3">
-              {{$t('prefilled-parameters')}}
-              <button class="button is-small" type="button" @click="showPrefilled = !showPrefilled">
-                {{$t(showPrefilled ? 'button-hide' : 'button-show')}}
-              </button>
-            </td>
-          </tr>
-          <template v-if="showPrefilled">
-            <job-parameter-row
-              v-for="param in prefilledParams"
               :param="param"
               :key="param.id"
               v-model="param.value"
@@ -98,7 +98,7 @@ export default {
     return {
       softwares: [],
       selectedSoftware: null,
-      showPrefilled: false,
+      showPrefilled: true,
       showOptional: false
     };
   },
