@@ -11,7 +11,7 @@
   <b-loading :is-full-page="false" :active="loading" />
   <div v-if="!loading" class="panel">
     <p class="panel-heading">
-      {{$t('analysis')}}
+      {{$t('analyses')}}
       <button v-if="canAddJob" class="button is-link" @click="launchModal = true">
         {{$t('button-launch-new-analysis')}}
       </button>

@@ -20,7 +20,7 @@
       <router-link  v-if="isTabDisplayed('jobs')" tag="li" :to="`/project/${project.id}/analysis`">
         <a>
           <i class="fas fa-tasks"></i>
-          {{ $t('analysis') }}
+          {{ $t('analyses') }}
         </a>
       </router-link>
       <router-link v-if="isTabDisplayed('activities')" tag="li" :to="`/project/${project.id}/activity`">

@@ -13,14 +13,14 @@ images,Images,Images
 annotation,Annotation,Annotation
 annotations,Annotations,Annotations
 activity,Activity,Activité
-analysis,Analysis,Analyse
-analyses,Analyses,Analyses
+analysis,Workflow run,Analyse
+analyses,Workflow runs,Analyses
 configuration,Configuration,Configuration
 no-project,No problem to display,Aucun projet à afficher
 no-image,No image to display,Aucune image à afficher
 statistics,Statistics,Statistiques
 user-annotations,Manual Annotations,Annotations manuelles
-analysis-annotations,Analysis Annotations,Annotations d'analyse
+analysis-annotations,Workflow Annotations,Annotations d'analyse
 reviewed-annotations,Reviewed Annotations,Annotations validées
 profile,Profile,Profil
 username,Username,Nom d'utilisateur
@@ -98,7 +98,7 @@ button-open,Open,Ouvrir
 description,Description,Description
 ontology,Ontology,Ontologie
 number-user-annotations,Number of user annotations,Nombre d'annotations manuelles
-number-analysis-annotations,Number of analysis annotations,Nombre d'annotations d'analyse
+number-analysis-annotations,Number of workflow annotations,Nombre d'annotations d'analyse
 number-reviewed-annotations,Number of reviewed annotations,Nombre d'annotations validées
 no-description,No description.,Pas de description.
 search-placeholder,Search,Recherche
@@ -505,7 +505,7 @@ annotated-images-vs-term,Annotated images VS. term,Images annotées VS. terme
 manual-annotations-vs-contributor,Manual annotations VS. contributor,Annotations manuelles VS. contributeur
 annotated-images-vs-contributor,Annotated images VS. contributor,Images annotées VS. contributeur
 nothing-more-to-load,Nothing more to load,Tout a été chargé
-all-users-analyses,All users/analyses,Tous les utilisateurs/analyses
+all-users-analyses,All users/workflows,Tous les utilisateurs/analyses
 time-period,Time period,Période de temps
 button-clear,Clear,Réinitialiser
 to,To,Jusqu'à
@@ -538,8 +538,8 @@ notif-warn-ontology-tree-order-not-persisted,The order of children in the ontolo
 workspace,Workspace,Espace de travail
 outline-color,Outline color,Couleur du contour
 no-outline,No outline,Pas de contour
-button-launch-new-analysis,Launch new analysis,Lancer une nouvelle analyse
-launch-new-analysis,Launch new analysis,Lancement d'une nouvelle analyse
+button-launch-new-analysis,Run a workflow,Lancer une nouvelle analyse
+launch-new-analysis,New workflow run,Lancement d'une nouvelle analyse
 algorithm,Workflow,Algorithme
 run-number,Run number,#
 execution-date,Execution date,Date d'exécution
@@ -553,7 +553,7 @@ indeterminate,Indeterminate,Inconnu
 wait,Wait,En attente
 previewed,Previewed,Prévisualisé
 killed,Killed,Arrêté
-no-analysis-run,No analysis run,Aucune analyse lancée
+no-analysis-run,No workflow run,Aucune analyse lancée
 launcher,Launcher,Créateur
 status-comment,Status comment,Commentaire
 execution-duration,Execution duration,Durée de l'exécution
@@ -566,19 +566,19 @@ button-view,View,Voir
 data,Data,Données
 delete-data,Delete data,Supprimer les données
 count-annotations,0 annotation | 1 annotation | {count} annotations,0 annotation | 1 annotation | {count} annotations
-deleted-analysis-data,Analysis data was deleted,Données de l'analyse supprimées
-delete-analysis-data,Delete analysis data,Suppression des données de l'analyse
-confirm-deletion-analysis-data,Do you confirm you want to delete the following analysis data:,Êtes-vous sûr de vouloir supprimer les données d'analyse suivantes :
+deleted-analysis-data,Workflow run data was deleted,Données de l'analyse supprimées
+delete-analysis-data,Delete workflow run data,Suppression des données de l'analyse
+confirm-deletion-analysis-data,Do you confirm you want to delete the following workflow run data:,Êtes-vous sûr de vouloir supprimer les données d'analyse suivantes :
 count-reviewed-annotations,0 reviewed annotation | 1 reviewed annotation | {count} reviewed annotations,0 annotation validée | 1 annotation validée | {count} annotations validées
 count-annotation-terms,0 term associated to an annotation | 1 term associated to an annotation | {count} terms associated to annotations,0 association de terme | 1 association de terme | {count} associations de terme
 remark-long-operation,Remark: this operation may take some time,Remarque : cette opération pourrait prendre un certain temps
 progress,Progress,Progrès
-notif-success-analysis-data-deletion,Analysis data was successfully deleted,Les données de l'analyse ont bien été supprimées
-notif-error-analysis-data-deletion,Failed to delete analysis data,Une erreur a empêché la suppression des données de l'analyse
+notif-success-analysis-data-deletion,Workflow run data was successfully deleted,Les données de l'analyse ont bien été supprimées
+notif-error-analysis-data-deletion,Failed to delete workflow run data,Une erreur a empêché la suppression des données de l'analyse
 optional-parameters,Optional parameters,Paramètres optionnels
 prefilled-parameters,Pre-filled parameters,Paramètres pré-remplis
-notif-success-analysis-launch,Successfully launched the analysis,L'analyse a bien été lancée
-notif-error-analysis-launch,Failed to launch the analysis,Une erreur a empêché de lancer l'analyse
+notif-success-analysis-launch,Successfully launched the workflow,L'analyse a bien été lancée
+notif-error-analysis-launch,Failed to launch the workflow,Une erreur a empêché de lancer l'analyse
 notif-error-analysis-parameters-options,Failed to retrieve the options for parameter {paramName},Une erreur a empêché de récupérer les options disponibles pour le paramètre {paramName}
 activity-of-user,Activity of {username},Activité de l'utilisateur {username}
 project-connections,Problem connections,Connexions au projet
@@ -642,7 +642,7 @@ project-connections-info-message,A problem connection is recorded each time a us
 image-consultations-info-message,An image consultation is recorded each time a user opens an image in BIAFLOWS,Une consultation d'image est enregistrée à chaque ouverture d'image dans Cytomine
 annotation-selections-info-message,"An annotation selection is recorded each time a user selects an annotation","À chaque fois qu'un utilisateur clique sur une annotation dans une image, une sélection d'annotation est enregistrée"
 manual-annotations-info-message,"Annotations created by a user",Annotations créées par un utilisateur
-analysis-annotations-info-message,"Annotations created by an automatic analysis (run of a workflow)",Annotations créées par une analyse automatique (exécution d'un algorithme)
+analysis-annotations-info-message,"Annotations created by an automatic workflow run",Annotations créées par une analyse automatique (exécution d'un algorithme)
 reviewed-annotations-info-message,"Annotations validated during the review process",Annotations validées durant le processus de validaion
 number-annotations-chart-info-message,This chart presents the number of annotation creations during the selected period,Ce graphique présente le nombre d'annotations créées durant la période sélectionnée
 annotations-vs-terms-chart-info-message,"This chart presents the number of manual annotation associated to each term. Only annotations created during the selected period are taken into account.",Ce graphique présente le nombre d'annotations manuelles associées à chaque terme. Seules les annotations créées durant la période sélectionnée sont prises en compte.
@@ -714,10 +714,10 @@ registration-date,Registration date,Date d'inscription
 first-project-connection,First problem connection,Première connexion au projet
 last-project-connection,Last problem connection,Dernière connexion au projet
 notif-error-already-broadcasting-this-image,You are already broadcasting this image on another view,Vous diffusez déjà cette image
-delete-analysis,Delete analysis,Supprimer l'analyse
-delete-analysis-confirmation-message,Do you really want to delete this analysis? <br> All data will be deleted! This operation will not be recoverable with undo button!,Êtes-vous sûr de vouloir supprimer cette analyse ? Toutes les données de ce projet seront irrémédiablement perdues
-notif-success-analysis-deletion,The analysis was successfully deleted,L'analyse a bien été supprimée
-notif-error-analysis-deletion,Failed to delete the analysis,Une erreur a empêché la suppression de l'analyse
+delete-analysis,Delete workflow run,Supprimer l'analyse
+delete-analysis-confirmation-message,Do you really want to delete this workflow run? <br> All data will be deleted! This operation will not be recoverable with undo button!,Êtes-vous sûr de vouloir supprimer cette analyse ? Toutes les données de ce projet seront irrémédiablement perdues
+notif-success-analysis-deletion,The workflow run was successfully deleted,L'analyse a bien été supprimée
+notif-error-analysis-deletion,Failed to delete the workflow run,Une erreur a empêché la suppression de l'analyse
 number-projects-info-message,The number of problems of which you are a member,Le nombre de projets dont vous êtes membre
 number-images-info-message,The number of images available in the problems of which you are a member,Le nombre d'images disponibles dans les projets dont vous êtes membre
 number-annotations-info-message,The number of annotations that you created,Le nombre d'annotations que vous avez créées
@@ -737,7 +737,7 @@ change-ontology,Change ontology,Changer l'ontologie
 change-ontology-warning-message,Changing the ontology will result in the deletion of all existing terms associations. This operation will not be recoverable with undo button!,Changer l'ontologie aura pour effet de supprimer toutes les associations annotation-terme existantes. Cette action est irréversible.
 notif-success-project-ontology-change,Ontology of problem {projectName} was successfully updated,L'ontologie du projet {projectName} a bien été modifiée
 notif-error-project-ontology-change,Failed to change the ontology of problem {projectName},Une erreur a empêché de modifier l'ontologie du projet {projectName}
-notif-error-project-ontology-change-job-terms,Cannot change the ontology of this problem: some analyses associated terms to annotations. You must clean these associations prior to the ontology change.,Impossible de changer l'ontologie de ce projet : des analyses ont associé des termes à des annotations.
+notif-error-project-ontology-change-job-terms,Cannot change the ontology of this problem: some workflow runs associated terms to annotations. You must clean these associations prior to the ontology change.,Impossible de changer l'ontologie de ce projet : des analyses ont associé des termes à des annotations.
 notif-error-project-ontology-change-reviewed-terms,Cannot change the ontology of this problem: some terms are associated to reviewed annotations. You must remove these associations prior to the ontology change.,Impossible de changer l'ontologie de ce projet : des termes sont associés à des annotations validées.
 confirm-ontology-change,Confirm ontology change,Confirmer le changement d'ontologie
 confirm-ontology-change-delete-user-terms,Some members of this problem have associated terms to annotations ({count} associations). <br> Are you sure you want to delete those associations to change the ontology?,Des membres du projet ont associé des termes à des annotations ({count} associations). Êtes-vous sûr de vouloir supprimer ces associations ?
@@ -916,8 +916,8 @@ trusted-source,Trusted source,Source de confiance
 see-source-code-on,See source code on,Voir le code source sur
 see-environment-on,See environment on,Voir l'environnement sur
 button-kill,Kill,Arrêter
-notif-success-analysis-kill,Analysis was successfully killed,L'analyse a bien été arrêtée
-notif-error-analysis-kill,Failed to kill analysis,Une erreur a empêché l'arrêt de l'analyse
+notif-success-analysis-kill,Workflow run was successfully killed,L'analyse a bien été arrêtée
+notif-error-analysis-kill,Failed to kill workflow run,Une erreur a empêché l'arrêt de l'analyse
 execution-log,Execution log,Log d'exécution
 log-being-collected,Execution log is being collected,Le log d'exécution est en train d'être collecté
 trusted-sources,Trusted sources,Sources de confiance
