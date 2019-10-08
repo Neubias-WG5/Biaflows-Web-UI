@@ -32,12 +32,12 @@
                   </div>
                 </div>
                 <div class="media-content">
-                  <p class="title is-4">Explore microscopy datasets</p>
+                  <p class="title is-4">Select a BIA problem</p>
                 </div>
               </div>
 
               <div class="content">
-                They can be filtered by BIA problems. Go to Datasets.
+                Go to <i class="fas fa-fw fa-list-alt"></i> Problems tab.
               </div>
             </div>
           </div>
@@ -57,12 +57,12 @@
                   </div>
                 </div>
                 <div class="media-content">
-                  <p class="title is-4">Explore images held in this project</p>
+                  <p class="title is-4">Explore images from selected problem</p>
                 </div>
               </div>
 
               <div class="content">
-                (Dataset &gt; Images)
+                Go to <i class="far fa-fw fa-images"></i> Images on left sidebar.
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@
               </div>
 
               <div class="content">
-                 Dataset &gt; Jobs
+                 Go to <i class="fas fa-fw fa-tasks"></i> Workflow runs on left sidebar.
               </div>
             </div>
           </div>
@@ -114,7 +114,10 @@
 
               <div class="content">
                 <span class="has-text-grey" v-if="currentUser.guestByNow">
-                  <i class="fas fa-lock fa-fw"></i> This feature is however locked for a guest account.
+                  <i class="fas fa-lock fa-fw"></i> This feature is locked for guest account.
+                </span>
+                <span v-else>
+                  Go to <i class="fas fa-fw fa-tasks"></i> Workflow runs on left sidebar > Run a workflow.
                 </span>
               </div>
             </div>
@@ -140,7 +143,7 @@
               </div>
 
               <div class="content">
-                 Dataset &gt; Images and Dataset &gt; Annotations
+                 Go to <i class="far fa-fw fa-images"></i> Images on left sidebar > Open > <i class="fas fa-fw fa-copy"></i> Annotation layers.
               </div>
             </div>
           </div>
@@ -160,12 +163,12 @@
                   </div>
                 </div>
                 <div class="media-content">
-                  <p class="title is-4">Explore benchmarking metrics results</p>
+                  <p class="title is-4">Explore benchmarking metric results</p>
                 </div>
               </div>
 
               <div class="content">
-                Go to Dataset &gt; Analysis
+                Go to <i class="fas fa-fw fa-tasks"></i> Workflows runs on left side bar > Select runs to compare.
               </div>
             </div>
           </div>
