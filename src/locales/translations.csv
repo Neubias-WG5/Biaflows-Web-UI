@@ -966,3 +966,17 @@ aggregate-functions,Aggregate functions,Fonctions d'aggrégation
 on,on,le
 all-metrics,All,Toutes
 for-count-selected-analyses,- | for the selected workflow run | for the {count} selected workflow runs,
+how-to-step1,Select a BIA problem,
+how-to-step2,Explore images from selected problem,
+how-to-step3,Select workflow to run on all images,
+how-to-step4,Set workflow functional parameters,
+how-to-step5,Visually check results from past workflow runs,
+how-to-step6,Explore benchmarking metric results,
+how-to-content1,Go to {project} Problems tab.,
+how-to-content2,Go to {images} Images on left sidebar.,
+how-to-content3,Go to {analyses} Workflow runs on left sidebar > Run a workflow button.,
+how-to-content4,Type in parameters (default values are optimized for these images),
+how-to-content5,Go to {images} Images on left sidebar > Open > {layers} Annotation layers.
+how-to-content6,Go to {analyses} Workflows runs on left sidebar > Select runs to compare.,
+locked-for-guest,This feature is locked for guest account.,
+how-to-use,How to use,

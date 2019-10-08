@@ -11,169 +11,13 @@
         A <span>B</span>io <span>I</span>mage <span>A</span>nalysis work<span>flows</span> benchmarking platform.
       </h3>
       <h3 class="subtitle biaflows">
-        <span>BIA</span>FLOWS helps comparing bio image analysis workflows by benchmarking them on annotated datasets and simplify their reproducible deployment.
+        <span>BIA</span>FLOWS helps comparing bio image analysis workflows by benchmarking them on annotated datasets and simplifying their reproducible deployment.
       </h3>
     </div>
 
     <div class="box">
       <h2 class="biaflows">How to use <span>BIA</span>FLOWS</h2>
-      <div class="columns">
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-16by9 has-background-grey-light">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <div class="title is-48x48">
-                    1.
-                  </div>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">Select a BIA problem</p>
-                </div>
-              </div>
-
-              <div class="content">
-                Go to <i class="fas fa-fw fa-list-alt"></i> Problems tab.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-16by9 has-background-grey-light">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <div class="title is-48x48">
-                    2.
-                  </div>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">Explore images from selected problem</p>
-                </div>
-              </div>
-
-              <div class="content">
-                Go to <i class="far fa-fw fa-images"></i> Images on left sidebar.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-16by9 has-background-grey-light">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <div class="title is-48x48">
-                    3.
-                  </div>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">Select workflow to run on all dataset</p>
-                </div>
-              </div>
-
-              <div class="content">
-                 Go to <i class="fas fa-fw fa-tasks"></i> Workflow runs on left sidebar.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-16by9 has-background-grey-light">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <div class="title is-48x48">
-                    4.
-                  </div>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">Set workflow functional parameters</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <span class="has-text-grey" v-if="currentUser.guestByNow">
-                  <i class="fas fa-lock fa-fw"></i> This feature is locked for guest account.
-                </span>
-                <span v-else>
-                  Go to <i class="fas fa-fw fa-tasks"></i> Workflow runs on left sidebar > Run a workflow.
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-16by9 has-background-grey-light">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <div class="title is-48x48">
-                    5.
-                  </div>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">Visually check results from past workflow runs</p>
-                </div>
-              </div>
-
-              <div class="content">
-                 Go to <i class="far fa-fw fa-images"></i> Images on left sidebar > Open > <i class="fas fa-fw fa-copy"></i> Annotation layers.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-16by9 has-background-grey-light">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <div class="title is-48x48">
-                    6.
-                  </div>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">Explore benchmarking metric results</p>
-                </div>
-              </div>
-
-              <div class="content">
-                Go to <i class="fas fa-fw fa-tasks"></i> Workflows runs on left side bar > Select runs to compare.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <how-to-use />
     </div>
 
 
@@ -324,10 +168,12 @@ import ImagePreview from '@/components/image/ImagePreview';
 import {ImageInstanceCollection, ProjectCollection, Configuration} from 'cytomine-client';
 
 import constants from '@/utils/constants.js';
+import HowToUse from '@/components/navbar/HowToUse';
 
 export default {
   name: 'global-dashboard',
   components: {
+    HowToUse,
     ListImagesPreview,
     ImagePreview
   },

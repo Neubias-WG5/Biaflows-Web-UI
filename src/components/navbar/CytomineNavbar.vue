@@ -72,6 +72,9 @@
       </navbar-dropdown>
 
       <navbar-dropdown icon="fa-question-circle" :title="$t('help')" :classes="['is-right']">
+        <a class="navbar-item" @click="openHowToUseModal()">
+          <span class="icon"><i class="far fa-life-ring fa-xs"></i></span> {{$t('how-to-use')}}
+        </a>
         <a class="navbar-item" @click="openHotkeysModal()">
           <span class="icon"><i class="far fa-keyboard fa-xs"></i></span> {{$t('shortcuts')}}
         </a>
@@ -96,6 +99,7 @@ import CytomineSearcher from '@/components/search/CytomineSearcher';
 
 import {Cytomine} from 'cytomine-client';
 import {fullName} from '@/utils/user-utils.js';
+import HowToUseModal from '@/components/navbar/HowToUseModal';
 
 export default {
   name: 'cytomine-navbar',
@@ -139,6 +143,13 @@ export default {
       this.$modal.open({
         parent: this,
         component: AboutCytomineModal,
+        hasModalCard: true
+      });
+    },
+    openHowToUseModal() {
+      this.$modal.open({
+        parent: this,
+        component: HowToUseModal,
         hasModalCard: true
       });
     },
