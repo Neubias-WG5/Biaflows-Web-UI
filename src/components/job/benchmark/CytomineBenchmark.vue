@@ -1,7 +1,7 @@
 <template>
   <div v-if="jobs.length > 0 && project.discipline" class="panel">
     <p class="panel-heading">
-      {{$t('benchmark')}}
+      {{$t('benchmark')}} {{ $tc("for-count-selected-analyses", countJobs, {count: countJobs}) }}
     </p>
     <div class="panel-block">
       <div class="filters">
@@ -203,6 +203,9 @@ export default {
 
     formattedJobs() {
       return _.orderBy(this.jobs.map(job => this.formatJob(job)), [this.sort.field], [this.sort.order]);
+    },
+    countJobs() {
+      return this.jobs.length;
     }
   },
   watch: {

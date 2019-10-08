@@ -965,3 +965,4 @@ metrics,Metrics,Métriques
 aggregate-functions,Aggregate functions,Fonctions d'aggrégation
 on,on,le
 all-metrics,All,Toutes
+for-count-selected-analyses,- | for the selected workflow run | for the {count} selected workflow runs,

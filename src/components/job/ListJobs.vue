@@ -137,6 +137,7 @@
 
         <template #bottom-left>
           <b-select v-model="perPage" size="is-small">
+            <option value="5">{{$t('count-per-page', {count: 5})}}</option>
             <option value="10">{{$t('count-per-page', {count: 10})}}</option>
             <option value="25">{{$t('count-per-page', {count: 25})}}</option>
             <option value="50">{{$t('count-per-page', {count: 50})}}</option>
@@ -147,7 +148,7 @@
     </div>
   </div>
 
-  <cytomine-benchmark :jobs="benchmarkedJobs" />
+  <cytomine-benchmark :jobs="filteredBenchmarkedJobs" />
 
   <add-job-modal :active.sync="launchModal" @add="addJob" />
 </div>
@@ -240,6 +241,9 @@ export default {
                     selectedFavoritesValues.includes(job.favorite);
       });
     },
+    filteredJobsIds() {
+      return this.filteredJobs.map(job => job.id);
+    },
 
     currentPage: sync('currentPage', storeOptions),
     perPage: sync('perPage', storeOptions),
@@ -262,6 +266,9 @@ export default {
       set(value) {
         this.$store.commit(this.storeModule + '/setBenchmarkedJobs', value);
       }
+    },
+    filteredBenchmarkedJobs() {
+      return this.benchmarkedJobs.filter(job => this.filteredJobsIds.includes(job.id));
     },
     jobStatusEnum() {
       return JobStatusEnum;
