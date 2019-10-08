@@ -316,8 +316,6 @@ export default {
   },
   async created() {
     await this.refreshJobs();
-
-    console.log(this.initialized);
     if (!this.initialized) {
       this.benchmarkedJobs = this.jobs.filter(job => job.favorite);
       this.initialized = true;

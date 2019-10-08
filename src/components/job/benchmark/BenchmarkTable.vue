@@ -3,16 +3,44 @@
     <b-loading :is-full-page="false" :active="loading" />
     <table class="table is-fullwidth is-hoverable">
       <thead>
-      <tr>
+      <tr class="is-vcentered">
         <th :rowspan="nbHeaderRows">{{$t('analysis')}}</th>
-        <th :colspan="nbAggregates" v-for="metric in metrics" :key="metric.id" class="metric-separator">
+        <th
+          :colspan="nbAggregates"
+          v-for="metric in metrics" :key="metric.id"
+          class="metric-separator"
+          :class="{'is-sortable': !showAggregates, 'is-current-sort': !showAggregates && sort.field === `image-${image.id}-metric-${metric.id}`}"
+          @click.stop="sortByImage(metric)"
+        >
           {{metric.name}}
+          <span class="is-small icon" v-if="!showAggregates">
+              <i
+                class="fas fa-arrow-up"
+                v-if="sort.field === `image-${image.id}-metric-${metric.id}`"
+                :class="{'is-desc': sort.order === 'desc'}"
+              ></i>
+              <i class="fas fa-sort sort-unset" v-else></i>
+            </span>
         </th>
       </tr>
       <tr v-if="nbHeaderRows === 2">
-        <template v-for="n in metrics.length">
-          <th v-for="(aggregate, idx) in aggregates" :key="`${n}${aggregate.key}`" :class="{'metric-separator':idx === 0}">
+        <template v-for="metric in metrics">
+          <th
+            v-for="(aggregate, idx) in aggregates"
+            :key="`${metric.id}-${aggregate.key}`"
+            :class="{'metric-separator': idx === 0, 'is-current-sort': sort.field === `aggregate-metric-${metric.id}-${aggregate.key}`}"
+            class="is-sortable"
+            @click.stop="$emit('sort', `aggregate-metric-${metric.id}-${aggregate.key}`)"
+          >
             {{$t(`${aggregate.key}-abbr`)}}
+            <span class="is-small icon">
+              <i
+                class="fas fa-arrow-up"
+                v-if="sort.field === `aggregate-metric-${metric.id}-${aggregate.key}`"
+                :class="{'is-desc': sort.order === 'desc'}"
+              ></i>
+              <i class="fas fa-sort sort-unset" v-else></i>
+            </span>
           </th>
         </template>
       </tr>
@@ -30,8 +58,8 @@
               :key="`benchmark-aggregate-${job.id}-${metric.id}-${aggregate.key}`"
               :class="{'metric-separator':idx === 0}"
             >
-              <template v-if="job[`aggregate-metric-${metric.id}`] && job[`aggregate-metric-${metric.id}`][aggregate.key]">
-                {{job[`aggregate-metric-${metric.id}`][aggregate.key] | round(3)}}
+              <template v-if="job[`aggregate-metric-${metric.id}-${aggregate.key}`] !== undefined">
+                {{job[`aggregate-metric-${metric.id}-${aggregate.key}`] | round(3)}}
               </template>
               <span class="has-text-grey" v-else>
                 *
@@ -43,8 +71,8 @@
               :key="`benchmark-image-metric-${job.id}-${image.id}-${metric.id}`"
               class="metric-separator"
             >
-              <template v-if="job[`image-${image.id}-metric-${metric.id}`] && job[`image-${image.id}-metric-${metric.id}`].value">
-                {{job[`image-${image.id}-metric-${metric.id}`].value | round(3)}}
+              <template v-if="job[`image-${image.id}-metric-${metric.id}`] !== undefined">
+                {{job[`image-${image.id}-metric-${metric.id}`] | round(3)}}
               </template>
               <span class="has-text-grey" v-else>
                 *
@@ -68,7 +96,8 @@ export default {
     aggregates: {type: Array, default: () => []},
     image: {type: Object, default: null},
     parameters: {type: Array, default: () => []},
-    loading: {type: Boolean}
+    loading: {type: Boolean},
+    sort: {type: Object}
   },
   computed: {
     nbAggregates() {
@@ -80,17 +109,56 @@ export default {
     nbHeaderRows() {
       return (this.showAggregates) ? 2 : 1;
     }
+  },
+  methods: {
+    sortByImage(metric) {
+      if (!this.image) {
+        return;
+      }
+
+      this.$emit('sort', `image-${this.image.id}-metric-${metric.id}`);
+    }
   }
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 
 thead .metric-separator {
   border-left-width: 2px;
 }
 
+thead th {
+  vertical-align: middle;
+}
+
 tbody .metric-separator {
   border-left: 2px solid hsl(0, 0%, 86%);
+}
+
+.is-sortable {
+  cursor: pointer;
+}
+
+.is-sortable:hover {
+  border-bottom-color: #7a7a7a;
+}
+
+.is-current-sort {
+  border-bottom-color: #7a7a7a;
+}
+
+.is-sortable .icon .sort-unset {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+th .icon {
+  margin-right: 0;
+  font-size: 1rem;
+  transition: transform 150ms ease-out, opacity 86ms ease-out;
+}
+
+.icon .is-desc {
+  transform: rotate(180deg);
 }
 </style>

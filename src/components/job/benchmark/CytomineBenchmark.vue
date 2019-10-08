@@ -65,6 +65,8 @@
             :aggregates="selectedAggregates"
             :jobs="formattedJobs"
             :loading="loading"
+            @sort="setSort"
+            :sort="sort"
           />
           <div class="no-result has-text-grey" v-else>
             {{$t('no-result')}}
@@ -75,6 +77,9 @@
             <template #trigger="{open}" >
               <div class="card-header">
                 <p class="card-header-title">
+                    <router-link :to="`/project/${project.id}/image/${image.id}`">
+                      <img :src="thumbUrl(image)" class="image-overview">
+                    </router-link>
                   {{image.instanceFilename}}
                 </p>
                 <a class="card-header-icon" @click="open = !open">
@@ -91,6 +96,8 @@
                   :image="image"
                   :jobs="formattedJobs"
                   :loading="loading"
+                  @sort="setSort"
+                  :sort="sort"
                 />
               </div>
             </div>
@@ -107,6 +114,8 @@ import {get, sync, syncMultiselectFilter} from '@/utils/store-helpers';
 import {ImageInstanceCollection, MetricCollection, MetricResultCollection} from 'cytomine-client';
 import {getWildcardRegexp} from '@/utils/string-utils';
 import BenchmarkTable from '@/components/job/benchmark/BenchmarkTable';
+import constants from '@/utils/constants.js';
+import _ from 'lodash';
 
 // store options to use with store helpers to target projects/currentProject/listJobs module
 const storeOptions = {rootModuleProp: 'storeModule'};
@@ -158,6 +167,7 @@ export default {
     },
 
     currentTab: sync('currentTab', storeOptions),
+    sort: sync('sort', storeOptions),
 
     openedImageDetailsStore: get('openedImageDetails', storeOptions),
     openedImageDetails: { // HACK cannot use sync because buefy modifies the property => vuex warning because modif outside store
@@ -192,7 +202,7 @@ export default {
     },
 
     formattedJobs() {
-      return this.jobs.map(job => this.formatJob(job));
+      return _.orderBy(this.jobs.map(job => this.formatJob(job)), [this.sort.field], [this.sort.order]);
     }
   },
   watch: {
@@ -218,11 +228,13 @@ export default {
     },
     formatJob(job) {
       this.individualResults.filter(result => result.job === job.id).forEach(result => {
-        job[`image-${result.image}-metric-${result.metric}`] = result;
+        job[`image-${result.image}-metric-${result.metric}`] = result.value;
       });
 
       this.aggregatedResults.filter(result => result.job === job.id).forEach(result => {
-        job[`aggregate-metric-${result.metric}`] = result;
+        this.availableAggregates.forEach(aggregate => {
+          job[`aggregate-metric-${result.metric}-${aggregate.key}`] = result[aggregate.key];
+        });
       });
 
       return job;
@@ -244,6 +256,13 @@ export default {
         filterValue: this.project.discipline
       })).array;
     },
+    thumbUrl(image) {
+      return `${constants.CYTOMINE_CORE_HOST}/api/imageinstance/${image.id}/thumb.png?maxSize=512`;
+    },
+    setSort(field) {
+      let order = (this.sort.field === field && this.sort.order === 'asc') ? 'desc' : 'asc';
+      this.sort = {field, order};
+    }
   },
   async created() {
     try {
@@ -268,5 +287,16 @@ export default {
 .no-result {
   text-align: center;
   margin: 1em;
+}
+
+.image-overview {
+  max-height: 4rem;
+  max-width: 10rem;
+  margin-right: 1rem;
+}
+
+>>> .card-content {
+  padding-left: 0;
+  padding-right: 0;
 }
 </style>

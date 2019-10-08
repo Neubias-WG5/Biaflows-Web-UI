@@ -16,8 +16,8 @@ export default {
       currentPage: 1,
       perPage: 10,
       sort: {
-        field: 'created',
-        order: 'desc'
+        field: '',
+        order: ''
       },
     };
   },
