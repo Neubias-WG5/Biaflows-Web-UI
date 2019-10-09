@@ -10,7 +10,7 @@
             <img src="@/assets/how-to/Step3.png" v-else-if="rowIdx*nbCols+n === 3"/>
             <img src="@/assets/how-to/Step4.png" v-else-if="rowIdx*nbCols+n === 4"/>
             <img src="@/assets/how-to/Step5.png" v-else-if="rowIdx*nbCols+n === 5"/>
-<!--            <img src="@/assets/how-to/Step6.png" v-else-if="rowIdx*nbCols+n === 6"/>-->
+            <img src="@/assets/how-to/Step6.png" v-else-if="rowIdx*nbCols+n === 6"/>
           </figure>
         </div>
         <div class="card-content">
