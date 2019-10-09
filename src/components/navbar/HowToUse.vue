@@ -25,8 +25,8 @@
             </div>
           </div>
 
-          <div class="content has-text-grey" v-if="currentUser.guestByNow && lockedStepsForGuest.includes(n)">
-            <i class="fas fa-lock fa-fw"></i> {{$t('locked-for-guest')}}}
+          <div class="content has-text-grey" v-if="currentUser.guestByNow && lockedStepsForGuest.includes(rowIdx*nbCols+n)">
+            <i class="fas fa-lock fa-fw"></i> {{$t('locked-for-guest')}}
           </div>
           <div class="content" v-else>
             <i18n :path="`how-to-content${(rowIdx*nbCols+n)}`">
