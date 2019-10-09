@@ -292,7 +292,7 @@ export default {
     },
     async deleteJob(jobToDelete) {
       try {
-        await jobToDelete.delete();
+        // await jobToDelete.delete();
         this.jobs = this.jobs.filter(job => job.id !== jobToDelete.id);
         this.$notify({
           type: 'success',
