@@ -980,3 +980,21 @@ how-to-content5,Go to {images} Images on left sidebar > Open > {layers} Annotati
 how-to-content6,Go to {analyses} Workflows runs on left sidebar > Select runs to compare.,
 locked-for-guest,This feature is locked for guest account.,
 how-to-use,How to use,
+button-new-metric,New metric,Nouvelle métrique
+short-name,Short name,Nom court
+disciplines,Problem classes,Disciplines
+no-metric-fitting-criteria,
+create-metric,Create metric,
+update-metric,Update metric,
+create-discipline,Create problem class,
+update-discipline,Update problem class,
+no-discipline-fitting-criteria,
+button-new-discipline,New problem class,
+notif-success-discipline-creation,Problem class successfully created,
+notif-success-discipline-update,Problem class successfully updated,
+notif-error-discipline-creation,Failed to create the problem class,
+notif-error-discipline-update,Failed to update the problem class,
+notif-success-metric-creation,Metric successfully created,
+notif-success-metric-update,Metric successfully updated,
+notif-error-metric-creation,Failed to create the metric,
+notif-error-metric-update,Failed to update the metric,

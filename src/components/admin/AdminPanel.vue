@@ -17,6 +17,14 @@
       {{$t('trusted-sources')}}
     </b-radio-button>
 
+    <b-radio-button v-model="activeTab" native-value="disciplines" type="is-link">
+      {{$t('disciplines')}}
+    </b-radio-button>
+
+    <b-radio-button v-model="activeTab" native-value="metrics" type="is-link">
+      {{$t('metrics')}}
+    </b-radio-button>
+
     <b-radio-button v-model="activeTab" native-value="configuration" type="is-link">
       {{$t('configuration')}}
     </b-radio-button>
@@ -37,6 +45,8 @@ import AdminDashboard from './AdminDashboard';
 import AdminUsers from './AdminUsers';
 import AdminSoftware from './AdminSoftware';
 import AdminConfiguration from './AdminConfiguration';
+import AdminMetrics from './AdminMetrics';
+import AdminDisciplines from './AdminDisciplines';
 
 const defaultTab = 'dashboard';
 
@@ -49,6 +59,8 @@ export default {
         'dashboard',
         'users',
         'trusted-sources',
+        'disciplines',
+        'metrics',
         'configuration'
       ]
     };
@@ -68,6 +80,10 @@ export default {
           return AdminConfiguration;
         case 'trusted-sources':
           return AdminSoftware;
+        case 'metrics':
+          return AdminMetrics;
+        case 'disciplines':
+          return AdminDisciplines;
       }
     }
   },
@@ -99,5 +115,9 @@ export default {
 .box {
   position: relative;
   min-height: 20em;
+}
+
+>>> .table {
+  background: none;
 }
 </style>
