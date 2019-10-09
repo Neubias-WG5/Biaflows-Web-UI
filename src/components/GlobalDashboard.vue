@@ -73,18 +73,18 @@
                 <p class="title">{{nbImages != null ? nbImages : "?"}}</p>
               </div>
             </div>
-            <div class="level-item has-text-centered">
-              <div>
-                <p class="heading">{{$t('algorithms')}}</p>
-                <p class="title">{{nbAlgorithms != null ? nbAlgorithms : "?"}}</p>
-              </div>
-            </div>
-            <div class="level-item has-text-centered">
-              <div>
-                <p class="heading">{{$t('analyses')}}</p>
-                <p class="title">{{nbJobs != null ? nbJobs : "?"}}</p>
-              </div>
-            </div>
+<!--            <div class="level-item has-text-centered">-->
+<!--              <div>-->
+<!--                <p class="heading">{{$t('algorithms')}}</p>-->
+<!--                <p class="title">{{nbAlgorithms != null ? nbAlgorithms : "?"}}</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="level-item has-text-centered">-->
+<!--              <div>-->
+<!--                <p class="heading">{{$t('analyses')}}</p>-->
+<!--                <p class="title">{{nbJobs != null ? nbJobs : "?"}}</p>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
 <!--          <table class="table is-fullwidth">-->
 <!--            <tbody>-->
