@@ -1000,3 +1000,5 @@ notif-error-metric-creation,Failed to create the metric,
 notif-error-metric-update,Failed to update the metric,
 count-metrics,0 metric | 1 metric | {count} metrics,0 métrique | 1 métrique | {count} métriques
 no-selected-layers,No selected layers.,
+button-best-fit-zoom,Fit zoom to viewport,
+button-reset-zoom,Reset zoom,
