@@ -998,3 +998,5 @@ notif-success-metric-creation,Metric successfully created,
 notif-success-metric-update,Metric successfully updated,
 notif-error-metric-creation,Failed to create the metric,
 notif-error-metric-update,Failed to update the metric,
+count-metrics,0 metric | 1 metric | {count} metrics,0 métrique | 1 métrique | {count} métriques
+no-selected-layers,No selected layers.,
