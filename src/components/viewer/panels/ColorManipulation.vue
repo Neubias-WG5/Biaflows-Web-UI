@@ -24,12 +24,6 @@
         </b-select>
       </td>
     </tr>
-<!--    <tr>-->
-<!--      <td>{{ $t('brightness') }}</td>-->
-<!--      <td>-->
-<!--        <cytomine-slider v-model="brightness" :min="-255" :max="255" />-->
-<!--      </td>-->
-<!--    </tr>-->
     <tr>
       <td>{{ $t('contrast') }}</td>
       <td>
@@ -113,14 +107,6 @@ export default {
       }
     },
 
-    brightness: {
-      get() {
-        return this.imageWrapper.colors.brightness;
-      },
-      set(value) {
-        this.$store.commit(this.imageModule + 'setBrightness', value);
-      }
-    },
     contrast: {
       get() {
         return this.imageWrapper.colors.contrast;
@@ -145,15 +131,7 @@ export default {
         this.$store.commit(this.imageModule + 'setInverse', value);
       }
     },
-    hue: {
-      get() {
-        return this.imageWrapper.colors.hue;
-      },
-      set(value) {
-        this.$store.commit(this.imageModule + 'setHue', value);
-      }
-    },
-    saturation: {
+
     histogramScale: {
       get() {
         return this.imageWrapper.colors.histogramScale;
