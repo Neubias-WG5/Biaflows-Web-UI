@@ -15,13 +15,12 @@
       </h3>
     </div>
 
+    <div v-if="welcomeMessage" class="box" v-html="welcomeMessage"></div>
+
     <div class="box">
       <h2 class="biaflows">How to use <span>BIA</span>FLOWS</h2>
       <how-to-use />
     </div>
-
-
-<!--    <div v-if="welcomeMessage" class="box" v-html="welcomeMessage"></div>-->
 
 <!--    <div class="columns">-->
 <!--      <div class="column is-two-thirds">-->
