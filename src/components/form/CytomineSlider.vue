@@ -3,6 +3,7 @@
   :value="value" @change="$emit('input', $event)"
   :min="min"
   :max="max"
+  :interval="interval"
   :tooltip="'always'"
   :tooltip-placement="tooltipPlacement"
   :lazy="lazy"
@@ -42,6 +43,7 @@ export default {
     value: {type: null},
     min: {type: Number, default: 0},
     max: {type: Number, default: 100},
+    interval: {type: Number},
     integerOnly: {type: Boolean, default: true},
     lazy: {type: Boolean, default: true}
   },

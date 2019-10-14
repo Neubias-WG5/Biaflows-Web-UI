@@ -356,12 +356,15 @@ export default {
 
     baseLayerURL() {
       let filterPrefix = this.imageWrapper.colors.filter || '';
-      let params = `&tileIndex={tileIndex}&z={z}&mimeType=${this.slice.mime}`;
+      let contrast = (this.imageWrapper.colors.contrast !== 1) ? `&contrast=${this.imageWrapper.colors.contrast}` : '';
+      let gamma = (this.imageWrapper.colors.gamma !== 1) ? `&gamma=${this.imageWrapper.colors.gamma}` : '';
+      let inverse = (this.imageWrapper.colors.inverse) ? '&inverse=true' : '';
+      let params = `&tileIndex={tileIndex}&z={z}&mimeType=${this.slice.mime}${contrast}${gamma}${inverse}`;
       return `${filterPrefix}${this.slice.imageServerUrl}/slice/tile?fif=${this.slice.path}${params}`;
     },
 
     colorManipulationOn() {
-      return this.imageWrapper.colors.brightness !== 0 || this.imageWrapper.colors.contrast !== 0
+      return this.imageWrapper.colors.brightness !== 0
                 || this.imageWrapper.colors.hue !== 0 || this.imageWrapper.colors.saturation !== 0;
     },
     operation() {

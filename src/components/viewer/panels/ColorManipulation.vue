@@ -14,30 +14,45 @@
         </b-select>
       </td>
     </tr>
-    <tr>
-      <td>{{ $t('brightness') }}</td>
-      <td>
-        <cytomine-slider v-model="brightness" :min="-255" :max="255" />
-      </td>
-    </tr>
+<!--    <tr>-->
+<!--      <td>{{ $t('brightness') }}</td>-->
+<!--      <td>-->
+<!--        <cytomine-slider v-model="brightness" :min="-255" :max="255" />-->
+<!--      </td>-->
+<!--    </tr>-->
     <tr>
       <td>{{ $t('contrast') }}</td>
       <td>
-        <cytomine-slider v-model="contrast" :min="-255" :max="255" />
+        <cytomine-slider v-model="contrast" :min="0.25" :max="10" :interval="0.25" :integer-only="false"/>
       </td>
     </tr>
     <tr>
-      <td>{{ $t('saturation') }}</td>
+      <td>{{ $t('gamma') }}</td>
       <td>
-        <cytomine-slider v-model="saturation" :min="-100" :max="100" />
+        <cytomine-slider v-model="gamma" :min="0.1" :max="4" :interval="0.1" :integer-only="false"/>
       </td>
     </tr>
     <tr>
-      <td>{{ $t('hue') }}</td>
+      <td>{{$t('inverse')}}</td>
       <td>
-        <cytomine-slider v-model="hue" :min="-180" :max="180" />
+        <b-switch v-model="inverse" class="switch">
+          <template v-if="inverse">{{$t('yes')}}</template>
+          <template v-else>{{$t('no')}}</template>
+        </b-switch>
       </td>
     </tr>
+<!--    <tr>-->
+<!--      <td>{{ $t('saturation') }}</td>-->
+<!--      <td>-->
+<!--        <cytomine-slider v-model="saturation" :min="-100" :max="100" />-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>{{ $t('hue') }}</td>-->
+<!--      <td>-->
+<!--        <cytomine-slider v-model="hue" :min="-180" :max="180" />-->
+<!--      </td>-->
+<!--    </tr>-->
   </table>
   <div class="actions">
     <button class="button is-small" @click="reset()">{{$t('button-reset')}}</button>
@@ -95,6 +110,22 @@ export default {
         this.$store.commit(this.imageModule + 'setContrast', value);
       }
     },
+    gamma: {
+      get() {
+        return this.imageWrapper.colors.gamma;
+      },
+      set(value) {
+        this.$store.commit(this.imageModule + 'setGamma', value);
+      }
+    },
+    inverse: {
+      get() {
+        return this.imageWrapper.colors.inverse;
+      },
+      set(value) {
+        this.$store.commit(this.imageModule + 'setInverse', value);
+      }
+    },
     hue: {
       get() {
         return this.imageWrapper.colors.hue;
@@ -120,7 +151,9 @@ export default {
   async created() {
     try {
       let filters = (await ImageFilterProjectCollection.fetchAll({filterKey: 'project', filterValue: this.project.id})).array;
-      filters.forEach(filter => filter.prefix = filter.processingServer + filter.baseUrl);
+      filters.forEach(filter => {
+        filter.prefix = filter.imagingServer + ((filter.baseUrl[0] !== '/') ? '/' : '') + filter.baseUrl;
+      });
       let prefixes = filters.map(filter => filter.prefix);
       if(this.selectedFilter && !prefixes.includes(this.selectedFilter)) {
         this.selectedFilter = null; // if selected filter no longer present in collection, unselect it

@@ -1007,3 +1007,5 @@ video-compare-workflows,Visually comparing workflows results
 video-multidimensional-images,Multidimensional images
 video-workflow-source-code,Inspect workflow source code
 screencast,Screencast,
+gamma,Gamma,
+inverse,Inverse,
