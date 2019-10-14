@@ -155,6 +155,24 @@
 <!--        </div>-->
 <!--      </div>-->
     </div>
+
+    <div class="box">
+      <h2>{{$t('sponsors')}}</h2>
+      <div class="content has-text-centered">
+        <a href="http://neubias.org/" target="_blank">
+          <img src="@/assets/sponsors/logo-neubias.png" class="sponsor">
+        </a>
+        <a href="https://cost.eu/COST_Actions/ca/CA15124" target="_blank">
+          <img src="@/assets/sponsors/logo-cost.png" class="sponsor">
+        </a>
+        <a href="https://cytomine.org" target="_blank">
+          <img src="@/assets/sponsors/logo-cytomine-org.png" class="sponsor">
+        </a>
+        <a href="http://europe.wallonie.be/" target="_blank">
+          <img src="@/assets/sponsors/logo-feder.jpg" class="sponsor">
+        </a>
+      </div>
+    </div>
   </template>
 </div>
 </template>
@@ -318,6 +336,11 @@ h1 {
 
 .subtitle:first-child {
   margin-bottom: 0.5rem !important;
+}
+
+.sponsor {
+  max-height: 3rem;
+  margin-right: 0.5rem;
 }
 </style>
 

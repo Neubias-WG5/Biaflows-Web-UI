@@ -35,6 +35,44 @@
             <login />
           </div>
         </div>
+        <div class="columns">
+          <div class="column has-text-centered">
+            <div>
+              <div class="video">
+                <iframe src="https://www.loom.com/embed/df9dde48a5e949d3b6a4c63bf34063ac" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+              </div>
+              <p class="heading">{{$t('video-introduction')}}</p>
+            </div>
+
+          </div>
+          <div class="column  has-text-centered">
+            <div>
+              <div class="video">
+                <iframe src="https://www.loom.com/embed/dbb2d4558ced43fdb021f194aabeb40d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+              </div>
+              <p class="heading">{{$t('video-compare-workflows')}}</p>
+            </div>
+
+          </div>
+          <div class="column has-text-centered">
+            <div>
+              <div class="video">
+                <iframe src="https://www.loom.com/embed/58c7d85ff43d421ab0a97e0714a62aaf" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+              </div>
+              <p class="heading">{{$t('video-multidimensional-images')}}</p>
+            </div>
+
+          </div>
+          <div class="column has-text-centered">
+            <div>
+              <div class="video">
+                <iframe src="https://www.loom.com/embed/effe28d498e64ef29fd5dbff745aa76f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+              </div>
+              <p class="heading">{{$t('video-workflow-source-code')}}</p>
+            </div>
+
+          </div>
+        </div>
       </div>
       <footer class="footer">
         <div class="content has-text-centered">
@@ -293,5 +331,16 @@ footer .sponsor {
 
 .footer {
   padding: 3rem 1.5rem;
+}
+
+.video {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  width: 100%;
+}
+
+.column .heading {
+  margin-top: 0.25rem;
 }
 </style>

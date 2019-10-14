@@ -4,7 +4,7 @@
     <div class="column" v-for="n in nbCols" :key="`how-to-step-${(rowIdx*nbCols+n)}`">
       <div class="card">
         <div class="card-image">
-          <figure class="image is-16by9 has-background-grey-light">
+          <figure class="image is-16by9 has-background-grey-light image-how-to">
             <img src="@/assets/how-to/Step1.png" v-if="rowIdx*nbCols+n === 1"/>
             <img src="@/assets/how-to/Step2.png" v-else-if="rowIdx*nbCols+n === 2"/>
             <img src="@/assets/how-to/Step3.png" v-else-if="rowIdx*nbCols+n === 3"/>
@@ -71,7 +71,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.image-how-to img {
+  padding: 1px;
+}
 
 
 </style>

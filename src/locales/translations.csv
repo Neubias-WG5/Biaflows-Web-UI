@@ -1002,3 +1002,8 @@ count-metrics,0 metric | 1 metric | {count} metrics,0 métrique | 1 métrique | 
 no-selected-layers,No selected layers.,
 button-best-fit-zoom,Fit zoom to viewport,
 button-reset-zoom,Reset zoom,
+video-introduction,Introduction
+video-compare-workflows,Visually comparing workflows results
+video-multidimensional-images,Multidimensional images
+video-workflow-source-code,Inspect workflow source code
+screencast,Screencast,

@@ -78,6 +78,11 @@
         <a class="navbar-item" @click="openHotkeysModal()">
           <span class="icon"><i class="far fa-keyboard fa-xs"></i></span> {{$t('shortcuts')}}
         </a>
+        <hr class="dropdown-divider">
+        <a class="navbar-item" @click="openVideoModal(type)" v-for="type in videoTypes" :key="type">
+          <span class="icon"><i class="fas fa-video fa-xs"></i></span> {{$t('screencast')}}: {{$t(`video-${type}`)}}
+        </a>
+        <hr class="dropdown-divider">
         <a class="navbar-item" @click="openAboutModal()">
           <span class="icon"><i class="fas fa-info-circle fa-xs"></i></span> {{$t('about-cytomine')}}
         </a>
@@ -100,6 +105,7 @@ import CytomineSearcher from '@/components/search/CytomineSearcher';
 import {Cytomine} from 'cytomine-client';
 import {fullName} from '@/utils/user-utils.js';
 import HowToUseModal from '@/components/navbar/HowToUseModal';
+import VideoHowToModal from '@/components/navbar/VideoHowToModal';
 
 export default {
   name: 'cytomine-navbar',
@@ -123,6 +129,9 @@ export default {
     },
     nbActiveProjects() {
       return Object.keys(this.$store.state.projects).length;
+    },
+    videoTypes() {
+      return ['introduction', 'compare-workflows', 'multidimensional-images', 'workflow-source-code'];
     }
   },
   watch: {
@@ -151,6 +160,16 @@ export default {
         parent: this,
         component: HowToUseModal,
         hasModalCard: true
+      });
+    },
+    openVideoModal(type) {
+      this.$modal.open({
+        parent: this,
+        component: VideoHowToModal,
+        hasModalCard: true,
+        props: {
+          type: type
+        }
       });
     },
     // ---
