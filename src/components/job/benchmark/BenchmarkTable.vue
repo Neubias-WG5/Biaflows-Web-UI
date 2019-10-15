@@ -12,6 +12,14 @@
           :class="{'is-sortable': !showAggregates, 'is-current-sort': !showAggregates && sort.field === `image-${image.id}-metric-${metric.id}`}"
           @click.stop="sortByImage(metric)"
         >
+          <span v-if="metric.description && showAggregates">
+            <v-popover>
+              <i class="fas fa-info-circle"></i>
+              <template #popover>
+                <p v-html="metric.description"></p>
+              </template>
+            </v-popover>
+          </span>
           {{metric.name}}
           <span class="is-small icon" v-if="!showAggregates">
               <i

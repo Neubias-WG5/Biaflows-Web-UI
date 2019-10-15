@@ -111,7 +111,7 @@
 <script>
 import CytomineMultiselect from '@/components/form/CytomineMultiselect';
 import {get, sync, syncMultiselectFilter} from '@/utils/store-helpers';
-import {ImageInstanceCollection, MetricCollection, MetricResultCollection} from 'cytomine-client';
+import {ImageInstanceCollection, MetricCollection, MetricResultCollection, Description} from 'cytomine-client';
 import {getWildcardRegexp} from '@/utils/string-utils';
 import BenchmarkTable from '@/components/job/benchmark/BenchmarkTable';
 import constants from '@/utils/constants.js';
@@ -254,10 +254,21 @@ export default {
       });
     },
     async fetchMetrics() {
-      this.metrics = (await MetricCollection.fetchAll({
+      let metrics = (await MetricCollection.fetchAll({
         filterKey: 'discipline',
         filterValue: this.project.discipline
       })).array;
+
+      await metrics.forEach(async metric => {
+        try {
+          metric.description = (await Description.fetch(metric)).data;
+        }
+        catch(error) {
+          //ignored
+        }
+      });
+
+      this.metrics = metrics;
     },
     thumbUrl(image) {
       return `${constants.CYTOMINE_CORE_HOST}/api/imageinstance/${image.id}/thumb.png?maxSize=512`;
