@@ -72,6 +72,9 @@
       </navbar-dropdown>
 
       <navbar-dropdown icon="fa-question-circle" :title="$t('help')" :classes="['is-right']">
+        <a href="https://neubias-wg5.github.io/user_guide.html" class="navbar-item" target="_blank">
+          <span class="icon"><i class="fas fa-book-reader fa-xs"></i></span> {{$t('documentation')}}
+        </a>
         <a class="navbar-item" @click="openHowToUseModal()">
           <span class="icon"><i class="far fa-life-ring fa-xs"></i></span> {{$t('how-to-use')}}
         </a>
