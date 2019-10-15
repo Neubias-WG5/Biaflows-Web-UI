@@ -212,7 +212,7 @@ export default {
       return this.isSuccessful || this.job.status === JobStatus.FAILED || this.job.status === JobStatus.KILLED;
     },
     isJustFinished() {
-      return this.isFinished && (Date.now() - Number(this.job.created) < this.justFinishedInterval);
+      return this.isFinished && (Date.now() - Number(this.job.updated) < this.justFinishedInterval);
     },
     hasAnnotationResult() {
       return this.allData.annotations > 0;
