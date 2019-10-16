@@ -17,7 +17,8 @@
       <h2>
         {{$t('communication-error')}}
       </h2>
-      {{$t('core-cannot-be-reached')}}
+      {{$t('core-cannot-be-reached')}}<br>
+      Try on <a :href="host">{{host}}</a>.
     </div>
 
     <template v-else-if="!currentUser">
@@ -131,7 +132,10 @@ export default {
   },
   computed: {
     currentUser: get('currentUser/user'),
-    project: get('currentProject/project')
+    project: get('currentProject/project'),
+    host() {
+      return constants.CYTOMINE_CORE_HOST;
+    }
   },
   methods: {
     async loginWithToken() {

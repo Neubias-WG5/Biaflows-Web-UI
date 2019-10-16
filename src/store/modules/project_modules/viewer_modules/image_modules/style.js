@@ -11,7 +11,7 @@ export default {
 
       displayNoTerm: true,
       noTermOpacity: initialTermsOpacity,
-      noTermStyle: createColorStyle('#fff', initialLayersOpacity*initialTermsOpacity),
+      noTermStyle: createColorStyle(null, initialLayersOpacity*initialTermsOpacity),
 
       defaultStyle: createColorStyle('#fff', initialLayersOpacity),
       multipleTermsStyle: createColorStyle('#fff', initialLayersOpacity),

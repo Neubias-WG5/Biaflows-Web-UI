@@ -1,6 +1,6 @@
 export default Object.freeze({
-  CYTOMINE_CORE_HOST: 'https://localhost-core',
-  CYTOMINE_UPLOAD_HOST: 'https://localhost-upload',
+  CYTOMINE_CORE_HOST: 'https://biaflows.neubias.org',
+  CYTOMINE_UPLOAD_HOST: 'https://biaflows-upload.neubias.org',
   STOP_PREVIEW_KEYWORD: 'STOP_PREVIEW',
   DIGITAL_ZOOM_INCREMENT: 4,
   PRELOADED_SLICES: 50,

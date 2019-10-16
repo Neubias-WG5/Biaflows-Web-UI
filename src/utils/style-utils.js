@@ -38,19 +38,26 @@ export function createLineStrokeStyle(color, opacity=0.5) {
 // -----
 
 function createStroke(opacity=0.5) {
-  return new Stroke({color: [0, 0, 0, opacity], width: 2});
+  return new Stroke({color: [255, 0, 0, opacity], width: 2});
 }
 
 export function createColorStyle(color, opacity=0.5) {
-  let colorArray = hexToRgb(color);
-  let colorWithOpacity = colorArray.slice();
-  colorWithOpacity[3] = opacity;
+  let fill = null;
+  let fillCircle = null;
 
-  let fill = new Fill({color: colorWithOpacity});
+  if (color) {
+    let colorArray = hexToRgb(color);
+    let colorWithOpacity = colorArray.slice();
+    colorWithOpacity[3] = opacity;
+
+    fill = new Fill({color: colorWithOpacity});
+    fillCircle = new Fill({color: colorArray});
+  }
+
 
   let circleStyle = new Circle({
     radius: 5,
-    fill: new Fill({color: colorArray}),
+    fill: fillCircle,
     stroke: createStroke(1),
   });
   circleStyle.setOpacity(opacity);
