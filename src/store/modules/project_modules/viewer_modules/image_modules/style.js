@@ -2,7 +2,7 @@ import {createColorStyle, createColorLineStyle, changeOpacity, createStrokeStyle
 
 let initialTermsOpacity = 1;
 let initialTracksOpacity = 1;
-let initialLayersOpacity = 0.5;
+let initialLayersOpacity = 0.15;
 
 export default {
   state() {
@@ -11,7 +11,7 @@ export default {
 
       displayNoTerm: true,
       noTermOpacity: initialTermsOpacity,
-      noTermStyle: createColorStyle(null, initialLayersOpacity*initialTermsOpacity),
+      noTermStyle: createColorStyle('#fff', initialLayersOpacity*initialTermsOpacity),
 
       defaultStyle: createColorStyle('#fff', initialLayersOpacity),
       multipleTermsStyle: createColorStyle('#fff', initialLayersOpacity),

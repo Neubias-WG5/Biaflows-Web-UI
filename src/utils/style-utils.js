@@ -17,7 +17,7 @@ export function isCluster(feature) {
 export function createStrokeStyle(color, opacity=0.5) {
   let colorArray = hexToRgb(color);
   let colorWithOpacity = colorArray.slice();
-  colorWithOpacity[3] = opacity;
+  colorWithOpacity[3] = Math.max(0.5, opacity).toString();
 
   let stroke = new Stroke({color: colorWithOpacity, width: 2});
 
@@ -30,7 +30,7 @@ export function createStrokeStyle(color, opacity=0.5) {
 export function createLineStrokeStyle(color, opacity=0.5) {
   let colorArray = hexToRgb(color);
   let colorWithOpacity = colorArray.slice();
-  colorWithOpacity[3] = opacity;
+  colorWithOpacity[3] = Math.max(0.5, opacity).toString();
 
   return new Style({stroke: new Stroke({color: colorWithOpacity, width: 5})});
 }
@@ -38,7 +38,7 @@ export function createLineStrokeStyle(color, opacity=0.5) {
 // -----
 
 function createStroke(opacity=0.5) {
-  return new Stroke({color: [255, 0, 0, opacity], width: 2});
+  return new Stroke({color: [255, 0, 0, Math.max(0.5, opacity)], width: 2});
 }
 
 export function createColorStyle(color, opacity=0.5) {
@@ -161,7 +161,7 @@ export let rejectedSelectStyles = [
 export function changeOpacity(style, opacity) {
   let stroke = style.getStroke();
   if(stroke) {
-    stroke.getColor()[3] = opacity;
+    stroke.getColor()[3] = Math.max(0.5, opacity);
   }
   let fill = style.getFill();
   if(fill) {
