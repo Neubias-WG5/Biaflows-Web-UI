@@ -2,8 +2,8 @@
 <nav class="navbar is-light" role="navigation">
   <div class="navbar-brand biaflows">
     <router-link to="/" exact class="navbar-item">
-<!--      <img src="@/assets/logo.svg" id="logo" alt="Cytomine">-->
-      <span>BIA</span>FLOWS
+      <img src="@/assets/logo-symbol.svg" id="logo" alt="Biaflows">
+<!--      <span>BIA</span>FLOWS-->
     </router-link>
     <a role="" class="navbar-burger" :class="{'is-active':openedTopMenu}" @click="openedTopMenu=!openedTopMenu">
       <span></span> <span></span> <span></span>
