@@ -25,9 +25,7 @@
       <div class="container">
         <div class="columns is-vcentered">
           <div class="column is-two-thirds">
-            <h1 class="title biaflows">
-              <span>BIA</span>FLOWS
-            </h1>
+            <img src="@/assets/logo.png" class="full-logo" alt="Biaflows">
             <h3 class="subtitle biaflows">
               A <span>B</span>io <span>I</span>mage <span>A</span>nalysis work<span>flows</span> benchmarking platform.
             </h3>
@@ -346,5 +344,10 @@ footer .sponsor {
 
 .column .heading {
   margin-top: 0.25rem;
+}
+
+.full-logo {
+  height: 12rem;
+  margin: 1em;
 }
 </style>

@@ -4,15 +4,18 @@
 
   <template v-if="!loading">
     <div class="box">
-      <h1 class="title biaflows">
-        <span>BIA</span>FLOWS
-      </h1>
-      <h3 class="subtitle biaflows">
-        A <span>B</span>io <span>I</span>mage <span>A</span>nalysis work<span>flows</span> benchmarking platform.
-      </h3>
-      <h3 class="subtitle biaflows">
-        <span>BIA</span>FLOWS helps comparing bio image analysis workflows by benchmarking them on annotated datasets and simplifying their reproducible deployment.
-      </h3>
+      <div class="level level-logo">
+        <div class="level-left">
+          <img src="@/assets/logo.png" class="full-logo" alt="Biaflows">
+        </div>
+        <div class="level-left">
+          <h3 class="subtitle biaflows">
+            A <span>B</span>io <span>I</span>mage <span>A</span>nalysis work<span>flows</span> benchmarking platform.
+            <br>
+            <span>BIA</span>FLOWS helps comparing bio image analysis workflows by benchmarking them on annotated datasets and simplifying their reproducible deployment.
+          </h3>
+        </div>
+      </div>
     </div>
 
     <div v-if="welcomeMessage" class="box" v-html="welcomeMessage"></div>
@@ -341,10 +344,19 @@ h1 {
   max-height: 3rem;
   margin-right: 0.5rem;
 }
+
+.level-logo {
+  justify-content: left;
+}
 </style>
 
 <style>
 .biaflows span {
   color: #fe7f7f;
+}
+
+.full-logo {
+  height: 8rem;
+  padding-right: 1em;
 }
 </style>
