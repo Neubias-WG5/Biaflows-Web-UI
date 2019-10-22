@@ -5,21 +5,21 @@
       <b-input v-model="name" name="name" v-validate="'required'" />
     </b-field>
 
-    <b-field :label="$t('ontology')">
-      <b-radio v-model="ontology" native-value="NEW">
-        {{$t('create-ontology-for-project')}}
-      </b-radio>
-    </b-field>
-    <b-field>
-      <b-radio v-model="ontology" native-value="EXISTING">
-        {{$t('use-existing-ontology')}}
-      </b-radio>
-    </b-field>
-    <b-field>
-      <b-radio v-model="ontology" native-value="NO">
-        {{$t('no-ontology')}}
-      </b-radio>
-    </b-field>
+<!--    <b-field :label="$t('ontology')">-->
+<!--      <b-radio v-model="ontology" native-value="NEW">-->
+<!--        {{$t('create-ontology-for-project')}}-->
+<!--      </b-radio>-->
+<!--    </b-field>-->
+<!--    <b-field>-->
+<!--      <b-radio v-model="ontology" native-value="EXISTING">-->
+<!--        {{$t('use-existing-ontology')}}-->
+<!--      </b-radio>-->
+<!--    </b-field>-->
+<!--    <b-field>-->
+<!--      <b-radio v-model="ontology" native-value="NO">-->
+<!--        {{$t('no-ontology')}}-->
+<!--      </b-radio>-->
+<!--    </b-field>-->
 
     <template v-if="ontology === 'EXISTING'">
       <b-field :type="{'is-danger': errors.has('ontology')}" :message="errors.first('ontology')">
@@ -94,7 +94,7 @@ export default {
           idOntology = this.selectedOntology;
         }
 
-        let project = await new Project({name: this.name, ontology: idOntology}).save();
+        let project = await new Project({name: this.name, ontology: idOntology, isRestricted: true}).save();
         this.$notify({type: 'success', text: this.$t('notif-success-project-creation')});
         this.$router.push(`/project/${project.id}/configuration`);
       }
