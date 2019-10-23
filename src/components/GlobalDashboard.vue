@@ -8,7 +8,7 @@
         <div class="level-left">
           <img src="@/assets/logo.png" class="full-logo" alt="Biaflows">
         </div>
-        <div class="level-left">
+        <div class="level-left level-logo-title">
           <h3 class="subtitle biaflows">
             A <span>B</span>io <span>I</span>mage <span>A</span>nalysis work<span>flows</span> benchmarking platform.
             <br>
@@ -347,6 +347,10 @@ h1 {
 
 .level-logo {
   justify-content: left;
+}
+
+.level-logo-title {
+  flex-shrink: unset;
 }
 </style>
 
