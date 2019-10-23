@@ -51,8 +51,7 @@
       <dt>{{$t('documentation')}}</dt>
       <dd>
         <i18n path="documentation-info">
-          <a place="docLink" href="https://neubias-wg5.github.io" target="_blank">{{$t('here')}}</a>
-          <a place="apiDocLink" :href="apiDocLink" target="_blank">{{$t('here')}}</a>
+          <a place="docLink" href="https://neubias-wg5.github.io/user_guide.html" target="_blank">{{$t('here')}}</a>
         </i18n>
       </dd>
 

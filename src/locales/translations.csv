@@ -485,7 +485,7 @@ cytomine-company,BIAFLOWS company,société BIAFLOWS
 cytomine-website-info,"You can find more information on the website of the BIAFLOWS project located at {websiteLink}.",Vous trouverez davantage d'information sur le site web du projet BIAFLOWS : {websiteLink}.
 source-code-info,"BIAFLOWS is an open-source software. The licenses are Apache2 and LGPL 2.1. The source code is available on our {githubLink}. It is built on top of Cytomine whose code source is available {githubLink1} and {githubLink2}.",BIAFLOWS est un logiciel open-source. Il est distribué sous les licences Apache2 et LGPL 2.1. Le code source est disponible sur notre {githubLink}.
 github-repository,GitHub repository,répertoire GitHub
-documentation-info,"A complete documentation is available {docLink}. More detailed documentation regarding the API of BIAFLOWS is also available {apiDocLink}.","Une documentation complète est disponible {docLink}. Des informations plus détaillées sur l'API de BIAFLOWS sont aussi disponibles {apiDocLink}."
+documentation-info,"A complete documentation is available {docLink}.","Une documentation complète est disponible {docLink}."
 here,here,ici
 contact-info,You can contact the BIAFLOWS Team at {contactMail},Vous pouvez contacter l'équipe de Cytomine à l'adresse {contactMail}.
 button-previous-image,Previous image,Image précédente
