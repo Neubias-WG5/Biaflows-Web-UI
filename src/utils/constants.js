@@ -1,6 +1,6 @@
-export default Object.freeze({
-  CYTOMINE_CORE_HOST: 'https://biaflows.neubias.org',
-  CYTOMINE_UPLOAD_HOST: 'https://biaflows-upload.neubias.org',
+export default {
+  CYTOMINE_CORE_HOST: 'http://localhost-core',
+  CYTOMINE_UPLOAD_HOST: 'http://localhost-upload',
   STOP_PREVIEW_KEYWORD: 'STOP_PREVIEW',
   DIGITAL_ZOOM_INCREMENT: 4,
   PRELOADED_SLICES: 50,
@@ -21,4 +21,4 @@ export default Object.freeze({
   CONFIG_KEY_WELCOME: 'WELCOME',
   PREFIX_HIDDEN_PROPERTY_KEY: '@',
   DEFAULT_PROPERTY_KEY: '@DEFAULT_PROPERTY',
-});
+};
