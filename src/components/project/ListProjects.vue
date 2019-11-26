@@ -154,7 +154,7 @@
           </b-table-column>
 
           <b-table-column :label="$t('description')" width="600">
-            <cytomine-description :object="project" :canEdit="canEditProject(project)" />
+            <cytomine-description :object="project" :canEdit="canEditProject(project)" :key="'description-'+project.id"/>
           </b-table-column>
 
           <b-table-column field="membersCount" :label="$t('members')" centered sortable width="100">
