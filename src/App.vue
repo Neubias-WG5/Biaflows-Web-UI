@@ -1,5 +1,5 @@
 <template>
-<div id="app" class="wrapper">
+<div id="app" class="wrapper" :class="{'wrapper-scroll': !currentUser}">
   <notifications position="top center" width="30%" :max="5">
     <template #body="props">
       <div class="notification vue-notification" :class="props.item.type">
@@ -32,6 +32,11 @@
           </div>
           <div class="column">
             <login />
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column biaflows has-text-justified">
+            <span>BIA</span>FLOWS is a web platform integrating <span>B</span>io <span>I</span>mage <span>A</span>nalysis (BIA) work<span>flows</span> extracting annotations from biological objects or features apparent in multidimensional microscopy images. The workflows can be launched online on a predefined set of annotated images illustrating common BIA problems (e.g. Object segmentation), and their results can be visualized or quantitatively compared from a set of documented benchmarking metrics. To ensure reproducibility, the workflows are packaged with their complete execution environments as versioned Docker images created from browsable source repositories.
           </div>
         </div>
         <div class="columns">
@@ -230,6 +235,10 @@ body {
   background: #d4d4d4;
 }
 
+.wrapper-scroll {
+  overflow-y: auto;
+}
+
 .box.error {
   max-width: 600px;
   margin: auto;
@@ -332,8 +341,6 @@ strong, .label {
 
 <style scoped>
 footer {
-  position: fixed;
-  bottom: 0;
   width: 100%;
 }
 
