@@ -17,8 +17,8 @@ function getDefaultState() {
     currentPage: 1,
     perPage: 10,
     sort: {
-      field: 'lastActivity',
-      order: 'desc'
+      field: 'name',
+      order: 'asc'
     },
     openedDetails: []
   };
