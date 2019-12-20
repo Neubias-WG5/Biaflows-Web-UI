@@ -55,6 +55,43 @@
         </i18n>
       </dd>
 
+      <dt>Project leaders</dt>
+      <dd>
+        <ul>
+          <li>Sébastien Tosi</li>
+          <li>Raphaël Marée</li>
+        </ul>
+      </dd>
+
+      <dt>Main developers</dt>
+      <dd>
+        <ul>
+          <li>Ulysse Rubens</li>
+          <li>Romain Mormont</li>
+          <li>Volker Baeker</li>
+          <li>Lassi Paavolainen</li>
+          <li>Benjamin Pavie</li>
+          <li>Renaud Hoyoux</li>
+        </ul>
+      </dd>
+
+      <dt>Contributors</dt>
+      <dd>
+        <ul>
+          <li>Gino Michiels</li>
+          <li>Graeme Ball</li>
+          <li>Devrim Unay</li>
+          <li>Anatole Chessel</li>
+          <li>Leandro A. Scholz</li>
+          <li>Martin Maska</li>
+          <li>Rémy Vandaele</li>
+          <li>Stefan G. Stanciu</li>
+          <li>Ofra Golani</li>
+          <li>Natasa Sladoje</li>
+          <li>Perrine Paul-Gilloteaux</li>
+        </ul>
+      </dd>
+
       <dt>{{$t('contact')}}</dt>
       <dd>
         <i18n path="contact-info">
