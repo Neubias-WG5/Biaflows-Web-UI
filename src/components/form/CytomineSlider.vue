@@ -4,11 +4,11 @@
   :min="min"
   :max="max"
   :interval="interval"
-  :tooltip="'always'"
+  :tooltip="(tooltip) ? 'always' : 'none'"
   :tooltip-placement="tooltipPlacement"
   :lazy="lazy"
 >
-  <template #tooltip="{value, index}">
+  <template #tooltip="{value, index}" v-if="tooltip">
     <div
       :class="['vue-slider-dot-tooltip-inner', `vue-slider-dot-tooltip-inner-${tooltipPlacement[index]}`]"
       @mousedown.stop
@@ -45,7 +45,8 @@ export default {
     max: {type: Number, default: 100},
     interval: {type: Number},
     integerOnly: {type: Boolean, default: true},
-    lazy: {type: Boolean, default: true}
+    lazy: {type: Boolean, default: true},
+    tooltip: {type: Boolean, default: true}
   },
   data() {
     return {
