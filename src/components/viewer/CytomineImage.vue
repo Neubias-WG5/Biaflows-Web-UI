@@ -355,7 +355,10 @@ export default {
 
     baseLayerURLs() {
       let filterPrefix = this.imageWrapper.colors.filter || '';
-      let params = `&tileIndex={tileIndex}&z={z}&mimeType=${this.slice.mime}`;
+      let contrast = (this.imageWrapper.colors.contrast !== 1) ? `&contrast=${this.imageWrapper.colors.contrast}` : '';
+      let gamma = (this.imageWrapper.colors.gamma !== 1) ? `&gamma=${this.imageWrapper.colors.gamma}` : '';
+      let inverse = (this.imageWrapper.colors.inverse) ? '&inverse=true' : '';
+      let params = `&tileIndex={tileIndex}&z={z}&mimeType=${this.slice.mime}${contrast}${gamma}${inverse}`;
 
       let minmax = this.imageWrapper.colors.minMax.map(stat => `${stat.sample+1}:${stat.min},${stat.max}`).join('|');
       if (minmax) params += `&minmax=${minmax}`;
@@ -364,7 +367,7 @@ export default {
     },
 
     colorManipulationOn() {
-      return this.imageWrapper.colors.brightness !== 0 || this.imageWrapper.colors.contrast !== 0
+      return this.imageWrapper.colors.brightness !== 0
                 || this.imageWrapper.colors.hue !== 0 || this.imageWrapper.colors.saturation !== 0;
     },
     operation() {

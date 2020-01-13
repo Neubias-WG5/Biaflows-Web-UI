@@ -118,6 +118,9 @@ export default {
       await dispatch('refreshDefaultMinMax', {image: new ImageInstance({id: state.idImage})});
     },
     automaticColorManipulation({commit, state}) {
+      commit('setContrast', 1);
+      commit('setGamma', 1);
+      commit('setInverse', false);
       commit('setMinMax', deepCopy(state.defaultMinMax));
     }
   }
