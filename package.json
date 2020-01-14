@@ -51,7 +51,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "eslint": "^5.16.0",
     "i18n-csv2json-cli": "^1.0.2",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.0",
     "onchange": "^5.2.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10"
