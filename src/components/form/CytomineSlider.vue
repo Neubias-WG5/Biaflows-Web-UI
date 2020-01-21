@@ -5,7 +5,6 @@
   :max="max"
   :interval="interval"
   :tooltip="(tooltip) ? 'always' : 'none'"
-  :interval="interval"
   :tooltip-placement="tooltipPlacement"
   :lazy="lazy"
 >
