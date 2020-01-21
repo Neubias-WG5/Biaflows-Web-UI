@@ -1,3 +1,5 @@
+import i18n from '@/lang';
+
 export default {
   namespaced: true,
 
@@ -7,7 +9,7 @@ export default {
         images: null,
         metrics: null,
         jobParameters: null,
-        aggregates: null
+        aggregates: [{key:'average', label: i18n.t('average')}]
       },
 
       currentTab: 0,
