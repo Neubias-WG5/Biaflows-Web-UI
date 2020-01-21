@@ -37,9 +37,8 @@ export default {
       state.tracksNewAnnots = tracks;
     },
 
-    filterTracksNewAnnots(state, tracks) {
-      let idTracks = tracks.map(track => track.id);
-      state.tracksNewAnnots = state.tracksNewAnnots.filter(id => idTracks.includes(id));
+    filterTracksNewAnnots(state, tracksIds) {
+      state.tracksNewAnnots = state.tracksNewAnnots.filter(id => tracksIds.includes(id));
     }
   },
 
@@ -55,7 +54,7 @@ export default {
 
     refreshData({commit, getters, rootGetters}) {
       commit('filterTermsNewAnnots', rootGetters['currentProject/terms'] || []);
-      commit('filterTracksNewAnnots', getters.tracks || []);
+      commit('filterTracksNewAnnots', getters.tracksIds || []);
     },
   }
 };

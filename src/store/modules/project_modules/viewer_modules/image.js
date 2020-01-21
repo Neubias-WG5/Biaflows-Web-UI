@@ -13,7 +13,6 @@ import tracking from './image_modules/tracking';
 import undoRedo from './image_modules/undo-redo';
 import view from './image_modules/view';
 import review from './image_modules/review';
-import tracks from './image_modules/tracks';
 import annotationsList from './image_modules/annotations-list';
 
 import Vue from 'vue';
@@ -236,7 +235,7 @@ export default {
         styles.push(...rejectedStyles);
       }
 
-      let tracks = state.style.wrappedTracks;
+      let tracks = state.style.tracks;
 
       if (tracks && nbTracks === 1) {
         let wrappedTrack = getters.tracksMapping[annot.track[0]];
@@ -293,7 +292,6 @@ export default {
     undoRedo,
     view,
     review,
-    tracks,
     annotationsList,
   }
 };

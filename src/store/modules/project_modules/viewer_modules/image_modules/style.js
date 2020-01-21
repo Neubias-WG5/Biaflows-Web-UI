@@ -1,4 +1,5 @@
 import {createColorStyle, createColorLineStyle, changeOpacity, createStrokeStyle, createLineStrokeStyle} from '@/utils/style-utils.js';
+import {TrackCollection} from 'cytomine-client';
 
 let initialTermsOpacity = 1;
 let initialTracksOpacity = 1;
@@ -7,7 +8,10 @@ let initialLayersOpacity = 0.15;
 export default {
   state() {
     return {
+      idImage: 0,
+
       terms: null,
+      tracks: null,
 
       displayNoTerm: true,
       noTermOpacity: initialTermsOpacity,
@@ -18,12 +22,15 @@ export default {
 
       layersOpacity: initialLayersOpacity,
 
-      wrappedTracks: null,
       multipleTracksStyle: createStrokeStyle('#fff', initialLayersOpacity)
     };
   },
 
   mutations: {
+    setIdImage(state, id) {
+      state.idImage = id;
+    },
+
     addTerm(state, term) {
       state.terms.push(formatTerm(term, state.layersOpacity));
     },
@@ -32,8 +39,12 @@ export default {
       state.terms = terms;
     },
 
-    setWrappedTracks(state, tracks) {
-      state.wrappedTracks = formatTracks(tracks, state.layersOpacity, state.wrappedTracks || []);
+    addTrack(state, track) {
+      state.tracks.push(formatTrack(track, state.layersOpacity));
+    },
+
+    setTracks(state, tracks) {
+      state.tracks = tracks;
     },
 
     toggleTermVisibility(state, indexTerm) {
@@ -78,8 +89,8 @@ export default {
       changeOpacity(state.noTermStyle, opacity*state.noTermOpacity);
       changeOpacity(state.multipleTermsStyle, opacity);
       changeOpacity(state.defaultStyle, opacity);
-      if(state.wrappedTracks) {
-        state.wrappedTracks.forEach(track => {
+      if(state.tracks) {
+        state.tracks.forEach(track => {
           changeOpacity(track.olStyle, opacity*track.opacity);
           changeOpacity(track.olLineStyle, opacity*track.opacity);
         });
@@ -89,12 +100,14 @@ export default {
   },
 
   actions: {
-    initialize({commit, getters, rootGetters}) {
+    async initialize({commit, rootGetters}, {image}) {
+      commit('setIdImage', image.id);
+
       let terms = formatTerms(rootGetters['currentProject/terms'], initialLayersOpacity);
       commit('setTerms', terms);
 
-      let tracks = formatTracks(getters.tracks, initialLayersOpacity);
-      commit('setWrappedTracks', tracks);
+      let tracks = await fetchTracks(image.id);
+      commit('setTracks', formatTracks(tracks, initialLayersOpacity));
     },
 
     toggleTermVisibility({state, commit}, indexTerm) {
@@ -112,12 +125,21 @@ export default {
       }
     },
 
-    async refreshData({state, commit, getters, rootGetters}) {
+    async setImageInstance({commit, dispatch}, {image}) {
+      commit('setIdImage', image.id);
+      await dispatch('refreshTracks');
+    },
+
+    async refreshTracks({state, commit}) {
+      let tracks = await fetchTracks(state.idImage);
+      commit('setTracks', formatTracks(tracks, state.layersOpacity, state.tracks));
+    },
+
+    async refreshData({state, commit, rootGetters, dispatch}) {
       let terms = formatTerms(rootGetters['currentProject/terms'], state.layersOpacity, state.terms);
       commit('setTerms', terms);
 
-      let tracks = formatTracks(getters.tracks, state.layersOpacity, state.terms);
-      commit('setWrappedTracks', tracks);
+      await dispatch('refreshTracks');
     }
   },
 
@@ -133,16 +155,15 @@ export default {
       }, {});
     },
     tracksMapping: state => {
-      if(!state.wrappedTracks) {
+      if(!state.tracks) {
         return {};
       }
 
-      return state.wrappedTracks.reduce((mapping, track) => {
+      return state.tracks.reduce((mapping, track) => {
         mapping[track.id] = track;
         return mapping;
       }, {});
     },
-    wrappedTracks: state => state.wrappedTracks,
     hiddenTermsIds: state => {
       if (!state.terms) {
         return [];
@@ -153,6 +174,9 @@ export default {
         list.push(0);
       return list || [];
     },
+    tracksIds: state => {
+      return state.tracks.map(track => track.id);
+    }
   }
 };
 
@@ -187,21 +211,36 @@ function formatTracks(tracks, layersOpacity, previousTracks=[]) {
     return;
   }
 
+  let cache = {};
+
   let result = [];
   let nbTracks = tracks.length;
   for(let i = 0; i < nbTracks; i++) {
     let track = tracks[i];
     let prevTrack = previousTracks.find(prevTrack => prevTrack.id === track.id && prevTrack.color === track.color);
-    result.push(prevTrack ? prevTrack : formatTrack(track, layersOpacity));
+    result.push(prevTrack ? prevTrack : formatTrack(track, layersOpacity, cache));
   }
   return result;
 }
 
-function formatTrack(track, layersOpacity) {
-  let result = {id: track.id};
+function formatTrack(track, layersOpacity, cache = {}) {
+  let opacity = initialTracksOpacity*layersOpacity;
+  if (!cache.hasOwnProperty(`stroke-${track.color}`)) {
+    cache[`stroke-${track.color}`] = createStrokeStyle(track.color, opacity);
+  }
+  if (!cache.hasOwnProperty(`line-stroke-${track.color}`)) {
+    cache[`line-stroke-${track.color}`] = createLineStrokeStyle(track.color, opacity);
+  }
+
+  let result = {id: track.id, name: track.name};
   result.opacity = initialTracksOpacity;
-  result.olStyle = createStrokeStyle(track.color, initialTracksOpacity*layersOpacity);
-  result.olLineStyle = createLineStrokeStyle(track.color, initialTracksOpacity*layersOpacity);
+  result.olStyle = cache[`stroke-${track.color}`];
+  result.olLineStyle = cache[`line-stroke-${track.color}`];
   result.color = track.color;
   return result;
+}
+
+async function fetchTracks(idImage) {
+  let data = (await TrackCollection.fetchAll({filterKey: 'imageinstance', filterValue: idImage})).array;
+  return data;
 }

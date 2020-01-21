@@ -81,7 +81,7 @@ export default {
       this.imageWrapper.properties.selectedPropertyKey;
       this.imageWrapper.properties.selectedPropertyColor;
       this.imageWrapper.review.reviewMode;
-      this.imageWrapper.style.wrappedTracks.forEach(track => {
+      this.imageWrapper.style.tracks.forEach(track => {
         track.color;
       });
 

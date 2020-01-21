@@ -173,7 +173,7 @@ export default {
       return this.imageWrapper.activeSlice;
     },
     tracks() {
-      return this.imageWrapper.tracks.tracks;
+      return this.imageWrapper.style.tracks;
     },
     hasTracks() {
       return this.tracks.length > 0;

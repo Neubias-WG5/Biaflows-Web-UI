@@ -111,7 +111,7 @@ export default {
       return this.$store.getters['currentProject/terms'] || [];
     },
     tracks() {
-      return this.imageWrapper.tracks.tracks;
+      return this.imageWrapper.style.tracks;
     }
   },
   watch: {

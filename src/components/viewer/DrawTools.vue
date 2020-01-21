@@ -372,7 +372,7 @@ export default {
       }
     },
     tracks() {
-      return this.imageWrapper.tracks.tracks;
+      return this.imageWrapper.style.tracks;
     },
     tracksToAssociate: {
       get() {
