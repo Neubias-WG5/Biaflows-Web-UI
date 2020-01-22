@@ -1,3 +1,5 @@
+import {ImageInstance} from 'cytomine-client';
+
 export default {
   state() {
     return {
