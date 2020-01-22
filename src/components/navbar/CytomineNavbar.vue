@@ -81,9 +81,8 @@
         <a class="navbar-item" @click="openHotkeysModal()">
           <span class="icon"><i class="far fa-keyboard fa-xs"></i></span> {{$t('shortcuts')}}
         </a>
-        <hr class="dropdown-divider">
-        <a class="navbar-item" @click="openVideoModal(type)" v-for="type in videoTypes" :key="type">
-          <span class="icon"><i class="fas fa-video fa-xs"></i></span> {{$t('screencast')}}: {{$t(`video-${type}`)}}
+        <a class="navbar-item" @click="openVideoModal()">
+          <span class="icon"><i class="fas fa-video fa-xs"></i></span> {{$t('screencast')}}
         </a>
         <hr class="dropdown-divider">
         <a class="navbar-item" @click="openAboutModal()">
@@ -133,9 +132,6 @@ export default {
     nbActiveProjects() {
       return Object.keys(this.$store.state.projects).length;
     },
-    videoTypes() {
-      return ['introduction', 'compare-workflows', 'multidimensional-images', 'workflow-source-code'];
-    }
   },
   watch: {
     $route(){
@@ -165,14 +161,11 @@ export default {
         hasModalCard: true
       });
     },
-    openVideoModal(type) {
+    openVideoModal() {
       this.$modal.open({
         parent: this,
         component: VideoHowToModal,
         hasModalCard: true,
-        props: {
-          type: type
-        }
       });
     },
     // ---

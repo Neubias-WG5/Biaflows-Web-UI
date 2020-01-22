@@ -23,11 +23,11 @@
 
     <template v-else-if="!currentUser">
       <div class="container">
-        <div class="columns is-vcentered">
-          <div class="column is-two-thirds">
+        <div class="columns">
+          <div class="column is-two-thirds logo-box">
             <img src="@/assets/logo.png" class="full-logo" alt="Biaflows">
             <h3 class="subtitle biaflows">
-              A <span>B</span>io <span>I</span>mage <span>A</span>nalysis work<span>flows</span> benchmarking platform.
+              A <span>B</span>io <span>I</span>mage <span>A</span>nalysis work<span>flows</span> benchmarking platform
             </h3>
           </div>
           <div class="column">
@@ -35,46 +35,27 @@
           </div>
         </div>
         <div class="columns">
-          <div class="column biaflows has-text-justified">
-            <span>BIA</span>FLOWS is a web platform integrating <span>B</span>io <span>I</span>mage <span>A</span>nalysis (BIA) work<span>flows</span> extracting annotations from biological objects or features apparent in multidimensional microscopy images. The workflows can be launched online on a predefined set of annotated images illustrating common BIA problems (e.g. Object segmentation), and their results can be visualized or quantitatively compared from a set of documented benchmarking metrics. To ensure reproducibility, the workflows are packaged with their complete execution environments as versioned Docker images created from browsable source repositories.
-          </div>
+
         </div>
         <div class="columns">
           <div class="column has-text-centered">
             <div>
               <div class="video">
-                <iframe src="https://www.loom.com/embed/df9dde48a5e949d3b6a4c63bf34063ac" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                <iframe :src="videoLink" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
               </div>
-              <p class="heading">{{$t('video-introduction')}}</p>
+              <p class="heading">BIAFLOWS demonstration</p>
             </div>
 
           </div>
-          <div class="column  has-text-centered">
-            <div>
-              <div class="video">
-                <iframe src="https://www.loom.com/embed/dbb2d4558ced43fdb021f194aabeb40d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-              </div>
-              <p class="heading">{{$t('video-compare-workflows')}}</p>
-            </div>
 
-          </div>
-          <div class="column has-text-centered">
-            <div>
-              <div class="video">
-                <iframe src="https://www.loom.com/embed/58c7d85ff43d421ab0a97e0714a62aaf" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-              </div>
-              <p class="heading">{{$t('video-multidimensional-images')}}</p>
+          <div class="column biaflows is-size-5 has-text-justified">
+            <p><span>BIA</span>FLOWS is a web platform integrating <span>B</span>io <span>I</span>mage <span>A</span>nalysis (BIA) work<span>flows</span> extracting annotations from biological objects or features apparent in multidimensional microscopy images.<br>
+              <br>The workflows can be launched online on a predefined set of annotated images illustrating common BIA problems (e.g. Object segmentation), and their results can be visualized or quantitatively compared from a set of documented benchmarking metrics.<br>
+              <br>To ensure reproducibility, the workflows are packaged with their complete execution environments as versioned Docker images created from browsable source repositories.
+            </p>
+            <div class="buttons">
+              <a href="http://biaflows-doc.neubias.org/" class="button is-fullwidth is-medium is-dark" target="_blank"><i class="fas fa-external-link-alt"></i>&nbsp;Read more on&nbsp;<span>BIA</span>FLOWS documentation portal</a>
             </div>
-
-          </div>
-          <div class="column has-text-centered">
-            <div>
-              <div class="video">
-                <iframe src="https://www.loom.com/embed/effe28d498e64ef29fd5dbff745aa76f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-              </div>
-              <p class="heading">{{$t('video-workflow-source-code')}}</p>
-            </div>
-
           </div>
         </div>
       </div>
@@ -139,6 +120,9 @@ export default {
     project: get('currentProject/project'),
     host() {
       return constants.CYTOMINE_CORE_HOST;
+    },
+    videoLink() {
+      return constants.VIDEO_LINK;
     }
   },
   methods: {
@@ -360,7 +344,6 @@ footer .sponsor {
 .video {
   position: relative;
   padding-bottom: 56.25%;
-  height: 0;
   width: 100%;
 }
 
@@ -371,5 +354,14 @@ footer .sponsor {
 .full-logo {
   height: 12rem;
   margin: 1em;
+}
+
+.logo-box {
+  margin-top: 4em;
+  text-align: center;
+}
+
+.biaflows .buttons {
+  margin-top: 1em;
 }
 </style>
