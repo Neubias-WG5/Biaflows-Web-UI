@@ -278,6 +278,14 @@ export default {
       }
       let increment = state.view.digitalZoom ? constants.DIGITAL_ZOOM_INCREMENT : 0;
       return state.imageInstance.zoom + increment;
+    },
+
+    maxRank: state => {
+      if(!state.imageInstance) {
+        return 0;
+      }
+
+      return state.imageInstance.depth * state.imageInstance.duration * state.imageInstance.channels;
     }
   },
 
