@@ -35,24 +35,37 @@
           </div>
         </div>
         <div class="columns">
-
+          <div class="column biaflows is-size-5 has-text-justified">
+            <p>
+              <span>BIA</span>FLOWS is a web platform to benchmark and reproducibly deploy <span>B</span>io <span>I</span>mage <span>A</span>nalysis (BIA) work<span>flows</span>.
+              <br><br>
+              This demo online instance gathers annotated images illustrating common <span>BIA</span> problems, and associated workflows targeting a broad range of software.
+              <br><br>
+              Workflows are packaged with their execution environments from <a target="_blank" href="https://neubias-wg5.github.io/user_guide.html#architecture">documented and versioned source code repositories</a>, and their results can be visualized and benchmarked online. <span>BIA</span>FLOWS can also be deployed as a local image management and analysis solution.
+              <br><br>
+              Visit the <a target="_blank" href="http://biaflows-doc.neubias.org/">documentation portal</a> for more information, and to contribute new content (workflows, images, annotations).
+            </p>
+          </div>
         </div>
         <div class="columns">
           <div class="column has-text-centered">
             <div>
               <div class="video">
-                <iframe :src="videoLink" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
+                <iframe src="https://drive.google.com/file/d/15qBBS6wkNrQWfwGwlBFtrjn0iy5RgXNN/preview" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
               </div>
-              <p class="heading">BIAFLOWS demonstration</p>
             </div>
-
           </div>
 
-          <div class="column biaflows is-size-5 has-text-justified">
-            <p><span>BIA</span>FLOWS is a web platform integrating <span>B</span>io <span>I</span>mage <span>A</span>nalysis (BIA) work<span>flows</span> extracting annotations from biological objects or features apparent in multidimensional microscopy images.<br>
-              <br>The workflows can be launched online on a predefined set of annotated images illustrating common BIA problems (e.g. Object segmentation), and their results can be visualized or quantitatively compared from a set of documented benchmarking metrics.<br>
-              <br>To ensure reproducibility, the workflows are packaged with their complete execution environments as versioned Docker images created from browsable source repositories.
-            </p>
+          <div class="column has-text-centered">
+            <div>
+              <div class="video">
+                <iframe :src="videoLink" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column biaflows">
             <div class="buttons">
               <a href="http://biaflows-doc.neubias.org/" class="button is-fullwidth is-medium is-dark" target="_blank"><i class="fas fa-external-link-alt"></i>&nbsp;Read more on&nbsp;<span>BIA</span>FLOWS documentation portal</a>
             </div>
@@ -362,6 +375,6 @@ footer .sponsor {
 }
 
 .biaflows .buttons {
-  margin-top: 1em;
+  margin-bottom: 1em;
 }
 </style>
