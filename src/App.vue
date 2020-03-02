@@ -22,6 +22,137 @@
     </div>
 
     <template v-else-if="!currentUser">
+
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://biaflows.neubias.org">
+            <img src="@/assets/logo-symbol.svg" id="logo" alt="Biaflows">
+          </a>
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+              Try it
+            </a>
+
+            <a class="navbar-item" href="http://biaflows-doc.neubias.org/">
+              <span class="icon"><i class="fas fa-book fa-xs"></i></span>Documentation
+            </a>
+            <a class="navbar-item" href="https://github.com/Neubias-WG5">
+              <span class="icon"><i class="fab fa-github fa-xs"></i></span> Code Repository
+            </a>
+            <a class="navbar-item" href="https://neubias-wg5.github.io/user_guide.html#architecture">
+              <span class="icon"><i class="fas fa-hands-helping fa-xs"></i></span>Contribute
+            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                More
+              </a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item" target="_blank"  href="https://drive.google.com/file/d/15qBBS6wkNrQWfwGwlBFtrjn0iy5RgXNN/view?usp=sharing">
+                  About
+                </a>
+                <a class="navbar-item" href="http://eubias.org/NEUBIAS/">
+                  NEUBIAS
+                </a>
+                <!--
+                <hr class="navbar-divider">
+                <a class="navbar-item">
+                  Report an issue
+                </a>
+                -->
+              </div>
+            </div>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-light is-danger">
+                  <strong>Log in</strong>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <section class="section">
+      <div class="container">
+        <div class="columns bg-img">
+          <div class="column is-half logo-box">
+            <img src="@/assets/logo.png" class="full-logo" alt="Biaflows">
+            <h3 class="subtitle biaflows is-size-4">
+              A <span>B</span>io <span>I</span>mage <span>A</span>nalysis work<span>flows</span> benchmarking platform
+            </h3>
+            <div class="column biaflows is-size-5 has-text-justified">
+              <p>
+                <span>BIA</span>FLOWS is an opensource web platform to benchmark and reproducibly deploy <span>B</span>io <span>I</span>mage <span>A</span>nalysis (BIA) work<span>flows</span>.
+               </p>
+              <div class="column biaflows has-text-centered" style="margin-top:1em;margin-bottom:1em">
+                <button class="button is-danger is-rounded is-large">Try it</button>
+              </div>
+              <div>
+                <p>
+                  This demo online instance gathers annotated images illustrating common <span>BIA</span> problems, and associated workflows targeting a broad range of software.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="column has-text-centered video-box">
+            <div>
+              <div class="video">
+                <video src="@/assets/homepage_landingvideo.mp4" onloadeddata="this.play();" playsinline loop muted controls></video>
+                <!--
+                <iframe :src="videoLink" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
+                -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
+
+      <section class="section">
+      <div class="container">
+        <div class="column biaflows is-size-5 has-text-justified">
+          <p>
+            Workflows are packaged with their execution environments from <a target="_blank" href="https://neubias-wg5.github.io/user_guide.html#architecture">documented and versioned source code repositories</a>, and their results can be visualized and benchmarked online. <span>BIA</span>FLOWS can also be deployed as a local image management and analysis solution.
+          <br><br>
+          <p>
+            Visit the <a target="_blank" href="http://biaflows-doc.neubias.org/">documentation portal</a> for more information, and to contribute new content (workflows, images, annotations).
+          </p>
+        </div>
+      </div>
+      </section>
+
+      <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column has-text-centered">
+            <div>
+              <div class="video">
+                <iframe src="https://drive.google.com/file/d/15qBBS6wkNrQWfwGwlBFtrjn0iy5RgXNN/preview" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
+              </div>
+            </div>
+          </div>
+
+          <div class="column has-text-centered">
+            <div>
+              <div class="video">
+                <iframe :src="videoLink" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
+<!--
       <div class="container">
         <div class="columns">
           <div class="column is-two-thirds logo-box">
@@ -72,6 +203,7 @@
           </div>
         </div>
       </div>
+      -->
       <footer class="footer">
         <div class="content has-text-centered">
           <a href="http://neubias.org/" target="_blank">
@@ -165,7 +297,7 @@ export default {
       }
       catch(error) {
         console.log(error);
-        this.communicationError = true;
+        this.communicationError = false;
       }
 
       clearTimeout(this.timeout);
@@ -229,7 +361,7 @@ body {
   height: 100%;
   width: 100%;
   flex-direction: column;
-  background: #d4d4d4;
+  background: #ffffff;
 }
 
 .wrapper-scroll {
@@ -370,11 +502,24 @@ footer .sponsor {
 }
 
 .logo-box {
-  margin-top: 4em;
+  margin-top: 3em;
+  text-align: center;
+}
+.video-box {
+  margin-top: 12em;
   text-align: center;
 }
 
 .biaflows .buttons {
   margin-bottom: 1em;
+}
+
+.bg-img {
+  background-image: url('assets/bg.svg') ;
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  background-size:  cover;
+  background-color: #ffffff;
 }
 </style>
