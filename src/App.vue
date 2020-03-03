@@ -43,7 +43,7 @@
             <a class="navbar-item" href="https://github.com/Neubias-WG5">
               <span class="icon"><i class="fab fa-github fa-xs"></i></span>&nbsp;Code Repository
             </a>
-            <a class="navbar-item" href="http://biaflows-doc.neubias.org/contribute.html">
+            <a class="navbar-item" href="https://neubias-wg5.github.io/contribute.html">
               <span class="icon"><i class="fas fa-hands-helping fa-xs"></i></span>Contribute
             </a>
             <div class="navbar-item has-dropdown is-hoverable">
