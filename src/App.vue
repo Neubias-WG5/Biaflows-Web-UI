@@ -23,7 +23,7 @@
 
     <template v-else-if="!currentUser">
 
-      <nav class="navbar" role="navigation" aria-label="main navigation">
+      <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://biaflows.neubias.org">
             <img src="@/assets/logo-symbol.svg" id="logo" alt="Biaflows">
@@ -37,29 +37,25 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item" @click="loginGuest()">
-              Try it
-            </a>
-
             <a class="navbar-item" href="http://biaflows-doc.neubias.org/">
               <span class="icon"><i class="fas fa-book fa-xs"></i></span>Documentation
             </a>
             <a class="navbar-item" href="https://github.com/Neubias-WG5">
               <span class="icon"><i class="fab fa-github fa-xs"></i></span>&nbsp;Code Repository
             </a>
-            <a class="navbar-item" href="https://neubias-wg5.github.io/user_guide.html#architecture">
+            <a class="navbar-item" href="http://biaflows-doc.neubias.org/contribute.html">
               <span class="icon"><i class="fas fa-hands-helping fa-xs"></i></span>Contribute
             </a>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
-                More
+                About
               </a>
               <div class="navbar-dropdown">
-                <a class="navbar-item" target="_blank"  href="https://drive.google.com/file/d/15qBBS6wkNrQWfwGwlBFtrjn0iy5RgXNN/view?usp=sharing">
-                  About
-                </a>
                 <a class="navbar-item" href="http://eubias.org/NEUBIAS/">
                   NEUBIAS
+                </a>
+                <a class="navbar-item" href="http://www.cytomine.org">
+                  Cytomine
                 </a>
                 <!--
                 <hr class="navbar-divider">
@@ -92,22 +88,24 @@
             </h3>
             <div class="column biaflows is-size-5 has-text-justified">
               <p>
-                <span>BIA</span>FLOWS is an opensource web platform to benchmark and reproducibly deploy <span>B</span>io <span>I</span>mage <span>A</span>nalysis (BIA) work<span>flows</span>.
+                <span>BIA</span>FLOWS is an open-source web platform to benchmark and reproducibly deploy <span>B</span>io <span>I</span>mage <span>A</span>nalysis (BIA) work<span>flows</span>.
                </p>
               <div class="column biaflows has-text-centered" style="margin-top:1em;margin-bottom:1em">
-                <button class="button is-danger is-rounded is-large" @click="loginGuest()">Try it</button>
+                <button class="button is-danger is-rounded is-large" @click="loginGuest()">Try online</button>
               </div>
               <div>
                 <p>
-                  This demo online instance gathers annotated images illustrating common <span>BIA</span> problems, and associated workflows targeting a broad range of software.
+                  This online instance gathers annotated images illustrating common <span>BIA</span> problems
+                  and reproducible workflows from a large variety of software.
                 </p>
+                <p><img src="@/assets/software_logos.png" alt="Workflows Software"></p>
               </div>
             </div>
           </div>
           <div class="column has-text-centered video-box">
             <div>
               <div class="video">
-                <video src="@/assets/homepage_landingvideo.mp4" onloadeddata="this.play();" playsinline loop muted controls></video>
+                <video src="@/assets/homepage_landingvideo.mp4" onloadeddata="this.play();" playsinline loop muted></video>
                 <!--
                 <iframe :src="videoLink" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
                 -->
@@ -117,7 +115,7 @@
         </div>
       </div>
       </section>
-
+<!--
       <section class="section">
       <div class="container">
         <div class="column biaflows is-size-5 has-text-justified">
@@ -130,19 +128,26 @@
         </div>
       </div>
       </section>
-
+-->
       <section class="section">
       <div class="container">
         <div class="columns">
-          <div class="column has-text-centered">
+          <div class="column has-text-centered is-three-fifths is-offset-one-fifth">
+            <h1 class="title is-1" style="color:rgb(254, 127, 127)">Benchmarking Worflows ?</h1>
             <div>
               <div class="video">
                 <iframe src="https://drive.google.com/file/d/15qBBS6wkNrQWfwGwlBFtrjn0iy5RgXNN/preview" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
               </div>
             </div>
           </div>
-
-          <div class="column has-text-centered">
+        </div>
+      </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="columns">
+          <div class="column has-text-centered is-three-fifths is-offset-one-fifth">
+            <h1 class="title is-1" style="color:rgb(254, 127, 127)">How to use BIAFLOWS ?</h1>
             <div>
               <div class="video">
                 <iframe :src="videoLink" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
