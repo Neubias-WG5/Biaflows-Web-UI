@@ -68,7 +68,7 @@
         <ul>
           <li>Ulysse Rubens</li>
           <li>Romain Mormont</li>
-          <li>Volker Baeker</li>
+          <li>Volker Baecker</li>
           <li>Lassi Paavolainen</li>
           <li>Benjamin Pavie</li>
           <li>Renaud Hoyoux</li>
