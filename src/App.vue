@@ -37,7 +37,7 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item">
+            <a class="navbar-item" @click="loginGuest()">
               Try it
             </a>
 
@@ -45,7 +45,7 @@
               <span class="icon"><i class="fas fa-book fa-xs"></i></span>Documentation
             </a>
             <a class="navbar-item" href="https://github.com/Neubias-WG5">
-              <span class="icon"><i class="fab fa-github fa-xs"></i></span> Code Repository
+              <span class="icon"><i class="fab fa-github fa-xs"></i></span>&nbsp;Code Repository
             </a>
             <a class="navbar-item" href="https://neubias-wg5.github.io/user_guide.html#architecture">
               <span class="icon"><i class="fas fa-hands-helping fa-xs"></i></span>Contribute
@@ -74,7 +74,7 @@
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-light is-danger">
+                <a class="button is-light is-danger" @click="openModal()">
                   <strong>Log in</strong>
                 </a>
               </div>
@@ -95,7 +95,7 @@
                 <span>BIA</span>FLOWS is an opensource web platform to benchmark and reproducibly deploy <span>B</span>io <span>I</span>mage <span>A</span>nalysis (BIA) work<span>flows</span>.
                </p>
               <div class="column biaflows has-text-centered" style="margin-top:1em;margin-bottom:1em">
-                <button class="button is-danger is-rounded is-large">Try it</button>
+                <button class="button is-danger is-rounded is-large" @click="loginGuest()">Try it</button>
               </div>
               <div>
                 <p>
@@ -271,6 +271,26 @@ export default {
     }
   },
   methods: {
+    async loginGuest() {
+      try {
+        await this.$store.dispatch('currentUser/login', {
+          username: 'guest',
+          password: 'guest',
+          rememberMe: true
+        });
+        if(this.currentUser) {
+          this.changeLanguage(this.currentUser.language);
+          this.$notify({type: 'success', text: this.$t('notif-success-login')});
+        }
+        else {
+          this.$notify({type: 'error', text: this.$t('notif-unexpected-error')});
+        }
+      }
+      catch(error) {
+        console.log(error);
+        this.$notify({type: 'error', text: error.response.data.message});
+      }
+    },
     async loginWithToken() {
       try {
         await Cytomine.instance.loginWithToken(this.$route.query.username, this.$route.query.token);
@@ -308,7 +328,14 @@ export default {
       if(this.currentUser) {
         this.changeLanguage(this.currentUser.language);
       }
-    }
+    },
+    openModal() {
+      this.$modal.open({
+        parent: this,
+        component: Login,
+        hasModalCard: true
+      });
+    },
   },
   async created() {
     let Settings;

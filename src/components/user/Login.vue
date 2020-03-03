@@ -126,6 +126,7 @@ export default {
         console.log(error);
         this.$notify({type: 'error', text: error.response.data.message});
       }
+      this.$parent.close();
     },
     async sendUsername() {
       try {
