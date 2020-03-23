@@ -28,14 +28,14 @@
           <a class="navbar-item" href="https://biaflows.neubias.org">
             <img src="@/assets/logo-symbol.svg" id="logo" alt="Biaflows">
           </a>
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <a role="button" class="navbar-burger burger" :class="{'is-active':openedTopMenu}" @click="openedTopMenu=!openedTopMenu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div id="topMenu" class="navbar-menu" :class="{'is-active':openedTopMenu}">
           <div class="navbar-start">
             <a class="navbar-item" href="http://biaflows-doc.neubias.org/">
               <span class="icon"><i class="fas fa-book fa-xs"></i></span>Documentation
@@ -262,7 +262,8 @@ export default {
     return {
       communicationError: false,
       loading: true,
-      timeout: null
+      timeout: null,
+      openedTopMenu: false,
     };
   },
   computed: {
@@ -273,6 +274,11 @@ export default {
     },
     videoLink() {
       return constants.VIDEO_LINK;
+    }
+  },
+  watch: {
+    $route() {
+      this.openedTopMenu = false;
     }
   },
   methods: {
