@@ -1021,3 +1021,4 @@ button-switch-histogram-scale-to-linear,Switch to linear histogram,Utiliser un h
 gamma,Gamma,Gamma
 inverse,Inverse,Inverse
 button-compute-histogram,Compute histogram,Calculer l'histogramme
+layers-color,Color annotations per layer

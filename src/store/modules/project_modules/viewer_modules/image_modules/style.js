@@ -1,9 +1,9 @@
 import {createColorStyle, createColorLineStyle, changeOpacity, createStrokeStyle, createLineStrokeStyle} from '@/utils/style-utils.js';
 import {TrackCollection} from 'cytomine-client';
 
-let initialTermsOpacity = 1;
-let initialTracksOpacity = 1;
-let initialLayersOpacity = 0.15;
+export let initialTermsOpacity = 1;
+export let initialTracksOpacity = 1;
+export let initialLayersOpacity = 0.15;
 
 export default {
   state() {
@@ -176,7 +176,8 @@ export default {
     },
     tracksIds: state => {
       return state.tracks.map(track => track.id);
-    }
+    },
+    layersOpacity: state => state.layersOpacity
   }
 };
 

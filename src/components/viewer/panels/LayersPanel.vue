@@ -22,7 +22,7 @@
       <thead>
         <tr>
           <th class="checkbox-column"><span class="far fa-eye"></span></th>
-          <th v-if="!reviewMode" class="checkbox-column"><span class="fas fa-pencil-alt"></span></th>
+          <th v-if="layersColor" class="checkbox-column"></th>
           <th class="name-column"></th>
           <th class="checkbox-column"></th>
         </tr>
@@ -32,8 +32,8 @@
           <td class="checkbox-column">
             <b-checkbox size="is-small" :value="layer.visible" @input="toggleLayerVisibility(idx)" />
           </td>
-          <td v-if="!reviewMode" class="checkbox-column">
-            <b-checkbox size="is-small" :value="layer.drawOn" :disabled="!canDraw(layer)" @input="toggleLayerDrawOn(idx)" />
+          <td v-if="layersColor" class="checkbox-column">
+            <div class="color-preview" v-if="layer.color" :style="{background: layer.color}"></div>
           </td>
 
           <td class="name-column">
@@ -54,6 +54,10 @@
     <div class="opacity">
       <label>{{ $t('layers-opacity') }}</label>
       <input class="slider is-fullwidth is-small" v-model="layersOpacity" step="0.05" min="0" max="1" type="range">
+    </div>
+
+    <div class="layer-color">
+      <b-checkbox size="is-small" v-model="layersColor">{{ $t('layers-color') }}</b-checkbox>
     </div>
   </template>
 </div>
@@ -110,6 +114,14 @@ export default {
       },
       set(value) {
         this.$store.commit(this.imageModule + 'setLayersOpacity', Number(value));
+      }
+    },
+    layersColor: {
+      get() {
+        return this.imageWrapper.layers.layersColor;
+      },
+      set(value) {
+        this.$store.commit(this.imageModule + 'setLayersColor', Boolean(value));
       }
     },
     layersIds() {
@@ -359,7 +371,7 @@ td .button {
   width: 100%;
 }
 
->>> .checkbox .control-label {
+.table >>> .checkbox .control-label {
   padding: 0 !important;
 }
 
@@ -373,13 +385,32 @@ td .button {
   align-items: center;
 }
 
-.opacity label {
+.layer-color {
+  display: flex;
+}
+
+.opacity label, .layer-color {
   text-transform: uppercase;
   font-size: 0.8em;
+  margin-bottom: 0.25em;
+}
+
+.opacity label {
   width: 15em;
 }
 
 .layer-field {
   margin-bottom: 0.25em !important;
+}
+
+.color-preview {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  margin-right: 0.25em;
+  border-radius: 0.25em;
+  box-shadow: 0 0 1px #777;
+  position: relative;
+  top: 0.2em;
 }
 </style>

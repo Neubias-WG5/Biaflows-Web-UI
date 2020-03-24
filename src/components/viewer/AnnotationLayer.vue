@@ -84,6 +84,10 @@ export default {
       this.imageWrapper.style.tracks.forEach(track => {
         track.color;
       });
+      this.imageWrapper.layers.selectedLayers.forEach(layer => {
+        layer.color;
+      });
+      this.imageWrapper.layers.layersColor;
 
       return () => {
         return this.$store.getters[this.imageModule + 'genStyleFunction'];

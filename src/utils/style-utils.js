@@ -17,7 +17,7 @@ export function isCluster(feature) {
 export function createStrokeStyle(color, opacity=0.5) {
   let colorArray = hexToRgb(color);
   let colorWithOpacity = colorArray.slice();
-  colorWithOpacity[3] = Math.max(0.5, opacity).toString();
+  colorWithOpacity[3] = Math.max(1, opacity).toString();
 
   let stroke = new Stroke({color: colorWithOpacity, width: 2});
 
@@ -58,13 +58,13 @@ export function createColorStyle(color, opacity=0.5) {
   let circleStyle = new Circle({
     radius: 5,
     fill: fillCircle,
-    stroke: createStroke(1),
+    // stroke: createStroke(1),
   });
   circleStyle.setOpacity(opacity);
 
   return new Style({
     fill,
-    stroke: createStroke(opacity),
+    // stroke: createStroke(opacity),
     image: circleStyle
   });
 }
@@ -106,6 +106,7 @@ let lightGreen = [17, 214, 76, 1];
 let red = [200, 40, 40, 1];
 let lightRed = [255, 56, 56, 1];
 let white = [255, 255, 255, 1];
+let black = [0, 0, 0, 1];
 
 let blueStroke = new Stroke({color: blue, width: width});
 let greenStroke = new Stroke({color: green, width: width + 1});
@@ -113,6 +114,7 @@ let lightGreenStroke = new Stroke({color: lightGreen, width: width});
 let redStroke = new Stroke({color: red, width: width + 1});
 let lightRedStroke = new Stroke({color: lightRed, width: width});
 let whiteStroke = new Stroke({color: white, width: width + 2});
+let blackStroke = new Stroke({color: black, width: width});
 
 export let trackedSelectStyles = [
   new Style({ stroke: whiteStroke }),
@@ -156,6 +158,11 @@ export let rejectedSelectStyles = [
   new Style({ image: new Circle({radius: 6, stroke: lightRedStroke}) })
 ];
 
+export let defaultStyles = [
+  new Style({ stroke: blackStroke }),
+  new Style({ image: new Circle({radius: 6, stroke: blackStroke}) })
+];
+
 // -----
 
 export function changeOpacity(style, opacity) {
@@ -179,6 +186,7 @@ function createDefaultColor(name, hexaCode) {
   return {
     name,
     fill: new Fill({color: '#' + hexaCode}),
+    stroke: new Stroke({color: '#' + hexaCode, width: width}),
     hexaCode
   };
 }
@@ -193,3 +201,27 @@ export const defaultColors = Object.freeze([
   createDefaultColor('blue', '0000ff'),
   createDefaultColor('purple', '800080')
 ]);
+
+export const layerColors = Object.freeze([
+  createDefaultColor('red', 'ff0000'),
+  createDefaultColor('orange', 'ff6600'),
+  createDefaultColor('yellow', 'ffff00'),
+  createDefaultColor('green', '008000'),
+  createDefaultColor('purple', '800080'),
+  createDefaultColor('cyan', '46f0f0'),
+  createDefaultColor('magenta', 'f032e6'),
+  createDefaultColor('lime', 'd2f53c'),
+  createDefaultColor('pink', 'fabebe'),
+  createDefaultColor('teal', '008080'),
+  createDefaultColor('lavender', 'e6beff'),
+  createDefaultColor('brown', 'aa6e28'),
+  createDefaultColor('beige', 'fffac8'),
+  createDefaultColor('maroon', '800000'),
+  createDefaultColor('mint', 'aaffc3'),
+  createDefaultColor('olive', '808000'),
+  createDefaultColor('coral', 'ffd8b1'),
+  createDefaultColor('navy', '000080'),
+  createDefaultColor('grey', '808080')
+]);
+
+export const userLayerColor = createDefaultColor('blue', '0099ff');

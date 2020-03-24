@@ -26,7 +26,8 @@ import {
   reviewedSelectStyles,
   rejectedStyles,
   rejectedSelectStyles,
-  trackedSelectStyles
+  trackedSelectStyles,
+  defaultStyles,
 } from '@/utils/style-utils.js';
 
 export default {
@@ -181,9 +182,23 @@ export default {
 
       let styles = [];
 
+      if (state.layers.layersColor) {
+        let wrappedLayer = getters.layersMapping[annot.user];
+        if(wrappedLayer) {
+          if(feature.getGeometry().getType() === 'LineString') {
+            styles.push(wrappedLayer.olLineStyle);
+          }
+          else {
+            styles.push(wrappedLayer.olStyle);
+          }
+        }
+      }
+      else {
+        styles.push(...defaultStyles);
+      }
+
       let nbTerms = annot.term.length;
       let terms = state.style.terms;
-
       if(terms && nbTerms === 1) {
         let wrappedTerm = getters.termsMapping[annot.term[0]];
         if(wrappedTerm) {
@@ -234,10 +249,9 @@ export default {
       else if(isRejected) {
         styles.push(...rejectedStyles);
       }
-
       let tracks = state.style.tracks;
 
-      if (tracks && nbTracks === 1) {
+      if (!state.layers.layersColor && tracks && nbTracks === 1) {
         let wrappedTrack = getters.tracksMapping[annot.track[0]];
         if(wrappedTrack) {
           if(feature.getGeometry().getType() === 'LineString') {
