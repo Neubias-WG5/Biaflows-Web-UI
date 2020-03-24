@@ -4,9 +4,12 @@
     <b-loading :is-full-page="false" :active="loading" />
     <template v-if="!loading">
       <div class="header">
-        <b-input class="search-images" v-model="searchString" :placeholder="$t('search-placeholder')"
-          type="search" icon="search"
-        />
+        <div>
+          <b-input class="search-images" v-model="searchString" :placeholder="$t('search-placeholder')"
+                   type="search" icon="search"
+          />
+          <b-checkbox v-model="searchInGroundTruth">{{$t('include-groundtruth-images')}}</b-checkbox>
+        </div>
         <button class="delete" @click="imageSelectorEnabled = false"></button>
       </div>
       <div class="content-wrapper" v-if="error">
@@ -60,6 +63,7 @@ export default {
     return {
       images: [],
       searchString: '',
+      searchInGroundTruth: false,
       nbImagesDisplayed: 20,
       loading: true,
       error: false
@@ -80,6 +84,11 @@ export default {
     },
     filteredImages() { // TODO: in backend
       let filtered = this.images;
+
+      if (!this.searchInGroundTruth) {
+        let regexp = getWildcardRegexp('lbl');
+        filtered = filtered.filter(image => !regexp.test(image.instanceFilename));
+      }
 
       if(this.searchString) {
         let regexp = getWildcardRegexp(this.searchString);
@@ -160,6 +169,14 @@ export default {
   padding-bottom: 0;
   display: flex;
   justify-content: space-between;
+}
+
+.header div {
+  display: flex;
+}
+
+.search-images {
+  margin-right: 1em;
 }
 
 .image-selector {
