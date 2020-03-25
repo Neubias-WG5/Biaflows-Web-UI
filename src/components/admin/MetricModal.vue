@@ -10,10 +10,16 @@
         :message="errors.first(field)"
       >
         <b-input
+          v-if="field !== 'main'"
           v-model="internalMetric[field]"
           :name="field"
           v-validate="validationRules"
           type="text"
+        />
+        <b-checkbox
+          v-else
+          v-model="internalMetric[field]"
+          :name="field"
         />
       </b-field>
 
@@ -68,12 +74,14 @@ export default {
       return [
         {field: 'name', validationRules: 'required'},
         {field: 'shortName', validationRules: 'required'},
+        {field: 'main', validationRules: ''}
       ];
     },
     fieldLabels() {
       return {
         'name': 'name',
         'shortName': 'short-name',
+        'main': 'main-metric'
       };
     }
   },

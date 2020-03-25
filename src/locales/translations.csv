@@ -1023,3 +1023,4 @@ inverse,Inverse,Inverse
 button-compute-histogram,Compute histogram,Calculer l'histogramme
 layers-color,Color annotations per layer
 include-groundtruth-images,Include ground truth images
+main-metric,Main metric,Métrique principale

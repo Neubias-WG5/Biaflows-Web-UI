@@ -9,7 +9,9 @@
           :colspan="nbAggregates"
           v-for="metric in metrics" :key="metric.id"
           class="metric-separator"
-          :class="{'is-sortable': !showAggregates, 'is-current-sort': !showAggregates && sort.field === `image-${image.id}-metric-${metric.id}`}"
+          :class="{'is-sortable': !showAggregates,
+            'is-current-sort': !showAggregates && sort.field === `image-${image.id}-metric-${metric.id}`,
+            'has-text-grey': !metric.main}"
           @click.stop="sortByImage(metric)"
         >
           <span v-if="metric.description && showAggregates">
@@ -20,7 +22,7 @@
               </template>
             </v-popover>
           </span>
-          {{metric.name}}
+          {{metric.name}} <template v-if="metric.main">[{{$t('main-metric')}}]</template>
           <span class="is-small icon" v-if="!showAggregates">
               <i
                 class="fas fa-arrow-up"
@@ -36,7 +38,7 @@
           <th
             v-for="(aggregate, idx) in aggregates"
             :key="`${metric.id}-${aggregate.key}`"
-            :class="{'metric-separator': idx === 0, 'is-current-sort': sort.field === `aggregate-metric-${metric.id}-${aggregate.key}`}"
+            :class="{'metric-separator': idx === 0, 'is-current-sort': sort.field === `aggregate-metric-${metric.id}-${aggregate.key}`, 'has-text-grey': !metric.main}"
             class="is-sortable"
             @click.stop="$emit('sort', `aggregate-metric-${metric.id}-${aggregate.key}`)"
           >
@@ -64,7 +66,7 @@
             <td
               v-for="(aggregate, idx) in aggregates"
               :key="`benchmark-aggregate-${job.id}-${metric.id}-${aggregate.key}`"
-              :class="{'metric-separator':idx === 0}"
+              :class="{'metric-separator':idx === 0, 'has-text-grey':!metric.main}"
             >
               <template v-if="job[`aggregate-metric-${metric.id}-${aggregate.key}`] !== undefined">
                 {{job[`aggregate-metric-${metric.id}-${aggregate.key}`] | round(3)}}
@@ -78,6 +80,7 @@
             <td
               :key="`benchmark-image-metric-${job.id}-${image.id}-${metric.id}`"
               class="metric-separator"
+              :class="{'has-text-grey':!metric.main}"
             >
               <template v-if="job[`image-${image.id}-metric-${metric.id}`] !== undefined">
                 {{job[`image-${image.id}-metric-${metric.id}`] | round(3)}}

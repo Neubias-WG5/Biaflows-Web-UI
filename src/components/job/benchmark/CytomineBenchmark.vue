@@ -36,7 +36,7 @@
                 :allPlaceholder="$t('all-metrics')"
               >
                 <template #option="{option}">
-                   {{option.name}} ({{option.shortName}})
+                   {{option.name}} ({{option.shortName}}) <template v-if="option.main">[{{$t('main-metric')}}]</template>
                 </template>
               </cytomine-multiselect>
             </div>
@@ -268,6 +268,7 @@ export default {
         }
       });
 
+      metrics.sort((a, b) => (a.main && !b.main) ? -1 : ((a.main !== b.main) ? 1 : 0));
       this.metrics = metrics;
     },
     thumbUrl(image) {

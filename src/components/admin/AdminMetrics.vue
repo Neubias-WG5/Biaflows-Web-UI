@@ -38,6 +38,10 @@
               {{metric.shortName}}
             </b-table-column>
 
+            <b-table-column field="main" centered sortable :label="$t('main-metric')" width="50">
+              <boolean-item :value="metric.main" :colored="false"/>
+            </b-table-column>
+
             <b-table-column field="disciplines" sortable :label="$t('disciplines')" width="150">
               <template v-if="metric.disciplines && metric.disciplines.length">
                 <span v-for="(discipline, index) in metric.disciplines" :key="discipline.id">
@@ -103,10 +107,12 @@ import {MetricCollection, DisciplineCollection} from 'cytomine-client';
 import MetricModal from './MetricModal';
 import {getWildcardRegexp} from '@/utils/string-utils';
 import CytomineDescription from '@/components/description/CytomineDescription';
+import BooleanItem from '@/components/utils/BooleanItem';
 
 export default {
   name: 'admin-metrics',
   components: {
+    BooleanItem,
     CytomineDescription,
     MetricModal,
   },
