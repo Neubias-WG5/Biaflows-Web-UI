@@ -13,9 +13,9 @@
       {{$t('users')}}
     </b-radio-button>
 
-    <b-radio-button v-model="activeTab" native-value="trusted-sources" type="is-link">
-      {{$t('trusted-sources')}}
-    </b-radio-button>
+<!--    <b-radio-button v-model="activeTab" native-value="trusted-sources" type="is-link">-->
+<!--      {{$t('trusted-sources')}}-->
+<!--    </b-radio-button>-->
 
     <b-radio-button v-model="activeTab" native-value="disciplines" type="is-link">
       {{$t('disciplines')}}
@@ -58,7 +58,7 @@ export default {
       tabNames: [
         'dashboard',
         'users',
-        'trusted-sources',
+        // 'trusted-sources',
         'disciplines',
         'metrics',
         'configuration'
@@ -78,8 +78,8 @@ export default {
           return AdminUsers;
         case 'configuration':
           return AdminConfiguration;
-        case 'trusted-sources':
-          return AdminSoftware;
+        // case 'trusted-sources':
+        //   return AdminSoftware;
         case 'metrics':
           return AdminMetrics;
         case 'disciplines':

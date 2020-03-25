@@ -1,165 +1,172 @@
 <template>
-<div class="list-software-wrapper content-wrapper">
-  <b-loading :is-full-page="false" :active="loading" />
+  <div class="content-wrapper">
+    <div class="list-software-wrapper">
+      <b-loading :is-full-page="false" :active="loading" />
 
-  <div class="box error" v-if="error">
-    <h2> {{ $t('error') }} </h2>
-    <p>{{ $t('unexpected-error-info-message') }}</p>
-  </div>
-  <div v-else-if="!loading" class="panel">
-    <p class="panel-heading">
-      {{$t('algorithms')}}
-<!--      <button v-if="!currentUser.guestByNow" class="button is-link" @click="creationModal = true">-->
-<!--        {{$t('new-algorithm')}}-->
-<!--      </button>-->
-    </p>
-    <div class="panel-block">
-      <div class="search-block">
-        <b-input
-          class="search-softwares"
-          v-model="searchString"
-          :placeholder="$t('search-placeholder')"
-          type="search" icon="search"
-        />
-        <button class="button" @click="toggleFilterDisplay()">
+      <div class="box error" v-if="error">
+        <h2> {{ $t('error') }} </h2>
+        <p>{{ $t('unexpected-error-info-message') }}</p>
+      </div>
+      <div v-else-if="!loading" class="panel">
+        <p class="panel-heading">
+          {{$t('algorithms')}}
+          <!--      <button v-if="!currentUser.guestByNow" class="button is-link" @click="creationModal = true">-->
+          <!--        {{$t('new-algorithm')}}-->
+          <!--      </button>-->
+        </p>
+        <div class="panel-block">
+          <div class="search-block">
+            <b-input
+                class="search-softwares"
+                v-model="searchString"
+                :placeholder="$t('search-placeholder')"
+                type="search" icon="search"
+            />
+            <button class="button" @click="toggleFilterDisplay()">
           <span class="icon">
             <i class="fas fa-filter"></i>
           </span>
-          <span>
+              <span>
             {{filtersOpened ? $t('button-hide-filters') : $t('button-show-filters')}}
           </span>
-          <span v-if="nbActiveFilters" class="nb-active-filters">
+              <span v-if="nbActiveFilters" class="nb-active-filters">
             {{nbActiveFilters}}
           </span>
-        </button>
+            </button>
+          </div>
+
+          <b-collapse :open="filtersOpened">
+            <div class="filters">
+              <div class="columns">
+                <div class="column filter">
+                  <div class="filter-label">
+                    {{$t('nb-jobs')}}
+                  </div>
+                  <div class="filter-body">
+                    <cytomine-slider v-model="boundsJobs" :max="maxNbJobs" />
+                  </div>
+                </div>
+
+                <div class="column filter">
+                  <div class="filter-label">
+                    {{$t('nb-success-jobs')}}
+                  </div>
+                  <div class="filter-body">
+                    <cytomine-slider v-model="boundsSuccessJobs" :max="maxNbSuccessJobs" />
+                  </div>
+                </div>
+
+                <div class="column filter">
+                  <div class="filter-label">
+                    {{$t('only-last-release')}}
+                  </div>
+                  <div class="filter-body">
+                    <b-switch v-model="onlyLastReleases" class="switch">
+                      <template v-if="onlyLastReleases">{{$t('yes')}}</template>
+                      <template v-else>{{$t('no')}}</template>
+                    </b-switch>
+                  </div>
+                </div>
+
+                <div class="column filter">
+                  <div class="filter-label">
+                    {{$t('only-UI-runnable')}}
+                  </div>
+                  <div class="filter-body">
+                    <b-switch v-model="onlyExecutables" class="switch">
+                      <template v-if="onlyExecutables">{{$t('yes')}}</template>
+                      <template v-else>{{$t('no')}}</template>
+                    </b-switch>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </b-collapse>
+
+
+          <b-table
+              :data="filteredSoftwares"
+              class="table-softwares"
+              :paginated="true"
+              :current-page.sync="currentPage"
+              :per-page="perPage"
+              pagination-size="is-small"
+              detailed
+              detail-key="id"
+              :opened-detailed.sync="openedDetails"
+              :default-sort="sort.field"
+              :default-sort-direction="sort.order"
+              @sort="updateSort"
+          >
+            <template #default="{row: software}">
+              <b-table-column field="name" :label="$t('name')" sortable width="250">
+                <router-link :to="`/software/${software.id}`">
+                  {{ software.fullName }}
+                </router-link>
+              </b-table-column>
+
+              <b-table-column field="softwareStatus" :label="$t('version')" centered sortable width="150" :custom-sort="sortBySoftwareStatus">
+                <software-status :software="software" />
+              </b-table-column>
+
+              <b-table-column field="executable" :label="$t('ui-runnable')" centered sortable width="150">
+                <boolean-item :value="software.executable" />
+              </b-table-column>
+
+              <b-table-column field="numberOfJob" :label="$t('number-jobs')" centered sortable width="150">
+                {{ software.numberOfJob }}
+              </b-table-column>
+
+              <b-table-column field="numberOfSuccess" :label="$t('number-success')" centered sortable width="150">
+                {{ software.numberOfSuccess }}
+              </b-table-column>
+
+              <b-table-column field="created" :label="$t('creation-date')" centered sortable width="180">
+                {{ Number(software.created) | moment('ll') }}
+              </b-table-column>
+
+              <b-table-column label=" " centered width="150">
+                <router-link :to="`/software/${software.id}`" class="button is-small is-link">
+                  {{$t('button-open')}}
+                </router-link>
+              </b-table-column>
+            </template>
+
+            <template #detail="{row: software}">
+              <software-details
+                  :software="software"
+                  :excluded-properties="excludedProperties"
+                  @update="updateSoftware"
+                  @delete="deleteSoftware(software)"
+              />
+            </template>
+
+            <template #empty>
+              <div class="content has-text-grey has-text-centered">
+                <p>{{$t('no-software')}}</p>
+              </div>
+            </template>
+
+            <template #bottom-left>
+              <b-select v-model="perPage" size="is-small">
+                <option value="10">{{$t('count-per-page', {count: 10})}}</option>
+                <option value="25">{{$t('count-per-page', {count: 25})}}</option>
+                <option value="50">{{$t('count-per-page', {count: 50})}}</option>
+                <option value="100">{{$t('count-per-page', {count: 100})}}</option>
+              </b-select>
+            </template>
+          </b-table>
+        </div>
       </div>
 
-      <b-collapse :open="filtersOpened">
-        <div class="filters">
-          <div class="columns">
-            <div class="column filter">
-              <div class="filter-label">
-                {{$t('nb-jobs')}}
-              </div>
-              <div class="filter-body">
-                <cytomine-slider v-model="boundsJobs" :max="maxNbJobs" />
-              </div>
-            </div>
-
-            <div class="column filter">
-              <div class="filter-label">
-                {{$t('nb-success-jobs')}}
-              </div>
-              <div class="filter-body">
-                <cytomine-slider v-model="boundsSuccessJobs" :max="maxNbSuccessJobs" />
-              </div>
-            </div>
-
-            <div class="column filter">
-              <div class="filter-label">
-                {{$t('only-last-release')}}
-              </div>
-              <div class="filter-body">
-                <b-switch v-model="onlyLastReleases" class="switch">
-                  <template v-if="onlyLastReleases">{{$t('yes')}}</template>
-                  <template v-else>{{$t('no')}}</template>
-                </b-switch>
-              </div>
-            </div>
-
-            <div class="column filter">
-              <div class="filter-label">
-                {{$t('only-UI-runnable')}}
-              </div>
-              <div class="filter-body">
-                <b-switch v-model="onlyExecutables" class="switch">
-                  <template v-if="onlyExecutables">{{$t('yes')}}</template>
-                  <template v-else>{{$t('no')}}</template>
-                </b-switch>
-              </div>
-            </div>
-          </div>
-        </div>
-      </b-collapse>
-
-
-      <b-table
-        :data="filteredSoftwares"
-        class="table-softwares"
-        :paginated="true"
-        :current-page.sync="currentPage"
-        :per-page="perPage"
-        pagination-size="is-small"
-        detailed
-        detail-key="id"
-        :opened-detailed.sync="openedDetails"
-        :default-sort="sort.field"
-        :default-sort-direction="sort.order"
-        @sort="updateSort"
-      >
-        <template #default="{row: software}">
-          <b-table-column field="name" :label="$t('name')" sortable width="250">
-            <router-link :to="`/software/${software.id}`">
-              {{ software.fullName }}
-            </router-link>
-          </b-table-column>
-
-          <b-table-column field="softwareStatus" :label="$t('version')" centered sortable width="150" :custom-sort="sortBySoftwareStatus">
-            <software-status :software="software" />
-          </b-table-column>
-
-          <b-table-column field="executable" :label="$t('ui-runnable')" centered sortable width="150">
-            <boolean-item :value="software.executable" />
-          </b-table-column>
-
-          <b-table-column field="numberOfJob" :label="$t('number-jobs')" centered sortable width="150">
-            {{ software.numberOfJob }}
-          </b-table-column>
-
-          <b-table-column field="numberOfSuccess" :label="$t('number-success')" centered sortable width="150">
-            {{ software.numberOfSuccess }}
-          </b-table-column>
-
-          <b-table-column field="created" :label="$t('creation-date')" centered sortable width="180">
-            {{ Number(software.created) | moment('ll') }}
-          </b-table-column>
-
-          <b-table-column label=" " centered width="150">
-            <router-link :to="`/software/${software.id}`" class="button is-small is-link">
-              {{$t('button-open')}}
-            </router-link>
-          </b-table-column>
-        </template>
-
-        <template #detail="{row: software}">
-          <software-details
-            :software="software"
-            :excluded-properties="excludedProperties"
-            @update="updateSoftware"
-            @delete="deleteSoftware(software)"
-          />
-        </template>
-
-        <template #empty>
-          <div class="content has-text-grey has-text-centered">
-            <p>{{$t('no-software')}}</p>
-          </div>
-        </template>
-
-        <template #bottom-left>
-          <b-select v-model="perPage" size="is-small">
-            <option value="10">{{$t('count-per-page', {count: 10})}}</option>
-            <option value="25">{{$t('count-per-page', {count: 25})}}</option>
-            <option value="50">{{$t('count-per-page', {count: 50})}}</option>
-            <option value="100">{{$t('count-per-page', {count: 100})}}</option>
-          </b-select>
-        </template>
-      </b-table>
+      <!--  <add-software-modal :active.sync="creationModal" />-->
     </div>
+    <div class="list-source-wrapper">
+      <list-trusted-sources />
+    </div>
+
   </div>
 
-<!--  <add-software-modal :active.sync="creationModal" />-->
-</div>
 </template>
 
 <script>
@@ -173,11 +180,15 @@ import {get, sync, syncFilter, syncBoundsFilter} from '@/utils/store-helpers';
 import {getWildcardRegexp} from '@/utils/string-utils';
 
 import {SoftwareCollection} from 'cytomine-client';
+import AdminSoftware from '@/components/admin/AdminSoftware';
+import ListTrustedSources from "@/components/software/ListTrustedSources";
 
 
 export default {
   name: 'list-software',
   components: {
+    ListTrustedSources,
+    AdminSoftware,
     BooleanItem,
     SoftwareStatus,
     CytomineSlider,
@@ -333,6 +344,10 @@ export default {
 .switch {
   margin-left: 1em;
 }
+
+.list-software-wrapper {
+  margin-bottom: 2em;
+}
 </style>
 
 <style>
@@ -345,7 +360,7 @@ export default {
   margin-top: 1rem;
 }
 
-.list-software-wrapper td, .list-software-wrapper th {
+.list-software-wrapper td, .list-software-wrapper th, .list-source-wrapper td, .list-software-wrapper th {
   vertical-align: middle !important;
 }
 </style>
