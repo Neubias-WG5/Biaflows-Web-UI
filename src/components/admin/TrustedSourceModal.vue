@@ -58,6 +58,7 @@ export default {
       return [
         {field: 'provider', validationRules: 'required'},
         {field: 'username', validationRules: 'required'},
+        {field: 'token', validationRules: ''},
         {field: 'environmentProvider', validationRules: 'required'},
         {field: 'dockerUsername', validationRules: 'required'},
         {field: 'prefix', validationRules: ''},
@@ -67,6 +68,7 @@ export default {
       return {
         'provider': 'source-provider',
         'username': 'source-provider-name',
+        'token': 'source-provider-token',
         'environmentProvider': 'environment-provider',
         'dockerUsername': 'environment-provider-name',
         'prefix': 'prefix'
