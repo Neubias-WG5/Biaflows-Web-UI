@@ -108,7 +108,7 @@ let lightRed = [255, 56, 56, 1];
 let white = [255, 255, 255, 1];
 let black = [0, 0, 0, 1];
 
-let blueStroke = new Stroke({color: blue, width: width});
+// let blueStroke = new Stroke({color: blue, width: width});
 let greenStroke = new Stroke({color: green, width: width + 1});
 let lightGreenStroke = new Stroke({color: lightGreen, width: width});
 let redStroke = new Stroke({color: red, width: width + 1});
@@ -116,15 +116,9 @@ let lightRedStroke = new Stroke({color: lightRed, width: width});
 let whiteStroke = new Stroke({color: white, width: width + 2});
 let blackStroke = new Stroke({color: black, width: width});
 
-export let trackedSelectStyles = [
-  new Style({ stroke: whiteStroke }),
-  new Style({ image: new Circle({radius: 6, stroke: whiteStroke}) })
-];
-
 export let selectStyles = [
   new Style({ stroke: whiteStroke }),
-  new Style({ stroke: blueStroke }),
-  new Style({ image: new Circle({radius: 6, stroke: blueStroke}) })
+  new Style({ image: new Circle({radius: 6, stroke: whiteStroke}) })
 ];
 
 export let verticesStyle = new Style({

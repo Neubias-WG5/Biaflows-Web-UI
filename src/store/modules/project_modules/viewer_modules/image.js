@@ -182,6 +182,25 @@ export default {
 
       let styles = [];
 
+      let isReviewed = annot.type === AnnotationType.REVIEWED;
+      let isRejected = state.review.reviewMode && !isReviewed;
+
+      // Styles for selected elements
+      if(state.selectedFeatures.selectedFeatures.map(ftr => ftr.id).includes(feature.getId())) {
+        styles.push(...(isReviewed ? reviewedSelectStyles : isRejected ? rejectedSelectStyles : selectStyles));
+
+        // if in modify mode, display vertices
+        if(state.draw.activeEditTool === 'modify') {
+          styles.push(verticesStyle);
+        }
+      }
+      else if(isReviewed) {
+        styles.push(...reviewedStyles);
+      }
+      else if(isRejected) {
+        styles.push(...rejectedStyles);
+      }
+
       if (state.layers.layersColor) {
         let wrappedLayer = getters.layersMapping[annot.user];
         if(wrappedLayer) {
@@ -231,26 +250,7 @@ export default {
       }
 
       let nbTracks = annot.track.length;
-      let isReviewed = annot.type === AnnotationType.REVIEWED;
-      let isRejected = state.review.reviewMode && !isReviewed;
-
-      // Styles for selected elements
-      if(state.selectedFeatures.selectedFeatures.map(ftr => ftr.id).includes(feature.getId())) {
-        styles.push(...(isReviewed ? reviewedSelectStyles : isRejected ? rejectedSelectStyles : (nbTracks > 0) ? trackedSelectStyles : selectStyles));
-
-        // if in modify mode, display vertices
-        if(state.draw.activeEditTool === 'modify') {
-          styles.push(verticesStyle);
-        }
-      }
-      else if(isReviewed) {
-        styles.push(...reviewedStyles);
-      }
-      else if(isRejected) {
-        styles.push(...rejectedStyles);
-      }
       let tracks = state.style.tracks;
-
       if (!state.layers.layersColor && tracks && nbTracks === 1) {
         let wrappedTrack = getters.tracksMapping[annot.track[0]];
         if(wrappedTrack) {
