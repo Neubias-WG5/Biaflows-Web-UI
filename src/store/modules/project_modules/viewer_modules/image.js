@@ -26,7 +26,6 @@ import {
   reviewedSelectStyles,
   rejectedStyles,
   rejectedSelectStyles,
-  trackedSelectStyles,
   defaultStyles,
 } from '@/utils/style-utils.js';
 
