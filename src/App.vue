@@ -516,8 +516,8 @@ h1 {
 }
 
 footer .sponsor {
-  max-height: 3rem;
-  margin-right: 0.5rem;
+  max-height: 9rem;
+  margin-right: 1rem;
 }
 
 .footer {
