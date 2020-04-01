@@ -283,10 +283,19 @@ export default {
   },
   methods: {
     async loginGuest() {
+      if (constants.TRY_IT_TOKEN) {
+        await this.loginWithToken(constants.TRY_IT_USERNAME, constants.TRY_IT_TOKEN);
+      }
+      else {
+        await this.login(constants.TRY_IT_USERNAME, constants.TRY_IT_PASSWORD);
+      }
+    },
+
+    async login(username, password) {
       try {
         await this.$store.dispatch('currentUser/login', {
-          username: 'guest',
-          password: 'guest',
+          username,
+          password,
           rememberMe: true
         });
         if(this.currentUser) {
@@ -302,9 +311,9 @@ export default {
         this.$notify({type: 'error', text: error.response.data.message});
       }
     },
-    async loginWithToken() {
+    async loginWithToken(username, token) {
       try {
-        await Cytomine.instance.loginWithToken(this.$route.query.username, this.$route.query.token);
+        await Cytomine.instance.loginWithToken(username, token);
         await this.fetchUser();
       }
       catch(error) {
@@ -364,7 +373,7 @@ export default {
     new Cytomine(constants.CYTOMINE_CORE_HOST);
 
     if(this.$route.query.token && this.$route.query.username) {
-      await this.loginWithToken();
+      await this.loginWithToken(this.$route.query.username, this.$route.query.token);
     }
     await this.ping();
     this.loading = false;

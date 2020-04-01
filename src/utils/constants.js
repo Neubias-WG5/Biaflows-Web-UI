@@ -1,7 +1,6 @@
 export default {
   CYTOMINE_CORE_HOST: 'http://biaflows',
   CYTOMINE_UPLOAD_HOST: 'http://biaflows-upload',
-  VIDEO_LINK: 'https://drive.google.com/file/d/1De8ZilKdcLINaLbmor_B1yDRFWSjfVvg/preview',
   STOP_PREVIEW_KEYWORD: 'STOP_PREVIEW',
   DIGITAL_ZOOM_INCREMENT: 4,
   PRELOADED_SLICES: 50,
@@ -22,4 +21,9 @@ export default {
   CONFIG_KEY_WELCOME: 'WELCOME',
   PREFIX_HIDDEN_PROPERTY_KEY: '@',
   DEFAULT_PROPERTY_KEY: '@DEFAULT_PROPERTY',
+  // ---
+  VIDEO_LINK: 'https://drive.google.com/file/d/1De8ZilKdcLINaLbmor_B1yDRFWSjfVvg/preview',
+  TRY_IT_USERNAME: 'guest',
+  TRY_IT_PASSWORD: 'guest',
+  TRY_IT_TOKEN: '',
 };
