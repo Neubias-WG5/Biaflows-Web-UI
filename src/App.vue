@@ -25,8 +25,9 @@
 
       <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <a class="navbar-item" href="https://biaflows.neubias.org">
+          <a class="navbar-item" href="/">
             <img src="@/assets/logo-symbol.svg" id="logo" alt="Biaflows">
+            <template v-if="instanceName"> {{instanceName}}</template>
           </a>
           <a role="button" class="navbar-burger burger" :class="{'is-active':openedTopMenu}" @click="openedTopMenu=!openedTopMenu">
             <span aria-hidden="true"></span>
@@ -274,6 +275,9 @@ export default {
     },
     videoLink() {
       return constants.VIDEO_LINK;
+    },
+    instanceName() {
+      return constants.INSTANCE_NAME;
     }
   },
   watch: {
@@ -512,6 +516,10 @@ strong, .label {
   img[src$=".svg"] {
     width: 100%;
   }
+}
+
+.navbar-brand img {
+  margin-right: 0.5em;
 }
 </style>
 

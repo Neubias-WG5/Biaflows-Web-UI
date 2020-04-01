@@ -3,7 +3,7 @@
   <div class="navbar-brand biaflows">
     <router-link to="/" exact class="navbar-item">
       <img src="@/assets/logo-symbol.svg" id="logo" alt="Biaflows">
-<!--      <span>BIA</span>FLOWS-->
+      <template v-if="instanceName"> {{instanceName}}</template>
     </router-link>
     <a role="" class="navbar-burger" :class="{'is-active':openedTopMenu}" @click="openedTopMenu=!openedTopMenu">
       <span></span> <span></span> <span></span>
@@ -108,6 +108,7 @@ import {Cytomine} from 'cytomine-client';
 import {fullName} from '@/utils/user-utils.js';
 import HowToUseModal from '@/components/navbar/HowToUseModal';
 import VideoHowToModal from '@/components/navbar/VideoHowToModal';
+import constants from '@/utils/constants';
 
 export default {
   name: 'cytomine-navbar',
@@ -131,6 +132,9 @@ export default {
     },
     nbActiveProjects() {
       return Object.keys(this.$store.state.projects).length;
+    },
+    instanceName() {
+      return constants.INSTANCE_NAME;
     },
   },
   watch: {
