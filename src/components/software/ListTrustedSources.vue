@@ -109,7 +109,6 @@ export default {
   },
   methods: {
     formatSource(source) {
-      console.log(source)
       source.environmentProvider = 'docker';
     },
     async refresh(source) {

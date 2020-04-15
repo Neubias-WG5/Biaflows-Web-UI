@@ -17,7 +17,7 @@ export default {
       return constants.SANDBOX_MESSAGE;
     }
   }
-}
+};
 </script>
 
 <style scoped>
