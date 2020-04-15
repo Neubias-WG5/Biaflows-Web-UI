@@ -2,6 +2,7 @@
   <div class="software-wrapper">
     <b-loading :is-full-page="false" :active="loading" />
     <div class="content-wrapper" v-if="!loading">
+      <sandbox-warning />
       <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
           <li><router-link :to="`/software`">{{$t('algorithms')}}</router-link></li>
@@ -127,11 +128,13 @@ import AttachedFiles from '@/components/attached-file/AttachedFiles';
 import SoftwareParameterDetails from '@/components/software/SoftwareParameterDetails';
 import SoftwareStatisticsChart from '@/components/charts/SoftwareStatisticsChart';
 import SoftwareDetails from '@/components/software/SoftwareDetails';
+import SandboxWarning from '@/components/utils/SandboxWarning';
 
 
 export default {
   name: 'software-information',
   components: {
+    SandboxWarning,
     SoftwareDetails,
     SoftwareStatisticsChart,
     SoftwareParameterDetails,

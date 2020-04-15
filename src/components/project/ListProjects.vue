@@ -1,5 +1,6 @@
 <template>
 <div class="list-projects-wrapper content-wrapper">
+  <sandbox-warning />
   <b-loading :is-full-page="false" :active="loading" />
   <div class="box error" v-if="error">
     <h2> {{ $t('error') }} </h2>
@@ -245,10 +246,12 @@ import {getWildcardRegexp} from '@/utils/string-utils';
 
 import {ProjectCollection} from 'cytomine-client';
 import CytomineDescription from '@/components/description/CytomineDescription';
+import SandboxWarning from '@/components/utils/SandboxWarning';
 
 export default {
   name: 'list-projects',
   components: {
+    SandboxWarning,
     CytomineDescription,
     ProjectDetails,
     AddProjectModal,

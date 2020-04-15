@@ -72,10 +72,12 @@ const routes = [
       },
       {
         path: 'image/:idImages',
+        name: 'viewer',
         component: CytomineViewer
       },
       {
         path: 'image/:idImages/slice/:idSlices',
+        name: 'viewer',
         component: CytomineViewer
       },
       {
@@ -84,10 +86,12 @@ const routes = [
       },
       {
         path: 'image/:idImages/annotation/:idAnnotation',
+        name: 'viewer',
         component: CytomineViewer
       },
       {
         path: 'image/:idImages/slice/:idSlices/annotation/:idAnnotation',
+        name: 'viewer',
         component: CytomineViewer
       },
       {

@@ -4,6 +4,7 @@
   <p>{{ $t('insufficient-permission') }}</p>
 </div>
 <div class="content-wrapper" v-else>
+  <sandbox-warning />
   <b-field class="radio-buttons-fullwidth">
     <b-radio-button v-model="activeTab" native-value="dashboard" type="is-link">
       {{$t('dashboard')}}
@@ -47,11 +48,13 @@ import AdminSoftware from './AdminSoftware';
 import AdminConfiguration from './AdminConfiguration';
 import AdminMetrics from './AdminMetrics';
 import AdminDisciplines from './AdminDisciplines';
+import SandboxWarning from '@/components/utils/SandboxWarning';
 
 const defaultTab = 'dashboard';
 
 export default {
   name: 'admin-panel',
+  components: {SandboxWarning},
   data() {
     return {
       activeTab: 0,

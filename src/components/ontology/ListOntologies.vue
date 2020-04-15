@@ -1,5 +1,6 @@
 <template>
 <div class="content-wrapper">
+  <sandbox-warning />
   <b-loading :is-full-page="false" :active="loading" />
 
   <template v-if="!loading">
@@ -86,10 +87,12 @@ import {getWildcardRegexp} from '@/utils/string-utils';
 import {OntologyCollection} from 'cytomine-client';
 import OntologyDetails from './OntologyDetails';
 import AddOntologyModal from './AddOntologyModal';
+import SandboxWarning from '@/components/utils/SandboxWarning';
 
 export default {
   name: 'list-ontologies',
   components: {
+    SandboxWarning,
     OntologyDetails,
     AddOntologyModal
   },

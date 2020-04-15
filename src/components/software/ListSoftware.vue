@@ -1,5 +1,7 @@
 <template>
   <div class="content-wrapper">
+    <sandbox-warning />
+
     <div class="list-software-wrapper">
       <b-loading :is-full-page="false" :active="loading" />
 
@@ -182,11 +184,13 @@ import {getWildcardRegexp} from '@/utils/string-utils';
 import {SoftwareCollection} from 'cytomine-client';
 import AdminSoftware from '@/components/admin/AdminSoftware';
 import ListTrustedSources from "@/components/software/ListTrustedSources";
+import SandboxWarning from '@/components/utils/SandboxWarning';
 
 
 export default {
   name: 'list-software',
   components: {
+    SandboxWarning,
     ListTrustedSources,
     AdminSoftware,
     BooleanItem,

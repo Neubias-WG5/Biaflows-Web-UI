@@ -26,5 +26,7 @@ export default {
   TRY_IT_USERNAME: 'guest',
   TRY_IT_PASSWORD: 'guest',
   TRY_IT_TOKEN: '',
-  INSTANCE_NAME: '',
+  INSTANCE_NAME: 'BIAFLOWS SANDBOX',
+  IS_SANDBOX: false,
+  SANDBOX_MESSAGE: ''
 };

@@ -7,6 +7,9 @@
     <project-sidebar v-if="!loading" :key="idProject" />
 
     <div class="app-content">
+      <div class="warning-wrapper" v-if="$route.name !== 'viewer'">
+        <sandbox-warning />
+      </div>
       <b-loading :is-full-page="false" :active="loading" />
       <router-view v-if="!loading" />
     </div>
@@ -17,10 +20,11 @@
 import {get} from '@/utils/store-helpers';
 import ProjectSidebar from './ProjectSidebar.vue';
 import projectModuleModel from '@/store/modules/project';
+import SandboxWarning from '@/components/utils/SandboxWarning';
 
 export default {
   name: 'cytomine-project',
-  components: {ProjectSidebar},
+  components: {SandboxWarning, ProjectSidebar},
   data() {
     return {
       loading: true,
@@ -90,5 +94,9 @@ export default {
   flex: 1;
   position: relative;
   overflow-y: auto;
+}
+
+.warning-wrapper {
+  padding: 1.5% 2.5% 0;
 }
 </style>

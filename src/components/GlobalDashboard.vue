@@ -3,6 +3,8 @@
   <b-loading :is-full-page="false" :active.sync="loading" />
 
   <template v-if="!loading">
+    <sandbox-warning />
+
     <div class="box">
       <div class="level level-logo">
         <div class="level-left">
@@ -189,10 +191,12 @@ import {ImageInstanceCollection, ProjectCollection, Configuration} from 'cytomin
 
 import constants from '@/utils/constants.js';
 import HowToUse from '@/components/navbar/HowToUse';
+import SandboxWarning from '@/components/utils/SandboxWarning';
 
 export default {
   name: 'global-dashboard',
   components: {
+    SandboxWarning,
     HowToUse,
     ListImagesPreview,
     ImagePreview

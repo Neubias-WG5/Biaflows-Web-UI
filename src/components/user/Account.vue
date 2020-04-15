@@ -1,5 +1,6 @@
 <template>
 <div class="content-wrapper">
+  <sandbox-warning />
   <div class="panel">
     <p class="panel-heading">
       <i class="fas fa-user" aria-hidden="true"></i>
@@ -170,9 +171,11 @@ import _ from 'lodash';
 import {User} from 'cytomine-client';
 import {rolesMapping} from '@/utils/role-utils';
 import copyToClipboard from 'copy-to-clipboard';
+import SandboxWarning from '@/components/utils/SandboxWarning';
 
 export default {
   name: 'Account',
+  components: {SandboxWarning},
   $_veeValidate: {validator: 'new'},
   mixins: [changeLanguageMixin],
   data() {

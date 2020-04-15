@@ -81,6 +81,7 @@
       </nav>
       <section class="section">
       <div class="container">
+        <sandbox-warning />
         <div class="columns bg-img">
           <div class="column is-half logo-box">
             <img src="@/assets/logo.png" class="full-logo" alt="Biaflows">
@@ -253,11 +254,12 @@ import {Cytomine} from 'cytomine-client';
 
 import constants from '@/utils/constants.js';
 import ifvisible from 'ifvisible';
+import SandboxWarning from '@/components/utils/SandboxWarning';
 ifvisible.setIdleDuration(constants.IDLE_DURATION);
 
 export default {
   name: 'app',
-  components: {CytomineNavbar, Login},
+  components: {SandboxWarning, CytomineNavbar, Login},
   mixins: [changeLanguageMixin],
   data() {
     return {

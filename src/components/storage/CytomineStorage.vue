@@ -1,5 +1,6 @@
 <template>
 <div class="storage-wrapper content-wrapper">
+  <sandbox-warning />
   <div class="panel">
     <p class="panel-heading">
       {{ $t('upload') }}
@@ -206,10 +207,12 @@ import {getWildcardRegexp} from '@/utils/string-utils';
 import UploadedFileStatusComponent from './UploadedFileStatus';
 import UploadedFileDetails from './UploadedFileDetails';
 import CytomineMultiselect from '@/components/form/CytomineMultiselect';
+import SandboxWarning from '@/components/utils/SandboxWarning';
 
 export default {
   name: 'cytomine-storage',
   components: {
+    SandboxWarning,
     CytomineMultiselect,
     'uploaded-file-status': UploadedFileStatusComponent,
     UploadedFileDetails

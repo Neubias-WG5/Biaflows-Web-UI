@@ -4,6 +4,7 @@
   <p>{{ $t('unexpected-error-info-message') }}</p>
 </div>
 <div v-else class="content-wrapper">
+  <sandbox-warning />
   <div class="panel">
     <p class="panel-heading">
       {{$t('advanced-search')}}
@@ -94,10 +95,11 @@ import {get} from '@/utils/store-helpers';
 import ImageName from '@/components/image/ImageName';
 import {ImageInstanceCollection, ProjectCollection} from 'cytomine-client';
 import {getWildcardRegexp} from '@/utils/string-utils';
+import SandboxWarning from '@/components/utils/SandboxWarning';
 
 export default {
   name: 'advanced-search',
-  components: {ImageName},
+  components: {SandboxWarning, ImageName},
   data() {
     return {
       loading: true,
