@@ -1,6 +1,6 @@
-# POC Cytomine Front-End
+# BIAFLOWS Web-UI
 
-POC for new Cytomine front-end. For more information about Cytomine, go to http://www.cytomine.org.
+Biaflows Web-UI based on Cytomine.org v2 front-end. For more information about Cytomine, go to http://www.cytomine.org.
 
 #### Installation
 First checkout the repository, then install the dependencies with:
