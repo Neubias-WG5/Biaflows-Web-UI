@@ -171,7 +171,7 @@
             <h1 class="title is-1" style="color:rgb(254, 127, 127)">How to use BIAFLOWS ?</h1>
             <div>
               <div class="video video-container">
-                <iframe :src="videoLink" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
+                <iframe :src="videoLink" width="640" height="360" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
             </div>
           </div>

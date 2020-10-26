@@ -22,7 +22,7 @@ export default {
   PREFIX_HIDDEN_PROPERTY_KEY: '@',
   DEFAULT_PROPERTY_KEY: '@DEFAULT_PROPERTY',
   // ---
-  VIDEO_LINK: 'https://drive.google.com/file/d/1De8ZilKdcLINaLbmor_B1yDRFWSjfVvg/preview',
+  VIDEO_LINK: 'https://www.youtube.com/embed/GLY_2p5Xztk',
   TRY_IT_USERNAME: 'guest',
   TRY_IT_PASSWORD: 'guest',
   TRY_IT_TOKEN: '',
