@@ -19,7 +19,7 @@
         </b-message>
       </div>
       <div v-else class="image-selector">
-        <div class="card" v-for="image in displayedImages" :key="image.id">
+        <div class="card" v-for="image in displayedImages" :key="image.id" :class="{active: alreadyAdded(image)}">
           <a class="card-image" @click="addImage(image)" :style="'background-image: url(' + image.preview + ')'"></a>
           <div class="card-content">
             <div class="content">
@@ -82,6 +82,9 @@ export default {
         this.$store.commit(this.viewerModule + 'setImageSelector', value);
       }
     },
+    viewerImagesIds() {
+      return Object.values(this.$store.getters['currentProject/currentViewer'].images).map(image => image.imageInstance.id);
+    },
     filteredImages() { // TODO: in backend
       let filtered = this.images;
 
@@ -97,8 +100,21 @@ export default {
 
       return filtered;
     },
+    sortedImages() {
+      return this.filteredImages.slice().sort((a, b) => {
+        if (this.alreadyAdded(a) && this.alreadyAdded(b)) {
+          return 0;
+        }
+        else if(this.alreadyAdded(a)) {
+          return -1;
+        }
+        else {
+          return 1;
+        }
+      });
+    },
     displayedImages() {
-      return this.filteredImages.slice(0, this.nbImagesDisplayed);
+      return this.sortedImages.slice(0, this.nbImagesDisplayed);
     }
   },
   methods: {
@@ -126,6 +142,10 @@ export default {
       if (key === 'toggle-add-image') {
         this.toggle();
       }
+    },
+
+    alreadyAdded(image) {
+      return this.viewerImagesIds.includes(image.id);
     }
   },
   async created() {
@@ -234,5 +254,10 @@ export default {
   box-sizing: border-box;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   z-index: 100;
+}
+
+.active {
+  box-shadow: 0 2px 3px rgba(39, 120, 173, 0.75), 0 0 0 1px rgba(39, 120, 173, 0.75);
+  font-weight: 600;
 }
 </style>
