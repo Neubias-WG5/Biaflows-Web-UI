@@ -1,6 +1,6 @@
 module.exports = {
   devServer: {
-    host: 'localhost-core',
+    host: 'biaflows',
     port: 8081,
   },
 };
