@@ -117,6 +117,25 @@
         </div>
       </div>
       </section>
+      <section class="section">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <div class="buttons is-centered">
+                <a href="#section-workflow-benchmarking" class="button is-rounded is-medium is-danger is-outlined" v-smooth-scroll>
+                  <span class="icon"><i class="fas fa-file-alt"></i></span>
+                  <span>About workflow benchmarking</span>
+                </a>
+                <a href="#section-how-to-use" class="button is-rounded is-medium is-danger is-outlined" v-smooth-scroll>
+                  <span class="icon"><i class="fab fa-youtube"></i></span>
+                  <span>How to use BIAFLOWS</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
 <!--
       <section class="section">
       <div class="container">
@@ -131,13 +150,13 @@
       </div>
       </section>
 -->
-      <section class="section">
+      <section class="section" id="section-workflow-benchmarking">
       <div class="container">
         <div class="columns">
           <div class="column has-text-centered is-three-fifths is-offset-one-fifth">
-            <h1 class="title is-1" style="color:rgb(254, 127, 127)">Benchmarking Worflows ?</h1>
+            <h1 class="title is-1" style="color:rgb(254, 127, 127)">Benchmarking Workflows ?</h1>
             <div>
-              <div class="video">
+              <div class="video video-container">
                 <iframe src="https://drive.google.com/file/d/15qBBS6wkNrQWfwGwlBFtrjn0iy5RgXNN/preview" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
               </div>
             </div>
@@ -145,13 +164,13 @@
         </div>
       </div>
       </section>
-      <section class="section">
+      <section class="section" id="section-how-to-use">
         <div class="container">
           <div class="columns">
           <div class="column has-text-centered is-three-fifths is-offset-one-fifth">
             <h1 class="title is-1" style="color:rgb(254, 127, 127)">How to use BIAFLOWS ?</h1>
             <div>
-              <div class="video">
+              <div class="video video-container">
                 <iframe :src="videoLink" width="640" height="480" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
               </div>
             </div>
@@ -545,8 +564,11 @@ footer .sponsor {
 
 .video {
   position: relative;
-  padding-bottom: 56.25%;
   width: 100%;
+}
+
+.video-container {
+  padding-bottom: 56.25%;
 }
 
 .column .heading {

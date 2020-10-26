@@ -73,6 +73,11 @@ Vue.prototype.$eventBus = new Vue();
 import {round} from './utils/number-utils.js';
 Vue.filter('round', round);
 
+import VueSmoothScroll from 'vue2-smooth-scroll';
+Vue.use(VueSmoothScroll, {
+  duration: 100
+});
+
 new Vue({
   render: h => h(App),
   router,
