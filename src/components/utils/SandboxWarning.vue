@@ -1,6 +1,6 @@
 <template>
-  <b-message v-if="isSandbox" title="Warning !" type="is-warning" has-icon :closable="false">
-    This instance is a <strong>sandbox</strong>. <span v-html="sandboxMessage"></span>
+  <b-message v-if="showMessage" :title="landingTitle" :type="landingType" has-icon :closable="false">
+    <span v-html="landingMessage"></span>
   </b-message>
 </template>
 
@@ -10,12 +10,19 @@ import constants from '@/utils/constants.js';
 export default {
   name: 'SandboxWarning',
   computed: {
-    isSandbox() {
-      return constants.IS_SANDBOX;
+    showMessage() {
+      return constants.SHOW_LANDING_MESSAGE;
     },
-    sandboxMessage() {
-      return constants.SANDBOX_MESSAGE;
+    landingMessage() {
+      return constants.LANDING_MESSAGE;
+    },
+    landingTitle() {
+      return constants.LANDING_MESSAGE_TITLE;
+    },
+    landingType() {
+      return constants.LANDING_MESSAGE_TYPE || 'is-info';
     }
+
   }
 };
 </script>
