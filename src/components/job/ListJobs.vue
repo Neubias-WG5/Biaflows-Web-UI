@@ -150,7 +150,10 @@
     </div>
   </div>
 
-  <cytomine-benchmark :jobs="filteredBenchmarkedJobs" />
+  <cytomine-benchmark :jobs="filteredBenchmarkedJobs" v-if="project.computeMetricsInJobs"/>
+  <b-message v-else type="is-info" has-icon>
+    {{$t('no-metric-computation-for-project')}}
+  </b-message>
 
   <add-job-modal :active.sync="launchModal" @add="addJob" />
 </div>

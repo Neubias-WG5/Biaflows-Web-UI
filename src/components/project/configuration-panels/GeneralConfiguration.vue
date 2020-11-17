@@ -85,6 +85,34 @@
     </div>
   </div>
 
+  <h2>{{$t('workflow-results')}}</h2>
+
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <b-checkbox v-model="computeMetricsInJobs">
+        {{$t('compute-workflow-metrics')}}
+      </b-checkbox>
+    </div>
+    <div class="column">
+      <b-message type="is-info" has-icon size="is-small">
+        {{$t('compute-workflow-metrics-explanation')}}
+      </b-message>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <b-checkbox v-model="uploadJobAnnotations">
+        {{$t('upload-workflow-annotations')}}
+      </b-checkbox>
+    </div>
+    <div class="column">
+      <b-message type="is-info" has-icon size="is-small">
+        {{$t('upload-workflow-annotations-explanation')}}
+      </b-message>
+    </div>
+  </div>
+
   <h2>{{$t('default-annotation-layers')}}</h2>
 
   <b-field grouped>
@@ -146,6 +174,8 @@ export default {
       blindMode: null,
       hideManagersLayers: null,
       hideContributorsLayers: null,
+      computeMetricsInJobs: null,
+      uploadJobAnnotations: null,
 
       layerToAdd: null,
       defaultLayers: []
@@ -197,6 +227,20 @@ export default {
         return;
       }
       this.updateProject({hideUsersLayers: this.hideContributorsLayers});
+    },
+    
+    computeMetricsInJobs() {
+      if (this.computeMetricsInJobs === this.project.computeMetricsInJobs) {
+        return;
+      }
+      this.updateProject({computeMetricsInJobs: this.computeMetricsInJobs});
+    },
+
+    uploadJobAnnotations() {
+      if (this.uploadJobAnnotations === this.project.uploadJobAnnotations) {
+        return;
+      }
+      this.updateProject({uploadJobAnnotations: this.uploadJobAnnotations});
     }
   },
   methods: {
@@ -209,6 +253,8 @@ export default {
       this.blindMode = this.project.blindMode;
       this.hideManagersLayers = this.project.hideAdminsLayers;
       this.hideContributorsLayers = this.project.hideUsersLayers;
+      this.computeMetricsInJobs = this.project.computeMetricsInJobs;
+      this.uploadJobAnnotations = this.project.uploadJobAnnotations;
     },
 
     async fetchDefaultLayers() {

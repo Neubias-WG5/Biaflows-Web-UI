@@ -61,6 +61,12 @@
           </template>
         </tbody>
       </table>
+      <b-message v-if="!project.computeMetricsInJobs" type="is-info" size="is-small">
+        {{$t('no-metric-computation-for-job')}}
+      </b-message>
+      <b-message v-if="!project.uploadJobAnnotations" type="is-info" size="is-small">
+        {{$t('no-annotation-upload-for-job')}}
+      </b-message>
     </template>
 
     <template #footer>

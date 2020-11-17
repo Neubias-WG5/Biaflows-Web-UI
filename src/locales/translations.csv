@@ -1025,3 +1025,11 @@ layers-color,Color annotations per layer
 include-groundtruth-images,Include ground truth images
 main-metric,Main metric,Métrique principale
 source-provider-token,Source code provider token (optional),
+no-metric-computation-for-job,"In this problem, metrics are not computed. The parameter -nmc will be set.",
+no-annotation-upload-for-job,"In this problem, annotations are not saved. The parameter -nau will be set.",
+no-metric-computation-for-project,"In this problem, metrics are not computed.",
+workflow-results,Workflow results,
+compute-workflow-metrics,Compute and save metrics,
+compute-workflow-metrics-explanation,"When unset, no metric is computed and benchmarking is disabled.",
+upload-workflow-annotations,Upload and save annotations,
+upload-workflow-annotations-explanation,"When unset, no workflow annotation is uploaded and saved.",
